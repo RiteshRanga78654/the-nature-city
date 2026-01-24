@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 import Slider from "./components/Slider";
 import Footer from "./components/Footer";
 
-
-
 const Page = () => {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("learn");
   const [currentBrochureIndex, setCurrentBrochureIndex] = useState(0);
@@ -153,8 +153,7 @@ const Page = () => {
           className="relative z-10 text-center px-4 -mt-10"
         >
           <h1 className="text-5xl md:text-[110px] leading-[0.85] font-Condensed Sans-Serif mb-6 text-emerald-400 tracking-tight">
-            Nature's Embrace 
-            
+            Nature's Embrace
           </h1>
           <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]  mb-10 text-emerald-400 opacity-90">
             Premium Plots • Resort Villas • Elite Clubs
@@ -163,71 +162,63 @@ const Page = () => {
 
         {/* OVERLAPPING 3-WAY TOGGLE - Forced Visibility */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[90%] md:max-w-2xl px-2">
-          <div className="flex bg-[#021c17] p-1.5 rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] border border-white/10 backdrop-blur-xl h-[75px] md:h-[95px]">
-            {/* VILLAS OPTION */}
-            <button
-              onClick={() => setActiveTab("learn")}
-              className={`flex-1 flex items-center justify-center gap-2 md:gap-4 rounded-[2.2rem] text-[9px] md:text-xs font-bold tracking-widest transition-all duration-500 ${
-                activeTab === "learn"
-                  ? "bg-emerald-600 text-white shadow-2xl scale-[1.02]"
-                  : "text-stone-400 hover:text-stone-200"
-              }`}
-            >
-              VILLAS
-              {activeTab === "learn" && (
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="h-5 w-5 md:h-7 md:w-7 rounded-full border-2 border-white/50 flex items-center justify-center"
-                >
-                  <span className="text-[10px] md:text-xs">✓</span>
-                </motion.div>
-              )}
-            </button>
+      <div className="flex bg-[#021c17] p-1.5 rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] border border-white/10 backdrop-blur-xl h-[75px] md:h-[95px]">
+        
+        {/* VILLAS OPTION - Redirect to Home */}
+        <button
+          onClick={() => {
+            setActiveTab("learn");
+            router.push("/"); // Directs to your main villas page
+          }}
+          className={`flex-1 flex items-center justify-center gap-2 md:gap-4 rounded-[2.2rem] text-[9px] md:text-xs font-bold tracking-widest transition-all duration-500 ${
+            activeTab === "learn" ? "bg-emerald-600 text-white shadow-2xl scale-[1.02]" : "text-stone-400 hover:text-stone-200"
+          }`}
+        >
+          VILLAS
+          {activeTab === "learn" && (
+            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="h-5 w-5 md:h-7 md:w-7 rounded-full border-2 border-white/50 flex items-center justify-center">
+              <span className="text-[10px] md:text-xs">✓</span>
+            </motion.div>
+          )}
+        </button>
 
-            {/* PLOTS OPTION */}
-            <button
-              onClick={() => setActiveTab("community")}
-              className={`flex-1 flex items-center justify-center gap-2 md:gap-4 rounded-[2.2rem] text-[9px] md:text-xs font-bold tracking-widest transition-all duration-500 ${
-                activeTab === "community"
-                  ? "bg-emerald-600 text-white shadow-2xl scale-[1.02]"
-                  : "text-stone-400 hover:text-stone-200"
-              }`}
-            >
-              PLOTS
-              {activeTab === "community" && (
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="h-5 w-5 md:h-7 md:w-7 rounded-full border-2 border-white/50 flex items-center justify-center"
-                >
-                  <span className="text-[10px] md:text-xs">✓</span>
-                </motion.div>
-              )}
-            </button>
+        {/* PLOTS OPTION - Redirect to /plots */}
+        <button
+          onClick={() => {
+            setActiveTab("community");
+            router.push("/plots"); // Directs to your app/plots/page.js
+          }}
+          className={`flex-1 flex items-center justify-center gap-2 md:gap-4 rounded-[2.2rem] text-[9px] md:text-xs font-bold tracking-widest transition-all duration-500 ${
+            activeTab === "community" ? "bg-emerald-600 text-white shadow-2xl scale-[1.02]" : "text-stone-400 hover:text-stone-200"
+          }`}
+        >
+          PLOTS
+          {activeTab === "community" && (
+            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="h-5 w-5 md:h-7 md:w-7 rounded-full border-2 border-white/50 flex items-center justify-center">
+              <span className="text-[10px] md:text-xs">✓</span>
+            </motion.div>
+          )}
+        </button>
 
-            {/* CLUBS OPTION */}
-            <button
-              onClick={() => setActiveTab("clubs")}
-              className={`flex-1 flex items-center justify-center gap-2 md:gap-4 rounded-[2.2rem] text-[9px] md:text-xs font-bold tracking-widest transition-all duration-500 ${
-                activeTab === "clubs"
-                  ? "bg-emerald-600 text-white shadow-2xl scale-[1.02]"
-                  : "text-stone-400 hover:text-stone-200"
-              }`}
-            >
-              CLUBS
-              {activeTab === "clubs" && (
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="h-5 w-5 md:h-7 md:w-7 rounded-full border-2 border-white/50 flex items-center justify-center"
-                >
-                  <span className="text-[10px] md:text-xs">✓</span>
-                </motion.div>
-              )}
-            </button>
-          </div>
-        </div>
+        {/* CLUBS OPTION - Redirect to /clubs */}
+        <button
+          onClick={() => {
+            setActiveTab("clubs");
+            router.push("/clubs"); // Directs to your app/clubs/page.js
+          }}
+          className={`flex-1 flex items-center justify-center gap-2 md:gap-4 rounded-[2.2rem] text-[9px] md:text-xs font-bold tracking-widest transition-all duration-500 ${
+            activeTab === "clubs" ? "bg-emerald-600 text-white shadow-2xl scale-[1.02]" : "text-stone-400 hover:text-stone-200"
+          }`}
+        >
+          CLUBS
+          {activeTab === "clubs" && (
+            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="h-5 w-5 md:h-7 md:w-7 rounded-full border-2 border-white/50 flex items-center justify-center">
+              <span className="text-[10px] md:text-xs">✓</span>
+            </motion.div>
+          )}
+        </button>
+      </div>
+    </div>
       </section>
       {/* 4. CORE VALUE SECTION */}
       <section className="bg-stone-100 py-20 md:py-30 px-6 md:px-32 text-emerald-950">
@@ -312,6 +303,7 @@ const Page = () => {
                 <div className="absolute inset-0 bg-emerald-800/20 -z-20 translate-x-6 translate-y-6 rounded-2xl -rotate-1"></div>
               </div>
             </div>
+            
 
             <motion.div
               initial={{ opacity: 0 }}
@@ -322,53 +314,92 @@ const Page = () => {
               <h4 className="text-3xl md:text-5xl font-Condensed Sans-Serif leading-tight">
                 Download our <br /> digital brochure
               </h4>
-              <motion.button
+              <div className="pt-4">
+                {/* Changed Button to Gold Theme */}
+                <button
+                  style={{
+                    padding: "14px 60px",
+                    backgroundColor: "#22C55E", // Default Gold Background
+                    borderRadius: "8px",
+                    color: "#fff", // Default White Text
+                    fontSize: "1.1rem",
+                    fontWeight: "700",
+                    cursor: "pointer",
+                    display: "flex",
+                    textAlign: "center",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "10px",
+                    position: "relative",
+                    overflow: "hidden",
+                    zIndex: 1,
+                    border: "2px solid #22C55E", // Border keeps the button size stable
+                    margin: "0 auto",
+                    letterSpacing: "1px",
+                    transition: "all 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    const fill = e.currentTarget.querySelector(".hover-fill");
+                    const text = e.currentTarget.querySelector(".btn-text");
+
+                    // Slide in the white background
+                    if (fill) fill.style.width = "100%";
+
+                    // Change text color to Gold
+                    if (text) text.style.color = "#22C55E";
+                  }}
+                  onMouseLeave={(e) => {
+                    const fill = e.currentTarget.querySelector(".hover-fill");
+                    const text = e.currentTarget.querySelector(".btn-text");
+
+                    // Slide out the white background
+                    if (fill) fill.style.width = "0%";
+
+                    // Reset text color to White
+                    if (text) text.style.color = "#fff";
+                  }}
+                >
+                  {/* Hover Fill Layer: White */}
+                  <div
+                    className="hover-fill"
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "0%",
+                      height: "100%",
+                      background: "#ffffff", // White background on hover
+                      transition: "width 0.4s ease",
+                      zIndex: -1,
+                    }}
+                  />
+
+                  {/* Text Span with Transition */}
+                  <span
+                    className="btn-text"
+                    style={{
+                      position: "relative",
+                      zIndex: 1,
+                      color: "#fff", // Initial color
+                      transition: "color 0.3s ease",
+                    }}
+                  >
+                    Download PDF
+                  </span>
+                </button>
+              </div>
+              {/* <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="w-[60%] py-6 bg-emerald-600 hover:bg-emerald-500 text-white font-bold  tracking-[0.1em] text-[14px] transition-all rounded-xl shadow-2xl"
               >
                 Download PDF
-              </motion.button>
+              </motion.button> */}
             </motion.div>
           </div>
         </div>
       </section>
       <Slider />
-      {/* <section className="py-32 px-6 bg-stone-50">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
-            className="rounded-[3rem] overflow-hidden shadow-2xl border border-stone-200"
-          >
-            <img src="/assets/images/map-xxl.jpg" alt="Site Map" className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-1000" />
-          </motion.div>
-        </div>
-      </section> */}
-      {/* 6. RESPONSIVE MAP SECTION */}
-      {/* <section className="py-16 md:py-32 px-4 md:px-6 bg-stone-50">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }} 
-            whileInView={{ opacity: 1, scale: 1 }} 
-            viewport={{ once: true }}
-            className="rounded-2xl md:rounded-[3rem] overflow-hidden shadow-2xl border border-stone-200 bg-white"
-          >
-            {/* h-[300px] md:h-auto -> Ensures the map has a minimum height on mobile so it's readable.
-              object-cover -> Ensures the image fills that height without stretching.
-            */}
-      {/* <img 
-              src="/assets/images/map-xxl.jpg" 
-              alt="Site Map" 
-              className="w-full h-[350px] md:h-auto object-cover md:object-contain grayscale hover:grayscale-0 transition-all duration-1000" 
-            />
-          </motion.div>
-          
-          {/* Added a mobile-only hint to help users know they can see more */}
-      {/* <p className="mt-4 text-center text-emerald-900/40 text-[10px]  tracking-widest md:hidden">
-            Perspective view of the estate
-          </p>
-        </div>
-      </section> */}
       {/* 6. INTERACTIVE MAP, OVERLAPPING FORM & LOCATION INTEL */}
       <section className="relative bg-stone-50 pb-20 md:pb-30 px-4 md:px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
@@ -450,13 +481,87 @@ const Page = () => {
                 </div>
 
                 {/* Submit Button */}
-                <motion.button
+                <div className="pt-4">
+                {/* Changed Button to Gold Theme */}
+                <button
+                  style={{
+                    padding: "14px 40px",
+                    backgroundColor: "#22C55E", // Default Gold Background
+                    borderRadius: "8px",
+                    color: "#fff", // Default White Text
+                    fontSize: "1.1rem",
+                    fontWeight: "700",
+                    cursor: "pointer",
+                    display: "flex",
+                    textAlign: "center",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "10px",
+                    position: "relative",
+                    overflow: "hidden",
+                    zIndex: 1,
+                    border: "2px solid #22C55E", // Border keeps the button size stable
+                    margin: "0 auto",
+                    letterSpacing: "1px",
+                    transition: "all 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    const fill = e.currentTarget.querySelector(".hover-fill");
+                    const text = e.currentTarget.querySelector(".btn-text");
+
+                    // Slide in the white background
+                    if (fill) fill.style.width = "100%";
+
+                    // Change text color to Gold
+                    if (text) text.style.color = "#22C55E";
+                  }}
+                  onMouseLeave={(e) => {
+                    const fill = e.currentTarget.querySelector(".hover-fill");
+                    const text = e.currentTarget.querySelector(".btn-text");
+
+                    // Slide out the white background
+                    if (fill) fill.style.width = "0%";
+
+                    // Reset text color to White
+                    if (text) text.style.color = "#fff";
+                  }}
+                >
+                  {/* Hover Fill Layer: White */}
+                  <div
+                    className="hover-fill"
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "0%",
+                      height: "100%",
+                      background: "#ffffff", // White background on hover
+                      transition: "width 0.4s ease",
+                      zIndex: -1,
+                    }}
+                  />
+
+                  {/* Text Span with Transition */}
+                  <span
+                    className="btn-text"
+                    style={{
+                      position: "relative",
+                      zIndex: 1,
+                      color: "#fff", // Initial color
+                      transition: "color 0.3s ease",
+                    }}
+                  >
+                    Schedule a Visit
+                  </span>
+                </button>
+              </div>
+                {/* <motion.button
                   whileHover={{ scale: 1.02, backgroundColor: "#10b981" }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full bg-emerald-600 text-white font-bold py-5 rounded-xl  tracking-[0.1em] text-[14px] shadow-2xl transition-all"
                 >
                   Schedule a Visit
-                </motion.button>
+                </motion.button> */}
               </form>
             </div>
           </motion.div>
@@ -471,18 +576,90 @@ const Page = () => {
             >
               <h2 className="text-5xl md:text-7xl font-Condensed Sans-Serif text-[#022c22] leading-[1.1]">
                 Minutes from <br />
-                <span className="text-emerald-600 ">
-                  Global Connectivity.
-                </span>
+                <span className="text-emerald-600 ">Global Connectivity.</span>
               </h2>
               <div className="flex flex-col sm:flex-row gap-6">
                 <a href="https://maps.app.goo.gl/kuae33Ga4DcNtWbG7">
-                <button className="bg-emerald-600 cursor-pointer hover:bg-emerald-700 text-white px-8 py-5 rounded-full font-bold  tracking-widest text-[10px] shadow-xl transition-all flex items-center justify-center gap-3 group">
-                  Open in Google Maps
-                  <span className="group-hover:translate-x-1 transition-transform">
-                    ↗
+                <div className="pt-4">
+                {/* Changed Button to Gold Theme */}
+                <button
+                  style={{
+                    padding: "14px 40px",
+                    backgroundColor: "#22C55E", // Default Gold Background
+                    borderRadius: "8px",
+                    color: "#fff", // Default White Text
+                    fontSize: "1.1rem",
+                    fontWeight: "700",
+                    cursor: "pointer",
+                    display: "flex",
+                    textAlign: "center",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "10px",
+                    position: "relative",
+                    overflow: "hidden",
+                    zIndex: 1,
+                    border: "2px solid #22C55E", // Border keeps the button size stable
+                    margin: "0 auto",
+                    letterSpacing: "1px",
+                    transition: "all 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    const fill = e.currentTarget.querySelector(".hover-fill");
+                    const text = e.currentTarget.querySelector(".btn-text");
+
+                    // Slide in the white background
+                    if (fill) fill.style.width = "100%";
+
+                    // Change text color to Gold
+                    if (text) text.style.color = "#22C55E";
+                  }}
+                  onMouseLeave={(e) => {
+                    const fill = e.currentTarget.querySelector(".hover-fill");
+                    const text = e.currentTarget.querySelector(".btn-text");
+
+                    // Slide out the white background
+                    if (fill) fill.style.width = "0%";
+
+                    // Reset text color to White
+                    if (text) text.style.color = "#fff";
+                  }}
+                >
+                  {/* Hover Fill Layer: White */}
+                  <div
+                    className="hover-fill"
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "0%",
+                      height: "100%",
+                      background: "#ffffff", // White background on hover
+                      transition: "width 0.4s ease",
+                      zIndex: -1,
+                    }}
+                  />
+
+                  {/* Text Span with Transition */}
+                  <span
+                    className="btn-text"
+                    style={{
+                      position: "relative",
+                      zIndex: 1,
+                      color: "#fff", // Initial color
+                      transition: "color 0.3s ease",
+                    }}
+                  >
+                    Open in Google Maps
                   </span>
                 </button>
+              </div>
+                  {/* <button className="bg-emerald-600 cursor-pointer hover:bg-emerald-700 text-white px-8 py-5 rounded-full font-bold  tracking-widest text-[10px] shadow-xl transition-all flex items-center justify-center gap-3 group">
+                    Open in Google Maps
+                    <span className="group-hover:translate-x-1 transition-transform">
+                      ↗
+                    </span>
+                  </button> */}
                 </a>
               </div>
             </motion.div>
@@ -597,7 +774,6 @@ const Page = () => {
                   </div>
                 </motion.div>
               </AnimatePresence>
-
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
                 {villaData[orientation].floorPlans.map((plan, idx) => (
                   <motion.div
@@ -993,138 +1169,214 @@ const Page = () => {
       </section>
 
       <section className="relative bg-[#f8f9f8] py-16 md:py-24 lg:py-32 px-4 sm:px-6 overflow-hidden">
-      {/* Light Aesthetic Background Elements - Hidden on very small screens to improve performance */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[5%] left-[-10%] md:top-[10%] md:left-[15%] w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-emerald-100 rounded-full blur-[60px] md:blur-[100px]"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2],
-            x: [0, -40, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[5%] right-[-10%] md:bottom-[10%] md:right-[10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-stone-200 rounded-full blur-[80px] md:blur-[120px]"
-        />
-      </div>
+        {/* Light Aesthetic Background Elements - Hidden on very small screens to improve performance */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+              x: [0, 50, 0],
+              y: [0, 30, 0],
+            }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[5%] left-[-10%] md:top-[10%] md:left-[15%] w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-emerald-100 rounded-full blur-[60px] md:blur-[100px]"
+          />
+          <motion.div
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.2, 0.4, 0.2],
+              x: [0, -40, 0],
+              y: [0, -50, 0],
+            }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-[5%] right-[-10%] md:bottom-[10%] md:right-[10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-stone-200 rounded-full blur-[80px] md:blur-[120px]"
+          />
+        </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col lg:flex-row rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] md:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] border border-white bg-white/40 backdrop-blur-md"
-        >
-          {/* Left Side: Information (40% Width) */}
-          <div className="lg:w-2/5 p-8 sm:p-12 md:p-16 bg-[#0a241f] flex flex-col justify-between relative overflow-hidden">
-            {/* Subtle texture overlay */}
-            <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] pointer-events-none"></div>
+        <div className="max-w-6xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col lg:flex-row rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] md:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] border border-white bg-white/40 backdrop-blur-md"
+          >
+            {/* Left Side: Information (40% Width) */}
+            <div className="lg:w-2/5 p-8 sm:p-12 md:p-16 bg-[#0a241f] flex flex-col justify-between relative overflow-hidden">
+              {/* Subtle texture overlay */}
+              <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] pointer-events-none"></div>
 
-            <div className="relative z-10 space-y-8 md:space-y-12">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans text-white leading-[1.1] tracking-tight">
-                Begin your <br />
-                <span className=" text-emerald-400 font-light">Journey.</span>
-              </h2>
+              <div className="relative z-10 space-y-8 md:space-y-12">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans text-white leading-[1.1] tracking-tight">
+                  Begin your <br />
+                  <span className=" text-emerald-400 font-light">Journey.</span>
+                </h2>
 
-              <div className="space-y-6 md:space-y-10 pt-8 md:pt-10 border-t border-white/10">
-                {[
-                  { l: "Sales Inquiry", d: "+91 98450-77177" },
-                  { l: "Estate Office", d: "Devanahalli, Bengaluru" },
-                  { l: "Email", d: "concierge@naturevalley.com" },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ x: 10 }}
-                    className="group cursor-default"
-                  >
-                    <p className="text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] text-emerald-500 mb-1 md:mb-2 font-black uppercase">
-                      {item.l}
-                    </p>
-                    <p className="text-lg md:text-xl text-white font-light tracking-wide group-hover:text-emerald-200 transition-colors">
-                      {item.d}
-                    </p>
-                  </motion.div>
-                ))}
+                <div className="space-y-6 md:space-y-10 pt-8 md:pt-10 border-t border-white/10">
+                  {[
+                    { l: "Sales Inquiry", d: "+91 98450-77177" },
+                    { l: "Estate Office", d: "Devanahalli, Bengaluru" },
+                    { l: "Email", d: "concierge@naturevalley.com" },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      whileHover={{ x: 10 }}
+                      className="group cursor-default"
+                    >
+                      <p className="text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] text-emerald-500 mb-1 md:mb-2 font-black uppercase">
+                        {item.l}
+                      </p>
+                      <p className="text-lg md:text-xl text-white font-light tracking-wide group-hover:text-emerald-200 transition-colors">
+                        {item.d}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Side: Form (60% Width) */}
-          <div className="lg:w-3/5 p-8 sm:p-12 md:p-16 lg:p-20 bg-white/90 flex items-center">
-            <div className="w-full">
-              <div className="mb-10 md:mb-14">
-                <h3 className="text-emerald-950 text-[10px] md:text-[11px] font-black tracking-[0.4em] md:tracking-[0.5em] mb-3 md:mb-4 uppercase">
-                  Discovery Request
-                </h3>
-                <div className="h-1 w-10 md:w-12 bg-emerald-600 rounded-full"></div>
-              </div>
-
-              <form className="space-y-8 md:space-y-12">
-                <div className="relative group">
-                  <input
-                    type="text"
-                    required
-                    placeholder=" "
-                    className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-lg md:text-xl font-light focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
-                  />
-                  <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
-                    Full Name
-                  </label>
+            {/* Right Side: Form (60% Width) */}
+            <div className="lg:w-3/5 p-8 sm:p-12 md:p-16 lg:p-20 bg-white/90 flex items-center">
+              <div className="w-full">
+                <div className="mb-10 md:mb-14">
+                  <h3 className="text-emerald-950 text-[10px] md:text-[11px] font-black tracking-[0.4em] md:tracking-[0.5em] mb-3 md:mb-4 uppercase">
+                    Discovery Request
+                  </h3>
+                  <div className="h-1 w-10 md:w-12 bg-emerald-600 rounded-full"></div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <form className="space-y-8 md:space-y-12">
                   <div className="relative group">
                     <input
-                      type="email"
+                      type="text"
                       required
                       placeholder=" "
-                      className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-base focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
+                      className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-lg md:text-xl font-light focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
                     />
                     <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
-                      Email
+                      Full Name
                     </label>
                   </div>
 
-                  <div className="relative group">
-                    <input
-                      type="tel"
-                      required
-                      placeholder=" "
-                      className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-base focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
-                    />
-                    <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
-                      Phone
-                    </label>
-                  </div>
-                </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    <div className="relative group">
+                      <input
+                        type="email"
+                        required
+                        placeholder=" "
+                        className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-base focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
+                      />
+                      <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
+                        Email
+                      </label>
+                    </div>
 
-                <motion.button
-                  whileHover={{
-                    scale: 1.02,
-                    backgroundColor: "#059669",
+                    <div className="relative group">
+                      <input
+                        type="tel"
+                        required
+                        placeholder=" "
+                        className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-base focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
+                      />
+                      <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
+                        Phone
+                      </label>
+                    </div>
+                  </div>
+                  <div className="pt-4">
+                {/* Changed Button to Gold Theme */}
+                <button
+                  style={{
+                    padding: "14px 40px",
+                    backgroundColor: "#22C55E", // Default Gold Background
+                    borderRadius: "8px",
+                    color: "#fff", // Default White Text
+                    fontSize: "1.1rem",
+                    fontWeight: "700",
+                    cursor: "pointer",
+                    display: "flex",
+                    textAlign: "center",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "10px",
+                    position: "relative",
+                    overflow: "hidden",
+                    zIndex: 1,
+                    border: "2px solid #22C55E", // Border keeps the button size stable
+                    margin: "0 auto",
+                    letterSpacing: "1px",
+                    transition: "all 0.3s ease",
                   }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full md:w-auto px-10 md:px-14 py-4 md:py-5 bg-emerald-600 text-white font-bold rounded-full tracking-[0.2em] text-[10px] shadow-lg flex items-center justify-center gap-4 transition-all"
+                  onMouseEnter={(e) => {
+                    const fill = e.currentTarget.querySelector(".hover-fill");
+                    const text = e.currentTarget.querySelector(".btn-text");
+
+                    // Slide in the white background
+                    if (fill) fill.style.width = "100%";
+
+                    // Change text color to Gold
+                    if (text) text.style.color = "#22C55E";
+                  }}
+                  onMouseLeave={(e) => {
+                    const fill = e.currentTarget.querySelector(".hover-fill");
+                    const text = e.currentTarget.querySelector(".btn-text");
+
+                    // Slide out the white background
+                    if (fill) fill.style.width = "0%";
+
+                    // Reset text color to White
+                    if (text) text.style.color = "#fff";
+                  }}
                 >
-                  Send Request
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </motion.button>
-              </form>
+                  {/* Hover Fill Layer: White */}
+                  <div
+                    className="hover-fill"
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "0%",
+                      height: "100%",
+                      background: "#ffffff", // White background on hover
+                      transition: "width 0.4s ease",
+                      zIndex: -1,
+                    }}
+                  />
+
+                  {/* Text Span with Transition */}
+                  <span
+                    className="btn-text"
+                    style={{
+                      position: "relative",
+                      zIndex: 1,
+                      color: "#fff", // Initial color
+                      transition: "color 0.3s ease",
+                    }}
+                  >
+                    Send Request
+                  </span>
+                </button>
+              </div>
+
+                  {/* <motion.button
+                    whileHover={{
+                      scale: 1.02,
+                      backgroundColor: "#059669",
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full md:w-auto px-10 md:px-14 py-4 md:py-5 bg-emerald-600 text-white font-bold rounded-full tracking-[0.2em] text-[10px] shadow-lg flex items-center justify-center gap-4 transition-all"
+                  >
+                    Send Request
+                    <span className="transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
+                  </motion.button> */}
+                </form>
+              </div>
             </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          </motion.div>
+        </div>
+      </section>
       <Footer />
     </div>
   );

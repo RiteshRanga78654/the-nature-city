@@ -89,8 +89,8 @@ const Page = () => {
               <nav className="flex flex-col gap-10">
                 {[
                   "Home",
-                  "Build a Villa",
                   "Invest in Plot",
+                  "Invest in Clubhouse",
                   "Brochure",
                   "Contact Us",
                 ].map((item, i) => (
@@ -114,9 +114,9 @@ const Page = () => {
       <header className="fixed top-0 w-full z-[150] flex items-center justify-between px-6 py-6 md:px-16 backdrop-blur-md bg-[#022c22]/20 border-b border-white/5">
         <div className="flex items-center gap-3  tracking-[0.3em] text-xs font-bold">
           <div className="h-10 w-10 flex items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg">
-            NV
+            NC
           </div>
-          <span>The Nature Valley</span>
+          <span>The Nature City</span>
         </div>
         <button
           onClick={() => setIsMenuOpen(true)}
@@ -131,7 +131,6 @@ const Page = () => {
           </div>
         </button>
       </header>
-      {/* 3. HERO SECTION */}
       {/* 3. HERO SECTION - REDUCED HEIGHT FOR FOLD VISIBILITY */}
       <section className="relative h-[85vh] md:h-[90vh] w-full flex items-center justify-center overflow-visible">
         {/* Background Image Container */}
@@ -141,84 +140,117 @@ const Page = () => {
             backgroundImage: "url('/assets/images/heroimg.jpg')",
           }}
         >
+          
           {/* Adjusted gradient to be lighter at the top and darker at the bottom for the toggle */}
+          
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-[#022c22]/60"></div>
+          
         </div>
-
-        {/* Hero Text Content */}
+         {/* Hero Text Content */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className="relative z-10 text-center px-4 -mt-10"
         >
+          
           <h1 className="text-5xl md:text-[110px] leading-[0.85] font-Condensed Sans-Serif mb-6 text-emerald-400 tracking-tight">
-            Nature's Embrace
+             Nature's Embrace 
           </h1>
-          <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]  mb-10 text-emerald-400 opacity-90">
-            Premium Plots • Resort Villas • Elite Clubs
+          
+          <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]mb-10 text-emerald-400 opacity-90">
+             Premium Plots • Resort Villas • Elite Clubhouse 
+           
           </p>
+          
         </motion.div>
-
-        {/* OVERLAPPING 3-WAY TOGGLE - Forced Visibility */}
+         {/* OVERLAPPING 3-WAY TOGGLE - Forced Visibility */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[90%] md:max-w-2xl px-2">
-      <div className="flex bg-[#021c17] p-1.5 rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] border border-white/10 backdrop-blur-xl h-[75px] md:h-[95px]">
+         
+          <div className="flex bg-[#021c17] p-1.5 rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] border border-white/10 backdrop-blur-xl h-[75px] md:h-[95px]">
+              {/* VILLAS OPTION - Redirect to Home */}
+            <button
+              onClick={() => {
+                setActiveTab("learn");
+                router.push("/"); // Directs to your main villas page
+              }}
+              className={`flex-1 flex items-center justify-center gap-2 md:gap-4 rounded-[2.2rem] text-[9px] md:text-xs font-bold tracking-widest transition-all duration-500 ${
+                activeTab === "learn"
+                  ? "bg-emerald-600 text-white shadow-2xl scale-[1.02]"
+                  : "text-stone-400 hover:text-stone-200"
+              }`}
+            >
+               VILLAS 
+              {activeTab === "learn" && (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="h-5 w-5 md:h-7 md:w-7 rounded-full border-2 border-white/50 flex items-center justify-center"
+                >
+                  
+                  <span className="text-[10px] md:text-xs">✓</span>
+                 
+                </motion.div>
+              )}
+              
+            </button>
+             {/* PLOTS OPTION - Redirect to /plots */}
+            <button
+              onClick={() => {
+                setActiveTab("community");
+                router.push("/plots"); // Directs to your app/plots/page.js
+              }}
+              className={`flex-1 flex items-center justify-center gap-2 md:gap-4 rounded-[2.2rem] text-[9px] md:text-xs font-bold tracking-widest transition-all duration-500 ${
+                activeTab === "community"
+                  ? "bg-emerald-600 text-white shadow-2xl scale-[1.02]"
+                  : "text-stone-400 hover:text-stone-200"
+              }`}
+            >
+               PLOTS 
+              {activeTab === "community" && (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="h-5 w-5 md:h-7 md:w-7 rounded-full border-2 border-white/50 flex items-center justify-center"
+                >
+                  
+                  <span className="text-[10px] md:text-xs">✓</span>
+                 
+                </motion.div>
+              )}
+              
+            </button>
+             {/* Clubhouse OPTION - Redirect to /Clubhouse */}
+            <button
+              onClick={() => {
+                setActiveTab("Clubhouse");
+                router.push("/Clubhouse"); // Directs to your app/Clubhouse/page.js
+              }}
+              className={`flex-1 flex items-center justify-center gap-2 md:gap-4 rounded-[2.2rem] text-[9px] md:text-xs font-bold tracking-widest transition-all duration-500 ${
+                activeTab === "Clubhouse"
+                  ? "bg-emerald-600 text-white shadow-2xl scale-[1.02]"
+                  : "text-stone-400 hover:text-stone-200"
+              }`}
+            >
+               CLUBHOUSE 
+              {activeTab === "Clubhouse" && (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="h-5 w-5 md:h-7 md:w-7 rounded-full border-2 border-white/50 flex items-center justify-center"
+                >
+                  
+                  <span className="text-[10px] md:text-xs">✓</span>
+                 
+                </motion.div>
+              )}
+              
+            </button>
+           
+          </div>
+         
+        </div>
         
-        {/* VILLAS OPTION - Redirect to Home */}
-        <button
-          onClick={() => {
-            setActiveTab("learn");
-            router.push("/"); // Directs to your main villas page
-          }}
-          className={`flex-1 flex items-center justify-center gap-2 md:gap-4 rounded-[2.2rem] text-[9px] md:text-xs font-bold tracking-widest transition-all duration-500 ${
-            activeTab === "learn" ? "bg-emerald-600 text-white shadow-2xl scale-[1.02]" : "text-stone-400 hover:text-stone-200"
-          }`}
-        >
-          VILLAS
-          {activeTab === "learn" && (
-            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="h-5 w-5 md:h-7 md:w-7 rounded-full border-2 border-white/50 flex items-center justify-center">
-              <span className="text-[10px] md:text-xs">✓</span>
-            </motion.div>
-          )}
-        </button>
-
-        {/* PLOTS OPTION - Redirect to /plots */}
-        <button
-          onClick={() => {
-            setActiveTab("community");
-            router.push("/plots"); // Directs to your app/plots/page.js
-          }}
-          className={`flex-1 flex items-center justify-center gap-2 md:gap-4 rounded-[2.2rem] text-[9px] md:text-xs font-bold tracking-widest transition-all duration-500 ${
-            activeTab === "community" ? "bg-emerald-600 text-white shadow-2xl scale-[1.02]" : "text-stone-400 hover:text-stone-200"
-          }`}
-        >
-          PLOTS
-          {activeTab === "community" && (
-            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="h-5 w-5 md:h-7 md:w-7 rounded-full border-2 border-white/50 flex items-center justify-center">
-              <span className="text-[10px] md:text-xs">✓</span>
-            </motion.div>
-          )}
-        </button>
-
-        {/* CLUBS OPTION - Redirect to /clubs */}
-        <button
-          onClick={() => {
-            setActiveTab("clubs");
-            router.push("/clubs"); // Directs to your app/clubs/page.js
-          }}
-          className={`flex-1 flex items-center justify-center gap-2 md:gap-4 rounded-[2.2rem] text-[9px] md:text-xs font-bold tracking-widest transition-all duration-500 ${
-            activeTab === "clubs" ? "bg-emerald-600 text-white shadow-2xl scale-[1.02]" : "text-stone-400 hover:text-stone-200"
-          }`}
-        >
-          CLUBS
-          {activeTab === "clubs" && (
-            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="h-5 w-5 md:h-7 md:w-7 rounded-full border-2 border-white/50 flex items-center justify-center">
-              <span className="text-[10px] md:text-xs">✓</span>
-            </motion.div>
-          )}
-        </button>
-      </div>
-    </div>
       </section>
       {/* 4. CORE VALUE SECTION */}
       <section className="bg-stone-100 py-20 md:py-30 px-6 md:px-32 text-emerald-950">
@@ -303,7 +335,6 @@ const Page = () => {
                 <div className="absolute inset-0 bg-emerald-800/20 -z-20 translate-x-6 translate-y-6 rounded-2xl -rotate-1"></div>
               </div>
             </div>
-            
 
             <motion.div
               initial={{ opacity: 0 }}
@@ -412,8 +443,8 @@ const Page = () => {
           >
             <div className="absolute inset-0 bg-emerald-900/10 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none" />
             <img
-              src="/assets/images/nature-valley-map.jpg"
-              alt="The Nature Valley Site Map"
+              src="/assets/images/nature-City-map.jpg"
+              alt="The Nature City Site Map"
               className="w-full h-[400px] md:h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
             />
           </motion.div>
@@ -482,79 +513,79 @@ const Page = () => {
 
                 {/* Submit Button */}
                 <div className="pt-4">
-                {/* Changed Button to Gold Theme */}
-                <button
-                  style={{
-                    padding: "14px 40px",
-                    backgroundColor: "#22C55E", // Default Gold Background
-                    borderRadius: "8px",
-                    color: "#fff", // Default White Text
-                    fontSize: "1.1rem",
-                    fontWeight: "700",
-                    cursor: "pointer",
-                    display: "flex",
-                    textAlign: "center",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "10px",
-                    position: "relative",
-                    overflow: "hidden",
-                    zIndex: 1,
-                    border: "2px solid #22C55E", // Border keeps the button size stable
-                    margin: "0 auto",
-                    letterSpacing: "1px",
-                    transition: "all 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    const fill = e.currentTarget.querySelector(".hover-fill");
-                    const text = e.currentTarget.querySelector(".btn-text");
-
-                    // Slide in the white background
-                    if (fill) fill.style.width = "100%";
-
-                    // Change text color to Gold
-                    if (text) text.style.color = "#22C55E";
-                  }}
-                  onMouseLeave={(e) => {
-                    const fill = e.currentTarget.querySelector(".hover-fill");
-                    const text = e.currentTarget.querySelector(".btn-text");
-
-                    // Slide out the white background
-                    if (fill) fill.style.width = "0%";
-
-                    // Reset text color to White
-                    if (text) text.style.color = "#fff";
-                  }}
-                >
-                  {/* Hover Fill Layer: White */}
-                  <div
-                    className="hover-fill"
+                  {/* Changed Button to Gold Theme */}
+                  <button
                     style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "0%",
-                      height: "100%",
-                      background: "#ffffff", // White background on hover
-                      transition: "width 0.4s ease",
-                      zIndex: -1,
-                    }}
-                  />
-
-                  {/* Text Span with Transition */}
-                  <span
-                    className="btn-text"
-                    style={{
+                      padding: "14px 40px",
+                      backgroundColor: "#22C55E", // Default Gold Background
+                      borderRadius: "8px",
+                      color: "#fff", // Default White Text
+                      fontSize: "1.1rem",
+                      fontWeight: "700",
+                      cursor: "pointer",
+                      display: "flex",
+                      textAlign: "center",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "10px",
                       position: "relative",
+                      overflow: "hidden",
                       zIndex: 1,
-                      color: "#fff", // Initial color
-                      transition: "color 0.3s ease",
+                      border: "2px solid #22C55E", // Border keeps the button size stable
+                      margin: "0 auto",
+                      letterSpacing: "1px",
+                      transition: "all 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      const fill = e.currentTarget.querySelector(".hover-fill");
+                      const text = e.currentTarget.querySelector(".btn-text");
+
+                      // Slide in the white background
+                      if (fill) fill.style.width = "100%";
+
+                      // Change text color to Gold
+                      if (text) text.style.color = "#22C55E";
+                    }}
+                    onMouseLeave={(e) => {
+                      const fill = e.currentTarget.querySelector(".hover-fill");
+                      const text = e.currentTarget.querySelector(".btn-text");
+
+                      // Slide out the white background
+                      if (fill) fill.style.width = "0%";
+
+                      // Reset text color to White
+                      if (text) text.style.color = "#fff";
                     }}
                   >
-                    Schedule a Visit
-                  </span>
-                </button>
-              </div>
+                    {/* Hover Fill Layer: White */}
+                    <div
+                      className="hover-fill"
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "0%",
+                        height: "100%",
+                        background: "#ffffff", // White background on hover
+                        transition: "width 0.4s ease",
+                        zIndex: -1,
+                      }}
+                    />
+
+                    {/* Text Span with Transition */}
+                    <span
+                      className="btn-text"
+                      style={{
+                        position: "relative",
+                        zIndex: 1,
+                        color: "#fff", // Initial color
+                        transition: "color 0.3s ease",
+                      }}
+                    >
+                      Schedule a Visit
+                    </span>
+                  </button>
+                </div>
                 {/* <motion.button
                   whileHover={{ scale: 1.02, backgroundColor: "#10b981" }}
                   whileTap={{ scale: 0.98 }}
@@ -580,80 +611,82 @@ const Page = () => {
               </h2>
               <div className="flex flex-col sm:flex-row gap-6">
                 <a href="https://maps.app.goo.gl/kuae33Ga4DcNtWbG7">
-                <div className="pt-4">
-                {/* Changed Button to Gold Theme */}
-                <button
-                  style={{
-                    padding: "14px 40px",
-                    backgroundColor: "#22C55E", // Default Gold Background
-                    borderRadius: "8px",
-                    color: "#fff", // Default White Text
-                    fontSize: "1.1rem",
-                    fontWeight: "700",
-                    cursor: "pointer",
-                    display: "flex",
-                    textAlign: "center",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "10px",
-                    position: "relative",
-                    overflow: "hidden",
-                    zIndex: 1,
-                    border: "2px solid #22C55E", // Border keeps the button size stable
-                    margin: "0 auto",
-                    letterSpacing: "1px",
-                    transition: "all 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    const fill = e.currentTarget.querySelector(".hover-fill");
-                    const text = e.currentTarget.querySelector(".btn-text");
+                  <div className="pt-4">
+                    {/* Changed Button to Gold Theme */}
+                    <button
+                      style={{
+                        padding: "14px 40px",
+                        backgroundColor: "#22C55E", // Default Gold Background
+                        borderRadius: "8px",
+                        color: "#fff", // Default White Text
+                        fontSize: "1.1rem",
+                        fontWeight: "700",
+                        cursor: "pointer",
+                        display: "flex",
+                        textAlign: "center",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "10px",
+                        position: "relative",
+                        overflow: "hidden",
+                        zIndex: 1,
+                        border: "2px solid #22C55E", // Border keeps the button size stable
+                        margin: "0 auto",
+                        letterSpacing: "1px",
+                        transition: "all 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        const fill =
+                          e.currentTarget.querySelector(".hover-fill");
+                        const text = e.currentTarget.querySelector(".btn-text");
 
-                    // Slide in the white background
-                    if (fill) fill.style.width = "100%";
+                        // Slide in the white background
+                        if (fill) fill.style.width = "100%";
 
-                    // Change text color to Gold
-                    if (text) text.style.color = "#22C55E";
-                  }}
-                  onMouseLeave={(e) => {
-                    const fill = e.currentTarget.querySelector(".hover-fill");
-                    const text = e.currentTarget.querySelector(".btn-text");
+                        // Change text color to Gold
+                        if (text) text.style.color = "#22C55E";
+                      }}
+                      onMouseLeave={(e) => {
+                        const fill =
+                          e.currentTarget.querySelector(".hover-fill");
+                        const text = e.currentTarget.querySelector(".btn-text");
 
-                    // Slide out the white background
-                    if (fill) fill.style.width = "0%";
+                        // Slide out the white background
+                        if (fill) fill.style.width = "0%";
 
-                    // Reset text color to White
-                    if (text) text.style.color = "#fff";
-                  }}
-                >
-                  {/* Hover Fill Layer: White */}
-                  <div
-                    className="hover-fill"
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "0%",
-                      height: "100%",
-                      background: "#ffffff", // White background on hover
-                      transition: "width 0.4s ease",
-                      zIndex: -1,
-                    }}
-                  />
+                        // Reset text color to White
+                        if (text) text.style.color = "#fff";
+                      }}
+                    >
+                      {/* Hover Fill Layer: White */}
+                      <div
+                        className="hover-fill"
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          width: "0%",
+                          height: "100%",
+                          background: "#ffffff", // White background on hover
+                          transition: "width 0.4s ease",
+                          zIndex: -1,
+                        }}
+                      />
 
-                  {/* Text Span with Transition */}
-                  <span
-                    className="btn-text"
-                    style={{
-                      position: "relative",
-                      zIndex: 1,
-                      color: "#fff", // Initial color
-                      transition: "color 0.3s ease",
-                    }}
-                  >
-                    Open in Google Maps
-                  </span>
-                </button>
-              </div>
+                      {/* Text Span with Transition */}
+                      <span
+                        className="btn-text"
+                        style={{
+                          position: "relative",
+                          zIndex: 1,
+                          color: "#fff", // Initial color
+                          transition: "color 0.3s ease",
+                        }}
+                      >
+                        Open in Google Maps
+                      </span>
+                    </button>
+                  </div>
                   {/* <button className="bg-emerald-600 cursor-pointer hover:bg-emerald-700 text-white px-8 py-5 rounded-full font-bold  tracking-widest text-[10px] shadow-xl transition-all flex items-center justify-center gap-3 group">
                     Open in Google Maps
                     <span className="group-hover:translate-x-1 transition-transform">
@@ -840,7 +873,6 @@ const Page = () => {
           </div>
         </div>
       </section>
-
       {/* 9. INVESTMENT ASSET SECTION */}
       <section className="bg-stone-50 py-10 md:py-15">
         <div className="max-w-7xl mx-auto px-6">
@@ -945,9 +977,8 @@ const Page = () => {
           </div>
         </div>
       </section>
-
       {/* 10. AMENITIES SECTION - Bright Glass & Forest */}
-      <section className="bg-[#051d17] py-20 md:py-32 relative overflow-hidden">
+      <section className="bg-[#051d17] py-20 md:py-30 relative overflow-hidden">
         {/* Large White Ambient Light Leak */}
         <div className="absolute -top-24 -left-24 w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none" />
@@ -961,8 +992,8 @@ const Page = () => {
                   Premium Lifestyle
                 </span>
               </div>
-              <h2 className="text-6xl md:text-8xl font-Condensed Sans-Serif text-white">
-                61+{" "}
+              <h2 className="text-5xl md:text-8xl font-Condensed Sans-Serif text-white">
+                61+
                 <span className="text-white decoration-white/30">
                   Amenities.
                 </span>
@@ -970,7 +1001,7 @@ const Page = () => {
             </div>
             <p className="max-w-md text-white/80 font-light text-lg md:text-xl leading-relaxed">
               From Olympic-sized pools to digital workouts, every detail is
-              crafted for a{" "}
+              crafted for a
               <span className="text-white font-medium">
                 world-class resort experience.
               </span>
@@ -980,7 +1011,7 @@ const Page = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
               {
-                label: "Club Life & Pool",
+                label: "Clubhouse Life & Pool",
                 items: [
                   "Function Hall",
                   "Dance Floor",
@@ -1053,12 +1084,11 @@ const Page = () => {
           </div>
         </div>
       </section>
-
       {/* 11. FAQ SECTION - Brightened Background */}
-      <section className="relative bg-[#051d17] py-20 md:py-32 overflow-hidden border-t border-white/10">
+      <section className="relative bg-[#051d17] py-20 md:py-30 overflow-hidden border-t border-white/10">
         {/* Brightened Background Image Layer */}
         <div className="absolute inset-0 opacity-60 pointer-events-none">
-          {" "}
+          
           {/* Increased opacity from 0.4 to 0.6 */}
           <AnimatePresence mode="wait">
             <motion.img
@@ -1103,7 +1133,7 @@ const Page = () => {
                 },
                 {
                   q: "How much does a resort villa cost?",
-                  a: "The investment starts at ₹2.7 crores and scales with villa size. This includes elite clubhouse access and estate management.",
+                  a: "The investment starts at ₹2.7 crores and scales with villa size. This includes elite Clubhousehouse access and estate management.",
                   tag: "Investment",
                 },
                 {
@@ -1113,7 +1143,7 @@ const Page = () => {
                 },
                 {
                   q: "What amenities are included in the estate?",
-                  a: "The Valley features 61+ amenities including an Aqua Gym, Digital Workouts, and professional sports courts.",
+                  a: "The City features 61+ amenities including an Aqua Gym, Digital Workouts, and professional sports courts.",
                   tag: "Facilities",
                 },
               ].map((faq, i) => (
@@ -1167,8 +1197,7 @@ const Page = () => {
           </div>
         </div>
       </section>
-
-      <section className="relative bg-[#f8f9f8] py-16 md:py-24 lg:py-32 px-4 sm:px-6 overflow-hidden">
+      <section className="relative bg-[#f8f9f8] py-20 md:py-30 lg:py-32 px-4 sm:px-6 overflow-hidden">
         {/* Light Aesthetic Background Elements - Hidden on very small screens to improve performance */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
           <motion.div
@@ -1216,14 +1245,14 @@ const Page = () => {
                   {[
                     { l: "Sales Inquiry", d: "+91 98450-77177" },
                     { l: "Estate Office", d: "Devanahalli, Bengaluru" },
-                    { l: "Email", d: "concierge@naturevalley.com" },
+                    { l: "Email", d: "concierge@natureCity.com" },
                   ].map((item, i) => (
                     <motion.div
                       key={i}
                       whileHover={{ x: 10 }}
                       className="group cursor-default"
                     >
-                      <p className="text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] text-emerald-500 mb-1 md:mb-2 font-black uppercase">
+                      <p className="text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] text-emerald-500 mb-1 md:mb-2 font-black ">
                         {item.l}
                       </p>
                       <p className="text-lg md:text-xl text-white font-light tracking-wide group-hover:text-emerald-200 transition-colors">
@@ -1239,7 +1268,7 @@ const Page = () => {
             <div className="lg:w-3/5 p-8 sm:p-12 md:p-16 lg:p-20 bg-white/90 flex items-center">
               <div className="w-full">
                 <div className="mb-10 md:mb-14">
-                  <h3 className="text-emerald-950 text-[10px] md:text-[11px] font-black tracking-[0.4em] md:tracking-[0.5em] mb-3 md:mb-4 uppercase">
+                  <h3 className="text-emerald-950 text-[10px] md:text-[11px] font-black tracking-[0.4em] md:tracking-[0.5em] mb-3 md:mb-4 ">
                     Discovery Request
                   </h3>
                   <div className="h-1 w-10 md:w-12 bg-emerald-600 rounded-full"></div>
@@ -1284,79 +1313,81 @@ const Page = () => {
                     </div>
                   </div>
                   <div className="pt-4">
-                {/* Changed Button to Gold Theme */}
-                <button
-                  style={{
-                    padding: "14px 40px",
-                    backgroundColor: "#22C55E", // Default Gold Background
-                    borderRadius: "8px",
-                    color: "#fff", // Default White Text
-                    fontSize: "1.1rem",
-                    fontWeight: "700",
-                    cursor: "pointer",
-                    display: "flex",
-                    textAlign: "center",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "10px",
-                    position: "relative",
-                    overflow: "hidden",
-                    zIndex: 1,
-                    border: "2px solid #22C55E", // Border keeps the button size stable
-                    margin: "0 auto",
-                    letterSpacing: "1px",
-                    transition: "all 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    const fill = e.currentTarget.querySelector(".hover-fill");
-                    const text = e.currentTarget.querySelector(".btn-text");
+                    {/* Changed Button to Gold Theme */}
+                    <button
+                      style={{
+                        padding: "14px 40px",
+                        backgroundColor: "#22C55E", // Default Gold Background
+                        borderRadius: "8px",
+                        color: "#fff", // Default White Text
+                        fontSize: "1.1rem",
+                        fontWeight: "700",
+                        cursor: "pointer",
+                        display: "flex",
+                        textAlign: "center",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "10px",
+                        position: "relative",
+                        overflow: "hidden",
+                        zIndex: 1,
+                        border: "2px solid #22C55E", // Border keeps the button size stable
+                        margin: "0 auto",
+                        letterSpacing: "1px",
+                        transition: "all 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        const fill =
+                          e.currentTarget.querySelector(".hover-fill");
+                        const text = e.currentTarget.querySelector(".btn-text");
 
-                    // Slide in the white background
-                    if (fill) fill.style.width = "100%";
+                        // Slide in the white background
+                        if (fill) fill.style.width = "100%";
 
-                    // Change text color to Gold
-                    if (text) text.style.color = "#22C55E";
-                  }}
-                  onMouseLeave={(e) => {
-                    const fill = e.currentTarget.querySelector(".hover-fill");
-                    const text = e.currentTarget.querySelector(".btn-text");
+                        // Change text color to Gold
+                        if (text) text.style.color = "#22C55E";
+                      }}
+                      onMouseLeave={(e) => {
+                        const fill =
+                          e.currentTarget.querySelector(".hover-fill");
+                        const text = e.currentTarget.querySelector(".btn-text");
 
-                    // Slide out the white background
-                    if (fill) fill.style.width = "0%";
+                        // Slide out the white background
+                        if (fill) fill.style.width = "0%";
 
-                    // Reset text color to White
-                    if (text) text.style.color = "#fff";
-                  }}
-                >
-                  {/* Hover Fill Layer: White */}
-                  <div
-                    className="hover-fill"
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "0%",
-                      height: "100%",
-                      background: "#ffffff", // White background on hover
-                      transition: "width 0.4s ease",
-                      zIndex: -1,
-                    }}
-                  />
+                        // Reset text color to White
+                        if (text) text.style.color = "#fff";
+                      }}
+                    >
+                      {/* Hover Fill Layer: White */}
+                      <div
+                        className="hover-fill"
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          width: "0%",
+                          height: "100%",
+                          background: "#ffffff", // White background on hover
+                          transition: "width 0.4s ease",
+                          zIndex: -1,
+                        }}
+                      />
 
-                  {/* Text Span with Transition */}
-                  <span
-                    className="btn-text"
-                    style={{
-                      position: "relative",
-                      zIndex: 1,
-                      color: "#fff", // Initial color
-                      transition: "color 0.3s ease",
-                    }}
-                  >
-                    Send Request
-                  </span>
-                </button>
-              </div>
+                      {/* Text Span with Transition */}
+                      <span
+                        className="btn-text"
+                        style={{
+                          position: "relative",
+                          zIndex: 1,
+                          color: "#fff", // Initial color
+                          transition: "color 0.3s ease",
+                        }}
+                      >
+                        Send Request
+                      </span>
+                    </button>
+                  </div>
 
                   {/* <motion.button
                     whileHover={{

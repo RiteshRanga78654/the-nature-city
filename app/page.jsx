@@ -610,7 +610,7 @@ const Page = () => {
                 <span className="text-emerald-600 ">Global Connectivity.</span>
               </h2>
               <div className="flex flex-col sm:flex-row gap-6">
-                <a href="https://maps.app.goo.gl/kuae33Ga4DcNtWbG7">
+                <a href="https://maps.app.goo.gl/J8HYx5LFmu9Yd1Gu7?g_st=ic">
                   <div className="pt-4">
                     {/* Changed Button to Gold Theme */}
                     <button

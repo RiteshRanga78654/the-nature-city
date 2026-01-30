@@ -69,6 +69,7 @@ const PlotsPage = () => {
     target: containerRef,
     offset: ["start end", "end start"],
   });
+  
 
   const brochureImages = [
     "/assets/images/db-the-nature-city.jpeg",
@@ -81,6 +82,14 @@ const PlotsPage = () => {
   const nextBrochure = () => {
     setCurrentBrochureIndex((prev) => (prev + 1) % brochureImages.length);
   };
+  // Add this inside your component
+useEffect(() => {
+  const autoSlider = setInterval(() => {
+    nextBrochure();
+  }, 3000); // Changes image every 5 seconds
+
+  return () => clearInterval(autoSlider); // Cleanup on unmount
+}, [currentBrochureIndex]); // Restarts timer whenever index changes
   const neighbors = [
     {
       plot: "418",
@@ -212,7 +221,7 @@ const PlotsPage = () => {
           </motion.div>
 
           {/* THE 3-WAY TOGGLE (Identical Logic) */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[90%] md:max-w-2xl px-2">
+          {/* <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[90%] md:max-w-2xl px-2">
             <div className="flex bg-[#021c17] p-1.5 rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] border border-white/10 backdrop-blur-xl h-[75px] md:h-[95px]">
               <button
                 onClick={() => router.push("/")} // Back to Villas
@@ -237,6 +246,79 @@ const PlotsPage = () => {
                 className="flex-1 flex items-center justify-center text-[9px] md:text-xs font-bold tracking-widest text-stone-400 hover:text-stone-200"
               >
                 CLUBHOUSE
+              </button>
+            </div>
+          </div> */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[95%] md:max-w-4xl px-2">
+            {/* The container has overflow-visible to allow the "growth" to pop out top and bottom */}
+            <div className="flex h-[75px] md:h-[95px] w-full items-center overflow-visible">
+              {/* VILLAS BUTTON */}
+              <button
+                onClick={() => {
+                  setActiveTab("learn");
+                  router.push("/");
+                }}
+                className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+        ${
+          activeTab === "learn"
+            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "flex-1 bg-[#011411] text-stone-400 z-10"
+        }`}
+              >
+                <span
+                  className={`font-serif italic leading-none transition-all duration-500 ${activeTab === "learn" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                >
+                  Buy
+                </span>
+                <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
+                  A Resort Villa
+                </span>
+              </button>
+
+              {/* PLOTS BUTTON */}
+              <button
+                onClick={() => {
+                  setActiveTab("community");
+                  router.push("/plots");
+                }}
+                className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+        ${
+          activeTab === "community"
+            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "flex-1 bg-[#011411] text-stone-400 z-10 border-l border-white/5"
+        }`}
+              >
+                <span
+                  className={`font-serif italic leading-none transition-all duration-500 ${activeTab === "community" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                >
+                  Invest
+                </span>
+                <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
+                  In A Plot
+                </span>
+              </button>
+
+              {/* CLUBHOUSE BUTTON */}
+              <button
+                onClick={() => {
+                  setActiveTab("Clubhouse");
+                  router.push("/Clubhouse");
+                }}
+                className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+        ${
+          activeTab === "Clubhouse"
+            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "flex-1 bg-[#011411] text-stone-400 z-10 border-l border-white/5"
+        }`}
+              >
+                <span
+                  className={`font-serif italic leading-none transition-all duration-500 ${activeTab === "Clubhouse" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                >
+                  Enjoy
+                </span>
+                <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
+                  The Clubhouse
+                </span>
               </button>
             </div>
           </div>
@@ -277,147 +359,143 @@ const PlotsPage = () => {
           </div>
         </section>
         {/* 5. ESTATE VIDEO & INTERACTIVE BROCHURE SECTION */}
-        <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
-          <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-            {/* VIDEO SIDE - Focused on the 112-Acre Estate Development */}
+       <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
+  <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+    {/* VIDEO SIDE - Remains the same */}
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="space-y-12"
+    >
+      <div className="relative aspect-video rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-emerald-800/30">
+        <iframe
+          className="w-full h-full"
+          src="https://www.youtube.com/embed/vft3CThpvQc"
+          title="Villa Tour"
+        />
+      </div>
+      <div className="space-y-6">
+        <h3 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-white">
+          Why invest in a resort villa?
+        </h3>
+        <p className="text-stone-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
+          Hassle-free ownership with zero maintenance. Let our
+          professional team handle the care while you enjoy the lifestyle.
+        </p>
+      </div>
+    </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-12"
+    {/* AUTOMATIC BROCHURE SLIDER SIDE */}
+    <div className="flex flex-col gap-16">
+      <div className="relative w-full max-w-sm mx-auto lg:ml-auto group">
+        <div className="absolute -top-12 left-0 text-[10px] tracking-[0.3em] text-emerald-500 font-bold opacity-60">
+          Digital Experience — Auto Playing
+        </div>
+
+        <div className="relative aspect-[4/5] w-full flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentBrochureIndex}
+              src={brochureImages[currentBrochureIndex]}
+              // Slide in from right with a rotation
+              initial={{ opacity: 0, x: 100, rotate: 10 }}
+              // Center with a slight organic tilt
+              animate={{ opacity: 1, x: 0, rotate: -2 }}
+              // Exit to the left with a rotation
+              exit={{ opacity: 0, x: -100, rotate: -10 }}
+              transition={{ 
+                duration: 0.8, 
+                ease: [0.4, 0, 0.2, 1] // Smooth cubic-bezier
+              }}
+              className="absolute w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-[#ffffff] p-3"
+              alt="Brochure Page"
+            />
+          </AnimatePresence>
+
+          {/* Decorative layers - Fixed rotation so they don't jump during slide */}
+          <div className="absolute inset-0 bg-emerald-900/40 -z-10 translate-x-3 translate-y-3 rounded-2xl rotate-2"></div>
+          <div className="absolute inset-0 bg-emerald-800/20 -z-20 translate-x-6 translate-y-6 rounded-2xl -rotate-1"></div>
+        </div>
+      </div>
+
+      {/* DOWNLOAD SECTION */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="text-center lg:text-right space-y-10"
+      >
+        <h4 className="text-3xl md:text-5xl font-Condensed Sans-Serif leading-tight">
+          Download our <br /> digital brochure
+        </h4>
+        <div className="pt-4">
+          <button
+            style={{
+              padding: "14px 60px",
+              backgroundColor: "#22C55E",
+              borderRadius: "8px",
+              color: "#fff",
+              fontSize: "1.1rem",
+              fontWeight: "700",
+              cursor: "pointer",
+              display: "flex",
+              textAlign: "center",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "10px",
+              position: "relative",
+              overflow: "hidden",
+              zIndex: 1,
+              border: "2px solid #22C55E",
+              margin: "0 auto",
+              letterSpacing: "1px",
+              transition: "all 0.3s ease",
+            }}
+            // Standard Hover Handlers restored from your code
+            onMouseEnter={(e) => {
+              const fill = e.currentTarget.querySelector(".hover-fill");
+              const text = e.currentTarget.querySelector(".btn-text");
+              if (fill) fill.style.width = "100%";
+              if (text) text.style.color = "#22C55E";
+            }}
+            onMouseLeave={(e) => {
+              const fill = e.currentTarget.querySelector(".hover-fill");
+              const text = e.currentTarget.querySelector(".btn-text");
+              if (fill) fill.style.width = "0%";
+              if (text) text.style.color = "#fff";
+            }}
+          >
+            <div
+              className="hover-fill"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "0%",
+                height: "100%",
+                background: "#ffffff",
+                transition: "width 0.4s ease",
+                zIndex: -1,
+              }}
+            />
+            <span
+              className="btn-text"
+              style={{
+                position: "relative",
+                zIndex: 1,
+                color: "#fff",
+                transition: "color 0.3s ease",
+              }}
             >
-              <div className="relative aspect-video rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-emerald-800/30">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/vft3CThpvQc"
-                  title="Estate Development Tour"
-                />
-              </div>
-              <div className="space-y-6">
-                <h3 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-white">
-                  A Mega City in <br /> the Making.
-                </h3>
-                <p className="text-stone-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
-                  Building your own home brick by brick is now possible in a
-                  larger-than-life, self-sufficient community[cite: 13, 14].
-                  These plots are perfect for world-class living and as an
-                  investment that greatly amplifies your returns[cite: 15].
-                </p>
-              </div>
-            </motion.div>
-            {/* INTERACTIVE BROCHURE SIDE */}
-            <div className="flex flex-col gap-16">
-              <div
-                className="relative w-full max-w-sm mx-auto lg:ml-auto cursor-pointer group"
-                onClick={nextBrochure}
-              >
-                <div className="absolute -top-12 left-0 text-[10px] tracking-[0.3em] text-emerald-500 font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                  Click to view estate layout →
-                </div>
-
-                <div className="relative aspect-[4/5] w-full flex items-center justify-center">
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={currentBrochureIndex}
-                      src={brochureImages[currentBrochureIndex]}
-                      initial={{ opacity: 0, x: 100, rotate: 5 }}
-                      animate={{ opacity: 1, x: 0, rotate: -4 }}
-                      exit={{ opacity: 0, x: -100, rotate: -10 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                      className="absolute w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-[#ffffff] p-3"
-                      alt="Estate Layout Page"
-                    />
-                  </AnimatePresence>
-
-                  <div className="absolute inset-0 bg-emerald-900/40 -z-10 translate-x-3 translate-y-3 rounded-2xl rotate-2"></div>
-                  <div className="absolute inset-0 bg-emerald-800/20 -z-20 translate-x-6 translate-y-6 rounded-2xl -rotate-1"></div>
-                </div>
-              </div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="text-center lg:text-right space-y-10"
-              >
-                <h4 className="text-3xl md:text-5xl font-Condensed Sans-Serif leading-tight">
-                  Explore Bliss in <br /> Every Plot
-                </h4>
-
-                {/* Plot Specific Highlights from your Brochure */}
-                <div className="flex flex-col gap-2 text-stone-400 text-[10px] tracking-[0.2em]  font-bold">
-                  <span>• Plots spread across over 112 Acres</span>
-                  <span>• Each with Fruit & Flower Bearing Trees</span>
-                  <span>• Approved by All Major Banks</span>
-                </div>
-
-                <div className="pt-4">
-                  <button
-                    style={{
-                      padding: "14px 60px",
-                      backgroundColor: "#22C55E",
-                      borderRadius: "8px",
-                      color: "#fff",
-                      fontSize: "1.1rem",
-                      fontWeight: "700",
-                      cursor: "pointer",
-                      display: "flex",
-                      textAlign: "center",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      gap: "10px",
-                      position: "relative",
-                      overflow: "hidden",
-                      zIndex: 1,
-                      border: "2px solid #22C55E",
-                      margin: "0 auto",
-                      letterSpacing: "1px",
-                      transition: "all 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      const fill = e.currentTarget.querySelector(".hover-fill");
-                      const text = e.currentTarget.querySelector(".btn-text");
-                      if (fill) fill.style.width = "100%";
-                      if (text) text.style.color = "#22C55E";
-                    }}
-                    onMouseLeave={(e) => {
-                      const fill = e.currentTarget.querySelector(".hover-fill");
-                      const text = e.currentTarget.querySelector(".btn-text");
-                      if (fill) fill.style.width = "0%";
-                      if (text) text.style.color = "#fff";
-                    }}
-                  >
-                    <div
-                      className="hover-fill"
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "0%",
-                        height: "100%",
-                        background: "#ffffff",
-                        transition: "width 0.4s ease",
-                        zIndex: -1,
-                      }}
-                    />
-                    <span
-                      className="btn-text"
-                      style={{
-                        position: "relative",
-                        zIndex: 1,
-                        color: "#fff",
-                        transition: "color 0.3s ease",
-                      }}
-                    >
-                      Download Plot Map
-                    </span>
-                  </button>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+              Download PDF
+            </span>
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  </div>
+</section>
 
         <section className="relative bg-stone-50 py-20 md:py-30 px-4 md:px-6 overflow-visible">
           <div className="max-w-7xl mx-auto">

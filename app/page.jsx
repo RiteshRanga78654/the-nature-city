@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Slider from "./components/Slider";
@@ -17,28 +17,58 @@ const Page = () => {
     "/assets/images/hero image.jfif",
     "assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.24 PM.jpeg",
     "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.21 PM (1).jpeg",
-    "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.15 PM (1).jpeg"
+    "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.15 PM (1).jpeg",
   ];
+  // Add this inside your component
+useEffect(() => {
+  const autoSlider = setInterval(() => {
+    nextBrochure();
+  }, 3000); // Changes image every 5 seconds
+
+  return () => clearInterval(autoSlider); // Cleanup on unmount
+}, [currentBrochureIndex]); // Restarts timer whenever index changes
 
   // 1. State for tracking hovered FAQ to change background
   const [activeImg, setActiveImg] = useState(null);
 
   // 2. Images that will fade-in when you hover over questions
   const faqBgImages = [
-   "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.22 PM (2).jpeg",
-  "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.17 PM.jpeg",
-  "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.18 PM (1).jpeg",
-   "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.18 PM.jpeg"
+    "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.22 PM (2).jpeg",
+    "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.17 PM.jpeg",
+    "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.18 PM (1).jpeg",
+    "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.18 PM.jpeg",
   ];
   const nextBrochure = () => {
     setCurrentBrochureIndex((prev) => (prev + 1) % brochureImages.length);
   };
 
-  const [orientation, setOrientation] = useState("east");
+  const [orientation, setOrientation] = useState("1BHK");
 
   const villaData = {
-    east: {
-      title: "East Facing 3BHK Villa",
+    "1BHK": {
+      title: "1BHK Resort Villa",
+      price: "₹1.5Cr",
+      size: "1200 sft built up",
+      heroImg: "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.19 PM (1).jpeg",
+      floorPlans: [
+        "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.16 PM.jpeg",
+        "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.23 PM.jpeg",
+      ],
+      masterPlan: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM.jpeg", // New key
+    },
+    "2BHK": {
+      title: "2BHK Resort Villa",
+      price: "₹2.5Cr",
+      size: "2100 sft built up",
+      heroImg: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.56 AM (1).jpeg",
+     floorPlans: [
+        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.56 AM.jpeg",
+        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg",
+      ],
+      masterPlan: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.00 AM.jpeg", // New key
+    },
+    "3BHK": {
+      title: "3BHK Resort Villa",
       price: "₹3.5Cr",
       size: "3175 sft built up",
       heroImg:
@@ -47,17 +77,19 @@ const Page = () => {
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM (1).jpeg",
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.56 AM (2).jpeg",
       ],
+      masterPlan:
+        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg", // Original
     },
-    west: {
-      title: "West Facing 3BHK Villa",
-      price: "₹3.4Cr",
-      size: "3175 sft built up",
-      heroImg:
-        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.59 AM (1).jpeg",
+    "4BHK": {
+      title: "4BHK Resort Villa",
+      price: "₹4.5Cr",
+      size: "4200 sft built up",
+      heroImg: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.58 AM.jpeg",
       floorPlans: [
-        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM (1).jpeg",
-        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.56 AM (1).jpeg",
+        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.01 AM.jpeg",
+        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.03 AM (2).jpeg",
       ],
+      masterPlan: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.05 AM (2).jpeg", // New key
     },
   };
 
@@ -137,28 +169,27 @@ const Page = () => {
       {/* 3. HERO SECTION - REDUCED HEIGHT FOR FOLD VISIBILITY */}
       <section className="relative h-[85vh] md:h-[90vh] w-full flex items-center justify-center overflow-visible">
         {/* Background Image Container */}
-       <div className="absolute inset-0 overflow-hidden">
-  <video
-    autoPlay
-    loop
-    playsInline
-    className="absolute inset-0 h-full w-full object-cover"
-  >
-    <source src="/assets/videos/herovideo.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src="/assets/videos/herovideo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
 
-  {/* Your existing gradient overlay remains the same */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-[#022c22]/60"></div>
-</div>
-         {/* Hero Text Content */}
+          {/* Your existing gradient overlay remains the same */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-[#022c22]/60"></div>
+        </div>
+        {/* Hero Text Content */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className="relative z-10 text-center px-4 -mt-10"
         >
-         
           {/* <h1 className="text-5xl md:text-[110px] leading-[0.85] font-Condensed Sans-Serif mb-6 text-emerald-400 tracking-tight">
              Nature's Embrace
           </h1>
@@ -167,13 +198,12 @@ const Page = () => {
              Premium Plots • Resort Villas • Elite Clubhouse
            
           </p> */}
-         
         </motion.div>
-         {/* OVERLAPPING 3-WAY TOGGLE - Forced Visibility */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[90%] md:max-w-2xl px-2">
+        {/* OVERLAPPING 3-WAY TOGGLE - Forced Visibility */}
+        {/* <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[90%] md:max-w-2xl px-2">
          
           <div className="flex bg-[#021c17] p-1.5 rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] border border-white/10 backdrop-blur-xl h-[75px] md:h-[95px]">
-              {/* VILLAS OPTION - Redirect to Home */}
+              
             <button
               onClick={() => {
                 setActiveTab("learn");
@@ -199,7 +229,7 @@ const Page = () => {
               )}
              
             </button>
-             {/* PLOTS OPTION - Redirect to /plots */}
+             
             <button
               onClick={() => {
                 setActiveTab("community");
@@ -225,7 +255,7 @@ const Page = () => {
               )}
              
             </button>
-             {/* Clubhouse OPTION - Redirect to /Clubhouse */}
+            
             <button
               onClick={() => {
                 setActiveTab("Clubhouse");
@@ -254,8 +284,80 @@ const Page = () => {
            
           </div>
          
+        </div> */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[95%] md:max-w-4xl px-2">
+          {/* The container has overflow-visible to allow the "growth" to pop out top and bottom */}
+          <div className="flex h-[75px] md:h-[95px] w-full items-center overflow-visible">
+            {/* VILLAS BUTTON */}
+            <button
+              onClick={() => {
+                setActiveTab("learn");
+                router.push("/");
+              }}
+              className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+        ${
+          activeTab === "learn"
+            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "flex-1 bg-[#011411] text-stone-400 z-10"
+        }`}
+            >
+              <span
+                className={`font-serif italic leading-none transition-all duration-500 ${activeTab === "learn" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+              >
+                Buy
+              </span>
+              <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
+                A Resort Villa
+              </span>
+            </button>
+
+            {/* PLOTS BUTTON */}
+            <button
+              onClick={() => {
+                setActiveTab("community");
+                router.push("/plots");
+              }}
+              className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+        ${
+          activeTab === "community"
+            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "flex-1 bg-[#011411] text-stone-400 z-10 border-l border-white/5"
+        }`}
+            >
+              <span
+                className={`font-serif italic leading-none transition-all duration-500 ${activeTab === "community" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+              >
+                Invest
+              </span>
+              <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
+                In A Plot
+              </span>
+            </button>
+
+            {/* CLUBHOUSE BUTTON */}
+            <button
+              onClick={() => {
+                setActiveTab("Clubhouse");
+                router.push("/Clubhouse");
+              }}
+              className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+        ${
+          activeTab === "Clubhouse"
+            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "flex-1 bg-[#011411] text-stone-400 z-10 border-l border-white/5"
+        }`}
+            >
+              <span
+                className={`font-serif italic leading-none transition-all duration-500 ${activeTab === "Clubhouse" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+              >
+                Enjoy
+              </span>
+              <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
+                The Clubhouse
+              </span>
+            </button>
+          </div>
         </div>
-       
       </section>
       {/* 4. CORE VALUE SECTION */}
       <section className="bg-stone-100 py-20 md:py-30 px-6 md:px-32 text-emerald-950">
@@ -284,157 +386,143 @@ const Page = () => {
         </div>
       </section>
       {/* 5. VIDEO & INTERACTIVE BROCHURE SECTION */}
-      <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-          {/* VIDEO SIDE */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-12"
-          >
-            <div className="relative aspect-video rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-emerald-800/30">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/vft3CThpvQc"
-                title="Villa Tour"
-              />
-            </div>
-            <div className="space-y-6">
-              <h3 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-white">
-                Why invest in a resort villa?
-              </h3>
-              <p className="text-stone-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
-                Hassle-free ownership with zero maintenance. Let our
-                professional team handle the care while you enjoy the lifestyle.
-              </p>
-            </div>
-          </motion.div>
+     <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
+  <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+    {/* VIDEO SIDE - Remains the same */}
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="space-y-12"
+    >
+      <div className="relative aspect-video rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-emerald-800/30">
+        <iframe
+          className="w-full h-full"
+          src="https://www.youtube.com/embed/vft3CThpvQc"
+          title="Villa Tour"
+        />
+      </div>
+      <div className="space-y-6">
+        <h3 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-white">
+          Why invest in a resort villa?
+        </h3>
+        <p className="text-stone-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
+          Hassle-free ownership with zero maintenance. Let our
+          professional team handle the care while you enjoy the lifestyle.
+        </p>
+      </div>
+    </motion.div>
 
-          {/* INTERACTIVE BROCHURE SIDE */}
-          <div className="flex flex-col gap-16">
-            <div
-              className="relative w-full max-w-sm mx-auto lg:ml-auto cursor-pointer group"
-              onClick={nextBrochure}
-            >
-              <div className="absolute -top-12 left-0 text-[10px]  tracking-[0.3em] text-emerald-500 font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                Click to view next page →
-              </div>
-
-              <div className="relative aspect-[4/5] w-full flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentBrochureIndex}
-                    src={brochureImages[currentBrochureIndex]}
-                    initial={{ opacity: 0, x: 100, rotate: 5 }}
-                    animate={{ opacity: 1, x: 0, rotate: -4 }}
-                    exit={{ opacity: 0, x: -100, rotate: -10 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="absolute w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-[#ffffff] p-3"
-                    alt="Brochure Page"
-                  />
-                </AnimatePresence>
-
-                {/* Decorative depth layers */}
-                <div className="absolute inset-0 bg-emerald-900/40 -z-10 translate-x-3 translate-y-3 rounded-2xl rotate-2"></div>
-                <div className="absolute inset-0 bg-emerald-800/20 -z-20 translate-x-6 translate-y-6 rounded-2xl -rotate-1"></div>
-              </div>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-center lg:text-right space-y-10"
-            >
-              <h4 className="text-3xl md:text-5xl font-Condensed Sans-Serif leading-tight">
-                Download our <br /> digital brochure
-              </h4>
-              <div className="pt-4">
-                {/* Changed Button to Gold Theme */}
-                <button
-                  style={{
-                    padding: "14px 60px",
-                    backgroundColor: "#22C55E", // Default Gold Background
-                    borderRadius: "8px",
-                    color: "#fff", // Default White Text
-                    fontSize: "1.1rem",
-                    fontWeight: "700",
-                    cursor: "pointer",
-                    display: "flex",
-                    textAlign: "center",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "10px",
-                    position: "relative",
-                    overflow: "hidden",
-                    zIndex: 1,
-                    border: "2px solid #22C55E", // Border keeps the button size stable
-                    margin: "0 auto",
-                    letterSpacing: "1px",
-                    transition: "all 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    const fill = e.currentTarget.querySelector(".hover-fill");
-                    const text = e.currentTarget.querySelector(".btn-text");
-
-                    // Slide in the white background
-                    if (fill) fill.style.width = "100%";
-
-                    // Change text color to Gold
-                    if (text) text.style.color = "#22C55E";
-                  }}
-                  onMouseLeave={(e) => {
-                    const fill = e.currentTarget.querySelector(".hover-fill");
-                    const text = e.currentTarget.querySelector(".btn-text");
-
-                    // Slide out the white background
-                    if (fill) fill.style.width = "0%";
-
-                    // Reset text color to White
-                    if (text) text.style.color = "#fff";
-                  }}
-                >
-                  {/* Hover Fill Layer: White */}
-                  <div
-                    className="hover-fill"
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "0%",
-                      height: "100%",
-                      background: "#ffffff", // White background on hover
-                      transition: "width 0.4s ease",
-                      zIndex: -1,
-                    }}
-                  />
-
-                  {/* Text Span with Transition */}
-                  <span
-                    className="btn-text"
-                    style={{
-                      position: "relative",
-                      zIndex: 1,
-                      color: "#fff", // Initial color
-                      transition: "color 0.3s ease",
-                    }}
-                  >
-                    Download PDF
-                  </span>
-                </button>
-              </div>
-              {/* <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-[60%] py-6 bg-emerald-600 hover:bg-emerald-500 text-white font-bold  tracking-[0.1em] text-[14px] transition-all rounded-xl shadow-2xl"
-              >
-                Download PDF
-              </motion.button> */}
-            </motion.div>
-          </div>
+    {/* AUTOMATIC BROCHURE SLIDER SIDE */}
+    <div className="flex flex-col gap-16">
+      <div className="relative w-full max-w-sm mx-auto lg:ml-auto group">
+        <div className="absolute -top-12 left-0 text-[10px] tracking-[0.3em] text-emerald-500 font-bold opacity-60">
+          Digital Experience — Auto Playing
         </div>
-      </section>
+
+        <div className="relative aspect-[4/5] w-full flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentBrochureIndex}
+              src={brochureImages[currentBrochureIndex]}
+              // Slide in from right with a rotation
+              initial={{ opacity: 0, x: 100, rotate: 10 }}
+              // Center with a slight organic tilt
+              animate={{ opacity: 1, x: 0, rotate: -2 }}
+              // Exit to the left with a rotation
+              exit={{ opacity: 0, x: -100, rotate: -10 }}
+              transition={{ 
+                duration: 0.8, 
+                ease: [0.4, 0, 0.2, 1] // Smooth cubic-bezier
+              }}
+              className="absolute w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-[#ffffff] p-3"
+              alt="Brochure Page"
+            />
+          </AnimatePresence>
+
+          {/* Decorative layers - Fixed rotation so they don't jump during slide */}
+          <div className="absolute inset-0 bg-emerald-900/40 -z-10 translate-x-3 translate-y-3 rounded-2xl rotate-2"></div>
+          <div className="absolute inset-0 bg-emerald-800/20 -z-20 translate-x-6 translate-y-6 rounded-2xl -rotate-1"></div>
+        </div>
+      </div>
+
+      {/* DOWNLOAD SECTION */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="text-center lg:text-right space-y-10"
+      >
+        <h4 className="text-3xl md:text-5xl font-Condensed Sans-Serif leading-tight">
+          Download our <br /> digital brochure
+        </h4>
+        <div className="pt-4">
+          <button
+            style={{
+              padding: "14px 60px",
+              backgroundColor: "#22C55E",
+              borderRadius: "8px",
+              color: "#fff",
+              fontSize: "1.1rem",
+              fontWeight: "700",
+              cursor: "pointer",
+              display: "flex",
+              textAlign: "center",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "10px",
+              position: "relative",
+              overflow: "hidden",
+              zIndex: 1,
+              border: "2px solid #22C55E",
+              margin: "0 auto",
+              letterSpacing: "1px",
+              transition: "all 0.3s ease",
+            }}
+            // Standard Hover Handlers restored from your code
+            onMouseEnter={(e) => {
+              const fill = e.currentTarget.querySelector(".hover-fill");
+              const text = e.currentTarget.querySelector(".btn-text");
+              if (fill) fill.style.width = "100%";
+              if (text) text.style.color = "#22C55E";
+            }}
+            onMouseLeave={(e) => {
+              const fill = e.currentTarget.querySelector(".hover-fill");
+              const text = e.currentTarget.querySelector(".btn-text");
+              if (fill) fill.style.width = "0%";
+              if (text) text.style.color = "#fff";
+            }}
+          >
+            <div
+              className="hover-fill"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "0%",
+                height: "100%",
+                background: "#ffffff",
+                transition: "width 0.4s ease",
+                zIndex: -1,
+              }}
+            />
+            <span
+              className="btn-text"
+              style={{
+                position: "relative",
+                zIndex: 1,
+                color: "#fff",
+                transition: "color 0.3s ease",
+              }}
+            >
+              Download PDF
+            </span>
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  </div>
+</section>
       <Slider />
       {/* 6. INTERACTIVE MAP, OVERLAPPING FORM & LOCATION INTEL */}
       <section className="relative bg-stone-50 pb-20 md:pb-30 px-4 md:px-6 overflow-hidden">
@@ -769,20 +857,50 @@ const Page = () => {
           </AnimatePresence>
 
           {/* OVERLAPPING TOGGLE BUTTONS - Fixed Z-Index & Responsiveness */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[110] flex shadow-2xl rounded-xl overflow-hidden border border-emerald-900/10 bg-white min-w-fit whitespace-nowrap">
-            <button
-              onClick={() => setOrientation("east")}
-              className={`px-5 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-bold tracking-widest  transition-all duration-500 ${orientation === "east" ? "bg-[#022c22] text-white shadow-inner" : "bg-white text-emerald-900 hover:bg-stone-100"}`}
-            >
-              East Facing Villa
-            </button>
-            <button
-              onClick={() => setOrientation("west")}
-              className={`px-5 md:px-10 py-4 md:py-6 text-[9px] md:text-[10px] font-bold tracking-widest  transition-all duration-500 ${orientation === "west" ? "bg-[#022c22] text-white shadow-inner" : "bg-white text-emerald-900 hover:bg-stone-100"}`}
-            >
-              West Facing Villa
-            </button>
-          </div>
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[95%] md:max-w-5xl px-2">
+  {/* Container with overflow-visible to allow the growth to pop out */}
+  <div className="flex h-[75px] md:h-[95px] w-full items-center overflow-visible">
+    
+    {["1BHK", "2BHK", "3BHK", "4BHK"].map((type, index) => {
+      const isActive = orientation === type;
+
+      return (
+        <button
+          key={type}
+          onClick={() => setOrientation(type)}
+          className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+            ${index !== 0 ? "border-l border-white/10" : ""} 
+            ${isActive 
+              ? "flex-[1.8] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]" 
+              : "flex-1 bg-[#011411] text-stone-400 z-10 hover:bg-[#021c17]"
+            }`}
+        >
+          {/* Main Title - Using your Serif style */}
+          <span
+            className={`font-serif italic leading-none transition-all duration-500 ${
+              isActive ? "text-2xl md:text-4xl mb-1" : "text-lg md:text-2xl"
+            }`}
+          >
+            {type.charAt(0)}
+          </span>
+          
+          {/* Subtitle - Using your bold uppercase style */}
+          <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
+            BHK Villa
+          </span>
+
+          {/* Optional: Active Indicator Dot */}
+          {isActive && (
+            <motion.div 
+              layoutId="activeDot"
+              className="absolute top-2 right-2 w-1 h-1 bg-emerald-400 rounded-full"
+            />
+          )}
+        </button>
+      );
+    })}
+  </div>
+</div>
         </div>
 
         {/* DETAILS & FLOOR PLANS */}
@@ -844,19 +962,25 @@ const Page = () => {
                   will be built for you.
                 </p>
               </div>
-
-              {/* MASTERPLAN IMAGE */}
+              {/* MASTERPLAN IMAGE - Now Dynamic */}
               <motion.div
                 whileHover={{ y: -8 }}
                 className="bg-emerald-50 p-6 md:p-8 rounded-[2.5rem] border border-emerald-100 shadow-sm"
               >
-                <img
-                  src="/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg"
-                  alt="Estate Layout"
-                  className="w-full h-auto rounded-2xl shadow-lg"
-                />
-                <p className="mt-4 text-center text-[9px]  tracking-[0.3em] text-emerald-800 font-bold">
-                  Estate Masterplan View
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={`${orientation}-masterplan`} // Ensures animation triggers on change
+                    src={villaData[orientation].masterPlan} // Dynamic source
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    alt="Estate Layout"
+                    className="w-full h-auto rounded-2xl shadow-lg"
+                  />
+                </AnimatePresence>
+                <p className="mt-4 text-center text-[9px] tracking-[0.3em] text-emerald-800 font-bold">
+                  Estate Masterplan View ({orientation})
                 </p>
               </motion.div>
 
@@ -879,10 +1003,10 @@ const Page = () => {
         </div>
       </section>
       {/* 9. INVESTMENT ASSET SECTION */}
-      <section className="bg-stone-50 py-10 md:py-15">
+      {/* <section className="bg-stone-50 py-10 md:py-15">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            {/* Left: Content & Video */}
+            
             <div className="lg:col-span-5 space-y-12">
               <div className="space-y-6">
                 <h2 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-[#022c22]">
@@ -907,7 +1031,7 @@ const Page = () => {
               </div>
             </div>
 
-            {/* Right: Interactive Comparison Cards */}
+          
             <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4">
               {[
                 {
@@ -981,10 +1105,10 @@ const Page = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* 10. AMENITIES SECTION - Bright Glass & Forest */}
-      <section className="bg-[#051d17] py-20 md:py-30 relative overflow-hidden">
-        {/* Large White Ambient Light Leak */}
+      {/* <section className="bg-[#051d17] py-20 md:py-30 relative overflow-hidden">
+       
         <div className="absolute -top-24 -left-24 w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none" />
 
@@ -1088,12 +1212,11 @@ const Page = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
       {/* 11. FAQ SECTION - Brightened Background */}
       <section className="relative bg-[#051d17] py-20 md:py-30 overflow-hidden border-t border-white/10">
         {/* Brightened Background Image Layer */}
         <div className="absolute inset-0 opacity-60 pointer-events-none">
-         
           {/* Increased opacity from 0.4 to 0.6 */}
           <AnimatePresence mode="wait">
             <motion.img

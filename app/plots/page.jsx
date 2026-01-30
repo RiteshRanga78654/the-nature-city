@@ -147,9 +147,8 @@ useEffect(() => {
                   {[
                     "Home",
                     "Invest in Plot",
-                    "Invest in Clubhouse",
-                    "Brochure",
-                    "Contact Us",
+                    "Enjoy Clubhouse",
+                   
                   ].map((item, i) => (
                     <motion.a
                       key={item}
@@ -158,8 +157,9 @@ useEffect(() => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
                       className="text-3xl font-Condensed Sans-Serif hover:text-emerald-400 transition-colors"
-                    >
+                    ><a href={item === "Home" ? "/" : item === "Invest in Plot" ? "/plots" : item === "Enjoy Clubhouse" ? "/clubhouse" : "#"} onClick={() => setIsMenuOpen(false)}>
                       {item}
+                      </a>
                     </motion.a>
                   ))}
                 </nav>
@@ -303,7 +303,7 @@ useEffect(() => {
               <button
                 onClick={() => {
                   setActiveTab("Clubhouse");
-                  router.push("/Clubhouse");
+                  router.push("/clubhouse");
                 }}
                 className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
         ${

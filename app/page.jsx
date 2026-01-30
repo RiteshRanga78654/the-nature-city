@@ -159,11 +159,10 @@ const Page = () => {
               </button>
               <nav className="flex flex-col gap-10">
                 {[
-                  "Home",
+                  "Home", 
                   "Invest in Plot",
-                  "Invest in Clubhouse",
-                  "Brochure",
-                  "Contact Us",
+                  "Enjoy Clubhouse",
+                  
                 ].map((item, i) => (
                   <motion.a
                     key={item}
@@ -173,7 +172,9 @@ const Page = () => {
                     transition={{ delay: i * 0.1 }}
                     className="text-3xl font-Condensed Sans-Serif hover:text-emerald-400 transition-colors"
                   >
+                    <a href={item === "Home" ? "/" : item === "Invest in Plot" ? "/plots" : item === "Enjoy Clubhouse" ? "/clubhouse" : "#"} onClick={() => setIsMenuOpen(false)}>
                     {item}
+                    </a>
                   </motion.a>
                 ))}
               </nav>
@@ -288,7 +289,7 @@ const Page = () => {
             <button
               onClick={() => {
                 setActiveTab("Clubhouse");
-                router.push("/Clubhouse");
+                router.push("/clubhouse");
               }}
               className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
         ${

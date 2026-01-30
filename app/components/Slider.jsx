@@ -1,25 +1,27 @@
 "use client";
-import React, { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const images = [
-  "/assets/images/slider/zumba-room-scaled.jpg",
-  "/assets/images/slider/yoga-meditation-lawn-scaled.jpg",
-  "/assets/images/slider/Walking-path-way-2-scaled.jpg",
-  "/assets/images/slider/volley-ball-scaled.jpg",
-  "/assets/images/slider/tennis-court-scaled.jpg",
-  "/assets/images/slider/box-cricket-scaled.jpg",
-  "/assets/images/slider/clubhouse-11-scaled.jpg",
-  "/assets/images/slider/cycle-racks-1-scaled.jpg",
-  "/assets/images/slider/dustbins-in-pathways-scaled.jpg",
-  "/assets/images/slider/entrance-arch1-scaled.jpg"
+  "/assets/images/slider/WhatsApp Image 2026-01-28 at 6.36.15 PM (1).jpeg",
+  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.52 AM (1).jpeg",
+  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.52 AM.jpeg",
+  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.53 AM (1).jpeg",
+  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.53 AM (2).jpeg",
+  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.53 AM.jpeg",
+  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM (1).jpeg",
+  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM (2).jpeg",
+  " /assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM.jpeg",
+  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (1).jpeg",
+  " /assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (2).jpeg",
+  " /assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM.jpeg",
 ];
 
 export default function ResortSlider() {
@@ -37,15 +39,16 @@ export default function ResortSlider() {
 
   return (
     <section className="bg-white py-16 px-4">
-      <div className="max-w-9xl mx-auto"> {/* Changed to 7xl for better proportions with 4 images */}
+      <div className="max-w-9xl mx-auto">
+        {" "}
+        {/* Changed to 7xl for better proportions with 4 images */}
         {/* Section Heading */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-Condensed Sans-Serif text-slate-800 mb-4">
+          <h2 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-slate-800 mb-4">
             Take a look around the resort clubhouse
           </h2>
           <div className="h-1 w-20 bg-emerald-500 mx-auto rounded-full"></div>
         </div>
-
         {/* Slider Container */}
         <div className="relative group">
           <Swiper
@@ -58,8 +61,8 @@ export default function ResortSlider() {
               disableOnInteraction: false,
             }}
             navigation={{
-              nextEl: '.custom-next',
-              prevEl: '.custom-prev',
+              nextEl: ".custom-next",
+              prevEl: ".custom-prev",
             }}
             // MODIFIED BREAKPOINTS FOR 4 IMAGES
             breakpoints={{
@@ -71,13 +74,13 @@ export default function ResortSlider() {
           >
             {images.map((src, index) => (
               <SwiperSlide key={index}>
-                <div 
+                <div
                   className="relative h-[350px] overflow-hidden rounded-2xl cursor-pointer shadow-lg group/item"
                   onClick={() => setActiveImg(index)}
                 >
-                  <img 
-                    src={src} 
-                    alt={`Clubhouse view ${index + 1}`} 
+                  <img
+                    src={src}
+                    alt={`Clubhouse view ${index + 1}`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -102,18 +105,18 @@ export default function ResortSlider() {
 
       {/* --- Lightbox Modal --- */}
       {activeImg !== null && (
-        <div 
+        <div
           className="fixed inset-0 z-[999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-10 animate-in fade-in duration-300"
           onClick={() => setActiveImg(null)}
         >
-          <button 
+          <button
             className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
             onClick={() => setActiveImg(null)}
           >
             <X size={40} />
           </button>
 
-          <button 
+          <button
             className="absolute left-4 md:left-8 text-white/50 hover:text-white transition-all bg-white/5 p-2 rounded-full hover:bg-white/10"
             onClick={showPrev}
           >
@@ -121,11 +124,11 @@ export default function ResortSlider() {
           </button>
 
           <div className="relative max-w-5xl w-full flex flex-col items-center">
-            <img 
-              src={images[activeImg]} 
-              className="max-h-[80vh] w-auto rounded-lg shadow-2xl animate-in zoom-in-95 duration-300" 
-              alt="Clubhouse Large View" 
-              onClick={(e) => e.stopPropagation()} 
+            <img
+              src={images[activeImg]}
+              className="max-h-[80vh] w-auto rounded-lg shadow-2xl animate-in zoom-in-95 duration-300"
+              alt="Clubhouse Large View"
+              onClick={(e) => e.stopPropagation()}
             />
             <div className="mt-6 text-white/60 font-light flex items-center gap-4">
               <span className="h-[1px] w-8 bg-white/20"></span>
@@ -134,7 +137,7 @@ export default function ResortSlider() {
             </div>
           </div>
 
-          <button 
+          <button
             className="absolute right-4 md:right-8 text-white/50 hover:text-white transition-all bg-white/5 p-2 rounded-full hover:bg-white/10"
             onClick={showNext}
           >

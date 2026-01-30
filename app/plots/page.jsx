@@ -1,15 +1,59 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   motion,
   AnimatePresence,
   useScroll,
   useTransform,
+  useMotionValue,
+  animate,
 } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Slider from "../components/Slider";
 import Footer from "../components/Footer";
+import { useSpring, useInView } from "framer-motion";
+
+const RollingNumber = ({ value }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  // Clean the string to see if it's a simple number + unit (like "112 Acres")
+  // or a complex string (like "24/7")
+  const numericPart = value.match(/\d+/);
+  const isComplex = value.includes("/");
+
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, {
+    damping: 30,
+    stiffness: 100,
+  });
+
+  useEffect(() => {
+    if (isInView && !isComplex && numericPart) {
+      motionValue.set(parseInt(numericPart[0]));
+    }
+  }, [isInView, motionValue, numericPart, isComplex]);
+
+  useEffect(() => {
+    return springValue.on("change", (latest) => {
+      if (ref.current && !isComplex) {
+        const suffix = value.replace(/[0-9]/g, "");
+        ref.current.textContent = Math.round(latest) + suffix;
+      }
+    });
+  }, [springValue, value, isComplex]);
+  return (
+    <motion.span
+      ref={ref}
+      initial={{ opacity: 0, y: 10 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8 }}
+    >
+      {isComplex ? value : "0"}
+    </motion.span>
+  );
+};
 
 const PlotsPage = () => {
   const router = useRouter();
@@ -25,27 +69,39 @@ const PlotsPage = () => {
     target: containerRef,
     offset: ["start end", "end start"],
   });
+  
 
   const brochureImages = [
-    "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1000",
-    "https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1000",
+    "/assets/images/db-the-nature-city.jpeg",
+    "/assets/images/hero image.jfif",
+    "assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.24 PM.jpeg",
+    "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.21 PM (1).jpeg",
+    "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.15 PM (1).jpeg",
   ];
 
   const nextBrochure = () => {
     setCurrentBrochureIndex((prev) => (prev + 1) % brochureImages.length);
   };
+  // Add this inside your component
+useEffect(() => {
+  const autoSlider = setInterval(() => {
+    nextBrochure();
+  }, 3000); // Changes image every 5 seconds
+
+  return () => clearInterval(autoSlider); // Cleanup on unmount
+}, [currentBrochureIndex]); // Restarts timer whenever index changes
   const neighbors = [
     {
       plot: "418",
       name: "Preetam Daniel",
-      image: "/assets/images/118.jfif",
+      image: "/assets/images/person 1.jfif",
       quote:
         "For me, the bigger developers had a problem with valuation, the smaller ones had poor infrastructure. I own 3000sqft in Nature Valley and it was true value for money.",
     },
     {
       plot: "607",
       name: "Nirmal Raj",
-      image: "/assets/images/607.jfif",
+      image: "/assets/images/person 3.jfif",
       quote:
         "It's easy to acquire property but maintaining it is a big headache. I think this is a good investment because they look after it and protect it.",
     },
@@ -62,6 +118,55 @@ const PlotsPage = () => {
         ref={containerRef}
         className="relative min-h-screen bg-[#022c22] text-stone-100 font-sans selection:bg-emerald-500/30 overflow-x-hidden"
       >
+        <AnimatePresence>
+          {isMenuOpen && (
+            <>
+              {/* Backdrop overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsMenuOpen(false)}
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200]"
+              />
+              {/* Slide-out Menu */}
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-[#022c22] z-[210] border-l border-emerald-800/50 p-12 flex flex-col justify-center shadow-2xl"
+              >
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="absolute top-10 right-10 text-stone-400 hover:text-white text-3xl transition-colors"
+                >
+                  ✕
+                </button>
+                <nav className="flex flex-col gap-10">
+                  {[
+                    "Home",
+                    "Invest in Plot",
+                    "Invest in Clubhouse",
+                    "Brochure",
+                    "Contact Us",
+                  ].map((item, i) => (
+                    <motion.a
+                      key={item}
+                      href="#"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="text-3xl font-Condensed Sans-Serif hover:text-emerald-400 transition-colors"
+                    >
+                      {item}
+                    </motion.a>
+                  ))}
+                </nav>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
         {/* 1. HEADER (Keep identical to Villa page for consistency) */}
         <header className="fixed top-0 w-full z-[150] flex items-center justify-between px-6 py-6 md:px-16 backdrop-blur-md bg-[#022c22]/20 border-b border-white/5">
           <div className="flex items-center gap-3 tracking-[0.3em] text-xs font-bold">
@@ -86,13 +191,18 @@ const PlotsPage = () => {
 
         {/* 2. HERO SECTION (Mirroring the Villa Page) */}
         <section className="relative h-[85vh] md:h-[90vh] w-full flex items-center justify-center overflow-visible">
-          <div
-            className="absolute inset-0 bg-cover bg-center transition-all"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000')", // Swapped for a Land/Plot focus image
-            }}
-          >
+          <div className="absolute inset-0 overflow-hidden">
+            <video
+              autoPlay
+              loop
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/assets/videos/herovideo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            {/* Your existing gradient overlay remains the same */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-[#022c22]/60"></div>
           </div>
 
@@ -111,7 +221,7 @@ const PlotsPage = () => {
           </motion.div>
 
           {/* THE 3-WAY TOGGLE (Identical Logic) */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[90%] md:max-w-2xl px-2">
+          {/* <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[90%] md:max-w-2xl px-2">
             <div className="flex bg-[#021c17] p-1.5 rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] border border-white/10 backdrop-blur-xl h-[75px] md:h-[95px]">
               <button
                 onClick={() => router.push("/")} // Back to Villas
@@ -135,7 +245,80 @@ const PlotsPage = () => {
                 onClick={() => router.push("/clubs")}
                 className="flex-1 flex items-center justify-center text-[9px] md:text-xs font-bold tracking-widest text-stone-400 hover:text-stone-200"
               >
-                CLUBS
+                CLUBHOUSE
+              </button>
+            </div>
+          </div> */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[95%] md:max-w-4xl px-2">
+            {/* The container has overflow-visible to allow the "growth" to pop out top and bottom */}
+            <div className="flex h-[75px] md:h-[95px] w-full items-center overflow-visible">
+              {/* VILLAS BUTTON */}
+              <button
+                onClick={() => {
+                  setActiveTab("learn");
+                  router.push("/");
+                }}
+                className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+        ${
+          activeTab === "learn"
+            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "flex-1 bg-[#011411] text-stone-400 z-10"
+        }`}
+              >
+                <span
+                  className={`font-serif italic leading-none transition-all duration-500 ${activeTab === "learn" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                >
+                  Buy
+                </span>
+                <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
+                  A Resort Villa
+                </span>
+              </button>
+
+              {/* PLOTS BUTTON */}
+              <button
+                onClick={() => {
+                  setActiveTab("community");
+                  router.push("/plots");
+                }}
+                className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+        ${
+          activeTab === "community"
+            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "flex-1 bg-[#011411] text-stone-400 z-10 border-l border-white/5"
+        }`}
+              >
+                <span
+                  className={`font-serif italic leading-none transition-all duration-500 ${activeTab === "community" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                >
+                  Invest
+                </span>
+                <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
+                  In A Plot
+                </span>
+              </button>
+
+              {/* CLUBHOUSE BUTTON */}
+              <button
+                onClick={() => {
+                  setActiveTab("Clubhouse");
+                  router.push("/Clubhouse");
+                }}
+                className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+        ${
+          activeTab === "Clubhouse"
+            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "flex-1 bg-[#011411] text-stone-400 z-10 border-l border-white/5"
+        }`}
+              >
+                <span
+                  className={`font-serif italic leading-none transition-all duration-500 ${activeTab === "Clubhouse" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                >
+                  Enjoy
+                </span>
+                <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
+                  The Clubhouse
+                </span>
               </button>
             </div>
           </div>
@@ -176,147 +359,143 @@ const PlotsPage = () => {
           </div>
         </section>
         {/* 5. ESTATE VIDEO & INTERACTIVE BROCHURE SECTION */}
-        <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
-          <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-            {/* VIDEO SIDE - Focused on the 112-Acre Estate Development */}
+       <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
+  <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+    {/* VIDEO SIDE - Remains the same */}
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="space-y-12"
+    >
+      <div className="relative aspect-video rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-emerald-800/30">
+        <iframe
+          className="w-full h-full"
+          src="https://www.youtube.com/embed/vft3CThpvQc"
+          title="Villa Tour"
+        />
+      </div>
+      <div className="space-y-6">
+        <h3 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-white">
+          Why invest in a resort villa?
+        </h3>
+        <p className="text-stone-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
+          Hassle-free ownership with zero maintenance. Let our
+          professional team handle the care while you enjoy the lifestyle.
+        </p>
+      </div>
+    </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-12"
+    {/* AUTOMATIC BROCHURE SLIDER SIDE */}
+    <div className="flex flex-col gap-16">
+      <div className="relative w-full max-w-sm mx-auto lg:ml-auto group">
+        <div className="absolute -top-12 left-0 text-[10px] tracking-[0.3em] text-emerald-500 font-bold opacity-60">
+          Digital Experience — Auto Playing
+        </div>
+
+        <div className="relative aspect-[4/5] w-full flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentBrochureIndex}
+              src={brochureImages[currentBrochureIndex]}
+              // Slide in from right with a rotation
+              initial={{ opacity: 0, x: 100, rotate: 10 }}
+              // Center with a slight organic tilt
+              animate={{ opacity: 1, x: 0, rotate: -2 }}
+              // Exit to the left with a rotation
+              exit={{ opacity: 0, x: -100, rotate: -10 }}
+              transition={{ 
+                duration: 0.8, 
+                ease: [0.4, 0, 0.2, 1] // Smooth cubic-bezier
+              }}
+              className="absolute w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-[#ffffff] p-3"
+              alt="Brochure Page"
+            />
+          </AnimatePresence>
+
+          {/* Decorative layers - Fixed rotation so they don't jump during slide */}
+          <div className="absolute inset-0 bg-emerald-900/40 -z-10 translate-x-3 translate-y-3 rounded-2xl rotate-2"></div>
+          <div className="absolute inset-0 bg-emerald-800/20 -z-20 translate-x-6 translate-y-6 rounded-2xl -rotate-1"></div>
+        </div>
+      </div>
+
+      {/* DOWNLOAD SECTION */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="text-center lg:text-right space-y-10"
+      >
+        <h4 className="text-3xl md:text-5xl font-Condensed Sans-Serif leading-tight">
+          Download our <br /> digital brochure
+        </h4>
+        <div className="pt-4">
+          <button
+            style={{
+              padding: "14px 60px",
+              backgroundColor: "#22C55E",
+              borderRadius: "8px",
+              color: "#fff",
+              fontSize: "1.1rem",
+              fontWeight: "700",
+              cursor: "pointer",
+              display: "flex",
+              textAlign: "center",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "10px",
+              position: "relative",
+              overflow: "hidden",
+              zIndex: 1,
+              border: "2px solid #22C55E",
+              margin: "0 auto",
+              letterSpacing: "1px",
+              transition: "all 0.3s ease",
+            }}
+            // Standard Hover Handlers restored from your code
+            onMouseEnter={(e) => {
+              const fill = e.currentTarget.querySelector(".hover-fill");
+              const text = e.currentTarget.querySelector(".btn-text");
+              if (fill) fill.style.width = "100%";
+              if (text) text.style.color = "#22C55E";
+            }}
+            onMouseLeave={(e) => {
+              const fill = e.currentTarget.querySelector(".hover-fill");
+              const text = e.currentTarget.querySelector(".btn-text");
+              if (fill) fill.style.width = "0%";
+              if (text) text.style.color = "#fff";
+            }}
+          >
+            <div
+              className="hover-fill"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "0%",
+                height: "100%",
+                background: "#ffffff",
+                transition: "width 0.4s ease",
+                zIndex: -1,
+              }}
+            />
+            <span
+              className="btn-text"
+              style={{
+                position: "relative",
+                zIndex: 1,
+                color: "#fff",
+                transition: "color 0.3s ease",
+              }}
             >
-              <div className="relative aspect-video rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-emerald-800/30">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/vft3CThpvQc"
-                  title="Estate Development Tour"
-                />
-              </div>
-              <div className="space-y-6">
-                <h3 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-white">
-                  A Mega City in <br /> the Making.
-                </h3>
-                <p className="text-stone-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
-                  Building your own home brick by brick is now possible in a
-                  larger-than-life, self-sufficient community[cite: 13, 14].
-                  These plots are perfect for world-class living and as an
-                  investment that greatly amplifies your returns[cite: 15].
-                </p>
-              </div>
-            </motion.div>
-            {/* INTERACTIVE BROCHURE SIDE */}
-            <div className="flex flex-col gap-16">
-              <div
-                className="relative w-full max-w-sm mx-auto lg:ml-auto cursor-pointer group"
-                onClick={nextBrochure}
-              >
-                <div className="absolute -top-12 left-0 text-[10px] tracking-[0.3em] text-emerald-500 font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                  Click to view estate layout →
-                </div>
-
-                <div className="relative aspect-[4/5] w-full flex items-center justify-center">
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={currentBrochureIndex}
-                      src={brochureImages[currentBrochureIndex]}
-                      initial={{ opacity: 0, x: 100, rotate: 5 }}
-                      animate={{ opacity: 1, x: 0, rotate: -4 }}
-                      exit={{ opacity: 0, x: -100, rotate: -10 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                      className="absolute w-full h-full object-cover rounded-2xl shadow-2xl border border-white/10"
-                      alt="Estate Layout Page"
-                    />
-                  </AnimatePresence>
-
-                  <div className="absolute inset-0 bg-emerald-900/40 -z-10 translate-x-3 translate-y-3 rounded-2xl rotate-2"></div>
-                  <div className="absolute inset-0 bg-emerald-800/20 -z-20 translate-x-6 translate-y-6 rounded-2xl -rotate-1"></div>
-                </div>
-              </div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="text-center lg:text-right space-y-10"
-              >
-                <h4 className="text-3xl md:text-5xl font-Condensed Sans-Serif leading-tight">
-                  Explore Bliss in <br /> Every Plot
-                </h4>
-
-                {/* Plot Specific Highlights from your Brochure */}
-                <div className="flex flex-col gap-2 text-stone-400 text-[10px] tracking-[0.2em]  font-bold">
-                  <span>• Plots spread across over 112 Acres</span>
-                  <span>• Each with Fruit & Flower Bearing Trees</span>
-                  <span>• Approved by All Major Banks</span>
-                </div>
-
-                <div className="pt-4">
-                  <button
-                    style={{
-                      padding: "14px 60px",
-                      backgroundColor: "#22C55E",
-                      borderRadius: "8px",
-                      color: "#fff",
-                      fontSize: "1.1rem",
-                      fontWeight: "700",
-                      cursor: "pointer",
-                      display: "flex",
-                      textAlign: "center",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      gap: "10px",
-                      position: "relative",
-                      overflow: "hidden",
-                      zIndex: 1,
-                      border: "2px solid #22C55E",
-                      margin: "0 auto",
-                      letterSpacing: "1px",
-                      transition: "all 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      const fill = e.currentTarget.querySelector(".hover-fill");
-                      const text = e.currentTarget.querySelector(".btn-text");
-                      if (fill) fill.style.width = "100%";
-                      if (text) text.style.color = "#22C55E";
-                    }}
-                    onMouseLeave={(e) => {
-                      const fill = e.currentTarget.querySelector(".hover-fill");
-                      const text = e.currentTarget.querySelector(".btn-text");
-                      if (fill) fill.style.width = "0%";
-                      if (text) text.style.color = "#fff";
-                    }}
-                  >
-                    <div
-                      className="hover-fill"
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "0%",
-                        height: "100%",
-                        background: "#ffffff",
-                        transition: "width 0.4s ease",
-                        zIndex: -1,
-                      }}
-                    />
-                    <span
-                      className="btn-text"
-                      style={{
-                        position: "relative",
-                        zIndex: 1,
-                        color: "#fff",
-                        transition: "color 0.3s ease",
-                      }}
-                    >
-                      Download Plot Map
-                    </span>
-                  </button>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+              Download PDF
+            </span>
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  </div>
+</section>
 
         <section className="relative bg-stone-50 py-20 md:py-30 px-4 md:px-6 overflow-visible">
           <div className="max-w-7xl mx-auto">
@@ -345,7 +524,7 @@ const PlotsPage = () => {
               className="relative z-20 -mt-24 md:-mt-30 mx-auto max-w-6xl px-4"
             >
               <div className="bg-[#022c22] rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.4)] p-8 md:p-12 border border-emerald-800/30 backdrop-blur-md">
-                <div className="mb-8 text-center md:text-left">
+                <div className=" text-center md:text-left">
                   <h3 className="text-white text-2xl font-Condensed Sans-Serif tracking-wide">
                     Instant Registration Inquiry
                   </h3>
@@ -402,79 +581,83 @@ const PlotsPage = () => {
 
                   <div className="pt-4">
                     <div className="pt-4">
-                  {/* Changed Button to Gold Theme */}
-                  <button
-                    style={{
-                      padding: "14px 40px",
-                      backgroundColor: "#22C55E", // Default Gold Background
-                      borderRadius: "8px",
-                      color: "#fff", // Default White Text
-                      fontSize: "1.1rem",
-                      fontWeight: "700",
-                      cursor: "pointer",
-                      display: "flex",
-                      textAlign: "center",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      gap: "10px",
-                      position: "relative",
-                      overflow: "hidden",
-                      zIndex: 1,
-                      border: "2px solid #22C55E", // Border keeps the button size stable
-                      margin: "0 auto",
-                      letterSpacing: "1px",
-                      transition: "all 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      const fill = e.currentTarget.querySelector(".hover-fill");
-                      const text = e.currentTarget.querySelector(".btn-text");
+                      {/* Changed Button to Gold Theme */}
+                      <button
+                        style={{
+                          padding: "14px 40px",
+                          backgroundColor: "#22C55E", // Default Gold Background
+                          borderRadius: "8px",
+                          color: "#fff", // Default White Text
+                          fontSize: "1.1rem",
+                          fontWeight: "700",
+                          cursor: "pointer",
+                          display: "flex",
+                          textAlign: "center",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          gap: "10px",
+                          position: "relative",
+                          overflow: "hidden",
+                          zIndex: 1,
+                          border: "2px solid #22C55E", // Border keeps the button size stable
+                          margin: "0 auto",
+                          letterSpacing: "1px",
+                          transition: "all 0.3s ease",
+                        }}
+                        onMouseEnter={(e) => {
+                          const fill =
+                            e.currentTarget.querySelector(".hover-fill");
+                          const text =
+                            e.currentTarget.querySelector(".btn-text");
 
-                      // Slide in the white background
-                      if (fill) fill.style.width = "100%";
+                          // Slide in the white background
+                          if (fill) fill.style.width = "100%";
 
-                      // Change text color to Gold
-                      if (text) text.style.color = "#22C55E";
-                    }}
-                    onMouseLeave={(e) => {
-                      const fill = e.currentTarget.querySelector(".hover-fill");
-                      const text = e.currentTarget.querySelector(".btn-text");
+                          // Change text color to Gold
+                          if (text) text.style.color = "#22C55E";
+                        }}
+                        onMouseLeave={(e) => {
+                          const fill =
+                            e.currentTarget.querySelector(".hover-fill");
+                          const text =
+                            e.currentTarget.querySelector(".btn-text");
 
-                      // Slide out the white background
-                      if (fill) fill.style.width = "0%";
+                          // Slide out the white background
+                          if (fill) fill.style.width = "0%";
 
-                      // Reset text color to White
-                      if (text) text.style.color = "#fff";
-                    }}
-                  >
-                    {/* Hover Fill Layer: White */}
-                    <div
-                      className="hover-fill"
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "0%",
-                        height: "100%",
-                        background: "#ffffff", // White background on hover
-                        transition: "width 0.4s ease",
-                        zIndex: -1,
-                      }}
-                    />
+                          // Reset text color to White
+                          if (text) text.style.color = "#fff";
+                        }}
+                      >
+                        {/* Hover Fill Layer: White */}
+                        <div
+                          className="hover-fill"
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "0%",
+                            height: "100%",
+                            background: "#ffffff", // White background on hover
+                            transition: "width 0.4s ease",
+                            zIndex: -1,
+                          }}
+                        />
 
-                    {/* Text Span with Transition */}
-                    <span
-                      className="btn-text"
-                      style={{
-                        position: "relative",
-                        zIndex: 1,
-                        color: "#fff", // Initial color
-                        transition: "color 0.3s ease",
-                      }}
-                    >
-                      Secure Plot
-                    </span>
-                  </button>
-                </div>
+                        {/* Text Span with Transition */}
+                        <span
+                          className="btn-text"
+                          style={{
+                            position: "relative",
+                            zIndex: 1,
+                            color: "#fff", // Initial color
+                            transition: "color 0.3s ease",
+                          }}
+                        >
+                          Secure Plot
+                        </span>
+                      </button>
+                    </div>
                   </div>
                 </form>
               </div>
@@ -659,9 +842,7 @@ const PlotsPage = () => {
                 </div>
                 <h2 className="text-4xl md:text-7xl font-Condensed leading-[0.85] tracking-tighter ">
                   Take an aerial tour <br />
-                  <span className="text-emerald-500 ">
-                    of the property.
-                  </span>
+                  <span className="text-emerald-500 ">of the property.</span>
                 </h2>
               </motion.div>
 
@@ -734,79 +915,81 @@ const PlotsPage = () => {
                   </div>
 
                   <div className="pt-4">
-                  {/* Changed Button to Gold Theme */}
-                  <button
-                    style={{
-                      padding: "14px 40px",
-                      backgroundColor: "#22C55E", // Default Gold Background
-                      borderRadius: "8px",
-                      color: "#fff", // Default White Text
-                      fontSize: "1.1rem",
-                      fontWeight: "700",
-                      cursor: "pointer",
-                      display: "flex",
-                      textAlign: "center",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      gap: "10px",
-                      position: "relative",
-                      overflow: "hidden",
-                      zIndex: 1,
-                      border: "2px solid #22C55E", // Border keeps the button size stable
-                      margin: "0 auto",
-                      letterSpacing: "1px",
-                      transition: "all 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      const fill = e.currentTarget.querySelector(".hover-fill");
-                      const text = e.currentTarget.querySelector(".btn-text");
-
-                      // Slide in the white background
-                      if (fill) fill.style.width = "100%";
-
-                      // Change text color to Gold
-                      if (text) text.style.color = "#22C55E";
-                    }}
-                    onMouseLeave={(e) => {
-                      const fill = e.currentTarget.querySelector(".hover-fill");
-                      const text = e.currentTarget.querySelector(".btn-text");
-
-                      // Slide out the white background
-                      if (fill) fill.style.width = "0%";
-
-                      // Reset text color to White
-                      if (text) text.style.color = "#fff";
-                    }}
-                  >
-                    {/* Hover Fill Layer: White */}
-                    <div
-                      className="hover-fill"
+                    {/* Changed Button to Gold Theme */}
+                    <button
                       style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "0%",
-                        height: "100%",
-                        background: "#ffffff", // White background on hover
-                        transition: "width 0.4s ease",
-                        zIndex: -1,
-                      }}
-                    />
-
-                    {/* Text Span with Transition */}
-                    <span
-                      className="btn-text"
-                      style={{
+                        padding: "14px 40px",
+                        backgroundColor: "#22C55E", // Default Gold Background
+                        borderRadius: "8px",
+                        color: "#fff", // Default White Text
+                        fontSize: "1.1rem",
+                        fontWeight: "700",
+                        cursor: "pointer",
+                        display: "flex",
+                        textAlign: "center",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "10px",
                         position: "relative",
+                        overflow: "hidden",
                         zIndex: 1,
-                        color: "#fff", // Initial color
-                        transition: "color 0.3s ease",
+                        border: "2px solid #22C55E", // Border keeps the button size stable
+                        margin: "0 auto",
+                        letterSpacing: "1px",
+                        transition: "all 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        const fill =
+                          e.currentTarget.querySelector(".hover-fill");
+                        const text = e.currentTarget.querySelector(".btn-text");
+
+                        // Slide in the white background
+                        if (fill) fill.style.width = "100%";
+
+                        // Change text color to Gold
+                        if (text) text.style.color = "#22C55E";
+                      }}
+                      onMouseLeave={(e) => {
+                        const fill =
+                          e.currentTarget.querySelector(".hover-fill");
+                        const text = e.currentTarget.querySelector(".btn-text");
+
+                        // Slide out the white background
+                        if (fill) fill.style.width = "0%";
+
+                        // Reset text color to White
+                        if (text) text.style.color = "#fff";
                       }}
                     >
-                      Download The Full Price List
-                    </span>
-                  </button>
-                </div>
+                      {/* Hover Fill Layer: White */}
+                      <div
+                        className="hover-fill"
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          width: "0%",
+                          height: "100%",
+                          background: "#ffffff", // White background on hover
+                          transition: "width 0.4s ease",
+                          zIndex: -1,
+                        }}
+                      />
+
+                      {/* Text Span with Transition */}
+                      <span
+                        className="btn-text"
+                        style={{
+                          position: "relative",
+                          zIndex: 1,
+                          color: "#fff", // Initial color
+                          transition: "color 0.3s ease",
+                        }}
+                      >
+                        Download The Full Price List
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -819,13 +1002,13 @@ const PlotsPage = () => {
                 >
                   <div className="absolute inset-0 bg-emerald-500/10 -rotate-2 scale-105" />
                   <div className="relative z-10 bg-stone-900 border border-white/10 p-4 shadow-2xl overflow-hidden">
-                    <div class="video-container">
+                    <div className="video-container">
                       <iframe
                         width="683"
                         height="500"
                         src="https://www.youtube.com/embed/vft3CThpvQc"
-                        frameborder="0"
-                        allowfullscreen
+                        frameBorder="0"
+                        allowFullScreen
                       ></iframe>
                     </div>
                   </div>
@@ -839,86 +1022,90 @@ const PlotsPage = () => {
                       Ready to "Plug & Play" your dream villa?
                     </h4>
                     <div className="pt-4">
-                  {/* Changed Button to Gold Theme */}
-                  <button
-                    style={{
-                      padding: "14px 40px",
-                      backgroundColor: "#22C55E", // Default Gold Background
-                      borderRadius: "8px",
-                      color: "#fff", // Default White Text
-                      fontSize: "1.1rem",
-                      fontWeight: "700",
-                      cursor: "pointer",
-                      display: "flex",
-                      textAlign: "center",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      gap: "10px",
-                      position: "relative",
-                      overflow: "hidden",
-                      zIndex: 1,
-                      border: "2px solid #22C55E", // Border keeps the button size stable
-                      margin: "0 auto",
-                      letterSpacing: "1px",
-                      transition: "all 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      const fill = e.currentTarget.querySelector(".hover-fill");
-                      const text = e.currentTarget.querySelector(".btn-text");
+                      {/* Changed Button to Gold Theme */}
+                      <button
+                        style={{
+                          padding: "14px 40px",
+                          backgroundColor: "#22C55E", // Default Gold Background
+                          borderRadius: "8px",
+                          color: "#fff", // Default White Text
+                          fontSize: "1.1rem",
+                          fontWeight: "700",
+                          cursor: "pointer",
+                          display: "flex",
+                          textAlign: "center",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          gap: "10px",
+                          position: "relative",
+                          overflow: "hidden",
+                          zIndex: 1,
+                          border: "2px solid #22C55E", // Border keeps the button size stable
+                          margin: "0 auto",
+                          letterSpacing: "1px",
+                          transition: "all 0.3s ease",
+                        }}
+                        onMouseEnter={(e) => {
+                          const fill =
+                            e.currentTarget.querySelector(".hover-fill");
+                          const text =
+                            e.currentTarget.querySelector(".btn-text");
 
-                      // Slide in the white background
-                      if (fill) fill.style.width = "100%";
+                          // Slide in the white background
+                          if (fill) fill.style.width = "100%";
 
-                      // Change text color to Gold
-                      if (text) text.style.color = "#22C55E";
-                    }}
-                    onMouseLeave={(e) => {
-                      const fill = e.currentTarget.querySelector(".hover-fill");
-                      const text = e.currentTarget.querySelector(".btn-text");
+                          // Change text color to Gold
+                          if (text) text.style.color = "#22C55E";
+                        }}
+                        onMouseLeave={(e) => {
+                          const fill =
+                            e.currentTarget.querySelector(".hover-fill");
+                          const text =
+                            e.currentTarget.querySelector(".btn-text");
 
-                      // Slide out the white background
-                      if (fill) fill.style.width = "0%";
+                          // Slide out the white background
+                          if (fill) fill.style.width = "0%";
 
-                      // Reset text color to White
-                      if (text) text.style.color = "#fff";
-                    }}
-                  >
-                    {/* Hover Fill Layer: White */}
-                    <div
-                      className="hover-fill"
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "0%",
-                        height: "100%",
-                        background: "#ffffff", // White background on hover
-                        transition: "width 0.4s ease",
-                        zIndex: -1,
-                      }}
-                    />
+                          // Reset text color to White
+                          if (text) text.style.color = "#fff";
+                        }}
+                      >
+                        {/* Hover Fill Layer: White */}
+                        <div
+                          className="hover-fill"
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "0%",
+                            height: "100%",
+                            background: "#ffffff", // White background on hover
+                            transition: "width 0.4s ease",
+                            zIndex: -1,
+                          }}
+                        />
 
-                    {/* Text Span with Transition */}
-                    <span
-                      className="btn-text"
-                      style={{
-                        position: "relative",
-                        zIndex: 1,
-                        color: "#fff", // Initial color
-                        transition: "color 0.3s ease",
-                      }}
-                    >
-                     Get HD PDF
-                    </span>
-                  </button>
-                </div>
+                        {/* Text Span with Transition */}
+                        <span
+                          className="btn-text"
+                          style={{
+                            position: "relative",
+                            zIndex: 1,
+                            color: "#fff", // Initial color
+                            transition: "color 0.3s ease",
+                          }}
+                        >
+                          Get HD PDF
+                        </span>
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               </div>
             </div>
 
             {/* BOTTOM STATS - Minimalist */}
-            <div className="mt-15 mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 border-t border-white/10 pt-12">
+            <div className="mt-15 mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 border-t text-center border-white/10 pt-12">
               {[
                 { label: "Sectors", val: "4" },
                 { label: "Plot Units", val: "977" },
@@ -926,229 +1113,233 @@ const PlotsPage = () => {
                 { label: "Electricity", val: "24/7" },
               ].map((stat, i) => (
                 <div key={i} className="space-y-1">
-                  <p className="text-stone-500 text-[15px]  font-black tracking-widest">
+                  <p className="text-stone-500 text-[15px] font-black tracking-widest uppercase">
                     {stat.label}
                   </p>
-                  <p className="text-2xl md:text-4xl font-Condensed text-white">
-                    {stat.val}
+                  <p className="text-2xl md:text-4xl font-Condensed text-white tabular-nums">
+                    <RollingNumber value={stat.val} />
                   </p>
                 </div>
               ))}
             </div>
           </div>
         </section>
-        <div class="max-w-4xl mx-auto py-20">
-          <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
-            <div class="p-4 bg-gray-50 border-b border-gray-100">
-              <h3 class="text-lg font-bold text-gray-800">Site Plot Map</h3>
+        <div className="max-w-4xl mx-auto py-20">
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
+            <div className="p-4 bg-gray-50 border-b border-gray-100">
+              <h3 className="text-lg font-bold text-gray-800">Site Plot Map</h3>
             </div>
 
-            <div class="relative group overflow-hidden">
+            <div className="relative group overflow-hidden">
               <img
                 src="/assets/images/plot-map.png"
                 alt="Plot Map"
-                class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
 
-            <div class="p-4 text-sm text-gray-500 ">
+            <div className="p-4 text-sm text-gray-500 ">
               * Showing the latest plot availability and layout.
             </div>
           </div>
         </div>
         <section className="relative bg-[#f8f9f8] py-20 md:py-30 px-4 sm:px-6 overflow-hidden">
-                {/* Light Aesthetic Background Elements - Hidden on very small screens to improve performance */}
-                <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.3, 0.5, 0.3],
-                      x: [0, 50, 0],
-                      y: [0, 30, 0],
-                    }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-[5%] left-[-10%] md:top-[10%] md:left-[15%] w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-emerald-100 rounded-full blur-[60px] md:blur-[100px]"
-                  />
-                  <motion.div
-                    animate={{
-                      scale: [1.2, 1, 1.2],
-                      opacity: [0.2, 0.4, 0.2],
-                      x: [0, -40, 0],
-                      y: [0, -50, 0],
-                    }}
-                    transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute bottom-[5%] right-[-10%] md:bottom-[10%] md:right-[10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-stone-200 rounded-full blur-[80px] md:blur-[120px]"
-                  />
+          {/* Light Aesthetic Background Elements - Hidden on very small screens to improve performance */}
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+            <motion.div
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.5, 0.3],
+                x: [0, 50, 0],
+                y: [0, 30, 0],
+              }}
+              transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-[5%] left-[-10%] md:top-[10%] md:left-[15%] w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-emerald-100 rounded-full blur-[60px] md:blur-[100px]"
+            />
+            <motion.div
+              animate={{
+                scale: [1.2, 1, 1.2],
+                opacity: [0.2, 0.4, 0.2],
+                x: [0, -40, 0],
+                y: [0, -50, 0],
+              }}
+              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-[5%] right-[-10%] md:bottom-[10%] md:right-[10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-stone-200 rounded-full blur-[80px] md:blur-[120px]"
+            />
+          </div>
+
+          <div className="max-w-6xl mx-auto relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col lg:flex-row rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] md:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] border border-white bg-white/40 backdrop-blur-md"
+            >
+              {/* Left Side: Information (40% Width) */}
+              <div className="lg:w-2/5 p-8 sm:p-12 md:p-16 bg-[#0a241f] flex flex-col justify-between relative overflow-hidden">
+                {/* Subtle texture overlay */}
+                <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] pointer-events-none"></div>
+
+                <div className="relative z-10 space-y-8 md:space-y-12">
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans text-white leading-[1.1] tracking-tight">
+                    Begin your <br />
+                    <span className=" text-emerald-400 font-light">
+                      Journey.
+                    </span>
+                  </h2>
+
+                  <div className="space-y-6 md:space-y-10 pt-8 md:pt-10 border-t border-white/10">
+                    {[
+                      { l: "Sales Inquiry", d: "+91 98450-77177" },
+                      { l: "Estate Office", d: "Devanahalli, Bengaluru" },
+                      { l: "Email", d: "concierge@natureCity.com" },
+                    ].map((item, i) => (
+                      <motion.div
+                        key={i}
+                        whileHover={{ x: 10 }}
+                        className="group cursor-default"
+                      >
+                        <p className="text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] text-emerald-500 mb-1 md:mb-2 font-black ">
+                          {item.l}
+                        </p>
+                        <p className="text-lg md:text-xl text-white font-light tracking-wide group-hover:text-emerald-200 transition-colors">
+                          {item.d}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-        
-                <div className="max-w-6xl mx-auto relative z-10">
-                  <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex flex-col lg:flex-row rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] md:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] border border-white bg-white/40 backdrop-blur-md"
-                  >
-                    {/* Left Side: Information (40% Width) */}
-                    <div className="lg:w-2/5 p-8 sm:p-12 md:p-16 bg-[#0a241f] flex flex-col justify-between relative overflow-hidden">
-                      {/* Subtle texture overlay */}
-                      <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] pointer-events-none"></div>
-        
-                      <div className="relative z-10 space-y-8 md:space-y-12">
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans text-white leading-[1.1] tracking-tight">
-                          Begin your <br />
-                          <span className=" text-emerald-400 font-light">Journey.</span>
-                        </h2>
-        
-                        <div className="space-y-6 md:space-y-10 pt-8 md:pt-10 border-t border-white/10">
-                          {[
-                            { l: "Sales Inquiry", d: "+91 98450-77177" },
-                            { l: "Estate Office", d: "Devanahalli, Bengaluru" },
-                            { l: "Email", d: "concierge@natureCity.com" },
-                          ].map((item, i) => (
-                            <motion.div
-                              key={i}
-                              whileHover={{ x: 10 }}
-                              className="group cursor-default"
-                            >
-                              <p className="text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] text-emerald-500 mb-1 md:mb-2 font-black ">
-                                {item.l}
-                              </p>
-                              <p className="text-lg md:text-xl text-white font-light tracking-wide group-hover:text-emerald-200 transition-colors">
-                                {item.d}
-                              </p>
-                            </motion.div>
-                          ))}
-                        </div>
+              </div>
+
+              {/* Right Side: Form (60% Width) */}
+              <div className="lg:w-3/5 p-8 sm:p-12 md:p-16 lg:p-20 bg-white/90 flex items-center">
+                <div className="w-full">
+                  <div className="mb-10 md:mb-14">
+                    <h3 className="text-emerald-950 text-[10px] md:text-[11px] font-black tracking-[0.4em] md:tracking-[0.5em] mb-3 md:mb-4 ">
+                      Discovery Request
+                    </h3>
+                    <div className="h-1 w-10 md:w-12 bg-emerald-600 rounded-full"></div>
+                  </div>
+
+                  <form className="space-y-8 md:space-y-12">
+                    <div className="relative group">
+                      <input
+                        type="text"
+                        required
+                        placeholder=" "
+                        className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-lg md:text-xl font-light focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
+                      />
+                      <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
+                        Full Name
+                      </label>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                      <div className="relative group">
+                        <input
+                          type="email"
+                          required
+                          placeholder=" "
+                          className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-base focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
+                        />
+                        <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
+                          Email
+                        </label>
+                      </div>
+
+                      <div className="relative group">
+                        <input
+                          type="tel"
+                          required
+                          placeholder=" "
+                          className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-base focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
+                        />
+                        <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
+                          Phone
+                        </label>
                       </div>
                     </div>
-        
-                    {/* Right Side: Form (60% Width) */}
-                    <div className="lg:w-3/5 p-8 sm:p-12 md:p-16 lg:p-20 bg-white/90 flex items-center">
-                      <div className="w-full">
-                        <div className="mb-10 md:mb-14">
-                          <h3 className="text-emerald-950 text-[10px] md:text-[11px] font-black tracking-[0.4em] md:tracking-[0.5em] mb-3 md:mb-4 ">
-                            Discovery Request
-                          </h3>
-                          <div className="h-1 w-10 md:w-12 bg-emerald-600 rounded-full"></div>
-                        </div>
-        
-                        <form className="space-y-8 md:space-y-12">
-                          <div className="relative group">
-                            <input
-                              type="text"
-                              required
-                              placeholder=" "
-                              className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-lg md:text-xl font-light focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
-                            />
-                            <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
-                              Full Name
-                            </label>
-                          </div>
-        
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                            <div className="relative group">
-                              <input
-                                type="email"
-                                required
-                                placeholder=" "
-                                className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-base focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
-                              />
-                              <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
-                                Email
-                              </label>
-                            </div>
-        
-                            <div className="relative group">
-                              <input
-                                type="tel"
-                                required
-                                placeholder=" "
-                                className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-base focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
-                              />
-                              <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
-                                Phone
-                              </label>
-                            </div>
-                          </div>
-                          <div className="pt-4">
-                            {/* Changed Button to Gold Theme */}
-                            <button
-                              style={{
-                                padding: "14px 40px",
-                                backgroundColor: "#22C55E", // Default Gold Background
-                                borderRadius: "8px",
-                                color: "#fff", // Default White Text
-                                fontSize: "1.1rem",
-                                fontWeight: "700",
-                                cursor: "pointer",
-                                display: "flex",
-                                textAlign: "center",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                gap: "10px",
-                                position: "relative",
-                                overflow: "hidden",
-                                zIndex: 1,
-                                border: "2px solid #22C55E", // Border keeps the button size stable
-                                margin: "0 auto",
-                                letterSpacing: "1px",
-                                transition: "all 0.3s ease",
-                              }}
-                              onMouseEnter={(e) => {
-                                const fill =
-                                  e.currentTarget.querySelector(".hover-fill");
-                                const text = e.currentTarget.querySelector(".btn-text");
-        
-                                // Slide in the white background
-                                if (fill) fill.style.width = "100%";
-        
-                                // Change text color to Gold
-                                if (text) text.style.color = "#22C55E";
-                              }}
-                              onMouseLeave={(e) => {
-                                const fill =
-                                  e.currentTarget.querySelector(".hover-fill");
-                                const text = e.currentTarget.querySelector(".btn-text");
-        
-                                // Slide out the white background
-                                if (fill) fill.style.width = "0%";
-        
-                                // Reset text color to White
-                                if (text) text.style.color = "#fff";
-                              }}
-                            >
-                              {/* Hover Fill Layer: White */}
-                              <div
-                                className="hover-fill"
-                                style={{
-                                  position: "absolute",
-                                  top: 0,
-                                  left: 0,
-                                  width: "0%",
-                                  height: "100%",
-                                  background: "#ffffff", // White background on hover
-                                  transition: "width 0.4s ease",
-                                  zIndex: -1,
-                                }}
-                              />
-        
-                              {/* Text Span with Transition */}
-                              <span
-                                className="btn-text"
-                                style={{
-                                  position: "relative",
-                                  zIndex: 1,
-                                  color: "#fff", // Initial color
-                                  transition: "color 0.3s ease",
-                                }}
-                              >
-                                Send Request
-                              </span>
-                            </button>
-                          </div>
-        
-                          {/* <motion.button
+                    <div className="pt-4">
+                      {/* Changed Button to Gold Theme */}
+                      <button
+                        style={{
+                          padding: "14px 40px",
+                          backgroundColor: "#22C55E", // Default Gold Background
+                          borderRadius: "8px",
+                          color: "#fff", // Default White Text
+                          fontSize: "1.1rem",
+                          fontWeight: "700",
+                          cursor: "pointer",
+                          display: "flex",
+                          textAlign: "center",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          gap: "10px",
+                          position: "relative",
+                          overflow: "hidden",
+                          zIndex: 1,
+                          border: "2px solid #22C55E", // Border keeps the button size stable
+                          margin: "0 auto",
+                          letterSpacing: "1px",
+                          transition: "all 0.3s ease",
+                        }}
+                        onMouseEnter={(e) => {
+                          const fill =
+                            e.currentTarget.querySelector(".hover-fill");
+                          const text =
+                            e.currentTarget.querySelector(".btn-text");
+
+                          // Slide in the white background
+                          if (fill) fill.style.width = "100%";
+
+                          // Change text color to Gold
+                          if (text) text.style.color = "#22C55E";
+                        }}
+                        onMouseLeave={(e) => {
+                          const fill =
+                            e.currentTarget.querySelector(".hover-fill");
+                          const text =
+                            e.currentTarget.querySelector(".btn-text");
+
+                          // Slide out the white background
+                          if (fill) fill.style.width = "0%";
+
+                          // Reset text color to White
+                          if (text) text.style.color = "#fff";
+                        }}
+                      >
+                        {/* Hover Fill Layer: White */}
+                        <div
+                          className="hover-fill"
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "0%",
+                            height: "100%",
+                            background: "#ffffff", // White background on hover
+                            transition: "width 0.4s ease",
+                            zIndex: -1,
+                          }}
+                        />
+
+                        {/* Text Span with Transition */}
+                        <span
+                          className="btn-text"
+                          style={{
+                            position: "relative",
+                            zIndex: 1,
+                            color: "#fff", // Initial color
+                            transition: "color 0.3s ease",
+                          }}
+                        >
+                          Send Request
+                        </span>
+                      </button>
+                    </div>
+
+                    {/* <motion.button
                             whileHover={{
                               scale: 1.02,
                               backgroundColor: "#059669",
@@ -1161,12 +1352,12 @@ const PlotsPage = () => {
                               →
                             </span>
                           </motion.button> */}
-                        </form>
-                      </div>
-                    </div>
-                  </motion.div>
+                  </form>
                 </div>
-              </section>
+              </div>
+            </motion.div>
+          </div>
+        </section>
         <Footer />
       </div>
     </>

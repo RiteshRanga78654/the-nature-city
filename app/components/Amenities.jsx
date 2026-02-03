@@ -98,8 +98,8 @@ export default function AmenitiesSection() {
             dynamicBullets: true,
           }}
           breakpoints={{
-            640: { slidesPerView: 3, grid: { rows: 3 } },
-            1024: { slidesPerView: 6, grid: { rows: 3 } },
+            640: { slidesPerView: 3, grid: { rows: 2 } },
+            1024: { slidesPerView: 6, grid: { rows: 2 } },
           }}
           className="amenities-swiper !pb-14"
         >

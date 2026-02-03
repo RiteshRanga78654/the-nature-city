@@ -161,7 +161,7 @@ const Page = () => {
         </div>
         <button
           onClick={() => setIsMenuOpen(true)}
-          className="group flex items-center gap-3 focus:outline-none text-white"
+          className="group flex items-center gap-3 focus:outline-none text-white cursor-pointer"
         >
           <span className="text-[10px] tracking-widest hidden sm:block">
             Explore
@@ -204,16 +204,16 @@ const Page = () => {
             THE NATURE CITY CLUBHOUSE
           </p>
         </motion.div>
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[130] w-full max-w-[95%] md:max-w-4xl px-2">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[130] w-full max-w-[95%] md:max-w-4xl px-2 ">
           {/* The container has overflow-visible to allow the "growth" to pop out top and bottom */}
-          <div className="flex h-[75px] md:h-[95px] w-full items-center overflow-visible">
+          <div className="flex h-[75px] md:h-[95px] w-full items-center overflow-visible ">
             {/* VILLAS BUTTON */}
             <button
               onClick={() => {
                 setActiveTab("learn");
                 router.push("/");
               }}
-              className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+              className={`relative flex flex-col items-center cursor-pointer justify-center transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "learn"
             ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
@@ -236,7 +236,7 @@ const Page = () => {
                 setActiveTab("community");
                 router.push("/plots");
               }}
-              className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+              className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "community"
             ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
@@ -259,7 +259,7 @@ const Page = () => {
                 setActiveTab("Clubhouse");
                 router.push("/clubhouse");
               }}
-              className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+              className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "Clubhouse"
             ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
@@ -292,12 +292,74 @@ const Page = () => {
             </p>
             <div className="flex gap-4">
               {/* Updated Button to trigger state */}
-              <button
+              {/* <button
                 onClick={() => setIsBookModalOpen(true)}
                 className="bg-emerald-500 text-white px-8 py-3 rounded-full font-medium hover:bg-emerald-600 transition-colors shadow-lg active:scale-95"
               >
                 Book a Visit
-              </button>
+              </button> */}
+              <button
+                    onClick={() => setIsBookModalOpen(true)}
+                    style={{
+                      padding: "14px 60px",
+                      backgroundColor: "#22C55E",
+                      borderRadius: "8px",
+                      color: "#fff",
+                      fontSize: "1.1rem",
+                      fontWeight: "700",
+                      cursor: "pointer",
+                      // display: "flex",
+                      textAlign: "center",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "10px",
+                      position: "relative",
+                      overflow: "hidden",
+                      zIndex: 1,
+                      border: "2px solid #22C55E",
+                      margin: "0 0",
+                      letterSpacing: "1px",
+                      transition: "all 0.3s ease",
+                    }}
+                    // Standard Hover Handlers restored from your code
+                    onMouseEnter={(e) => {
+                      const fill = e.currentTarget.querySelector(".hover-fill");
+                      const text = e.currentTarget.querySelector(".btn-text");
+                      if (fill) fill.style.width = "100%";
+                      if (text) text.style.color = "#22C55E";
+                    }}
+                    onMouseLeave={(e) => {
+                      const fill = e.currentTarget.querySelector(".hover-fill");
+                      const text = e.currentTarget.querySelector(".btn-text");
+                      if (fill) fill.style.width = "0%";
+                      if (text) text.style.color = "#fff";
+                    }}
+                  >
+                    <div
+                      className="hover-fill"
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "0%",
+                        height: "100%",
+                        background: "#ffffff",
+                        transition: "width 0.4s ease",
+                        zIndex: -1,
+                      }}
+                    />
+                    <span
+                      className="btn-text"
+                      style={{
+                        position: "relative",
+                        zIndex: 1,
+                        color: "#fff",
+                        transition: "color 0.3s ease",
+                      }}
+                    >
+                      Book a Visit
+                    </span>
+                  </button>
             </div>
           </div>
 

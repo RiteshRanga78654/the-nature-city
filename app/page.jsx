@@ -192,9 +192,9 @@ const Page = () => {
         </div>
         <button
           onClick={() => setIsMenuOpen(true)}
-          className="group flex items-center gap-3 focus:outline-none"
+          className="group flex items-center gap-3 focus:outline-none cursor-pointer"
         >
-          <span className="text-[10px]  tracking-widest hidden sm:block">
+          <span className="text-[10px]  tracking-widest hidden sm:block ">
             Explore
           </span>
           <div className="flex flex-col gap-1.5">
@@ -245,7 +245,7 @@ const Page = () => {
                 setActiveTab("learn");
                 router.push("/");
               }}
-              className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+              className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "learn"
             ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
@@ -268,7 +268,7 @@ const Page = () => {
                 setActiveTab("community");
                 router.push("/plots");
               }}
-              className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+              className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "community"
             ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
@@ -291,7 +291,7 @@ const Page = () => {
                 setActiveTab("Clubhouse");
                 router.push("/clubhouse");
               }}
-              className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+              className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "Clubhouse"
             ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"

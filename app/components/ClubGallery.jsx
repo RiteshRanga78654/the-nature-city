@@ -91,7 +91,7 @@ const ClubhouseGallery = () => {
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-6 py-2 rounded-full text-[10px] font-bold tracking-widest transition-all duration-300 ${
+                className={`px-6 py-2 rounded-full  cursor-pointer text-[10px] font-bold tracking-widest transition-all duration-300 ${
                   filter === cat
                     ? "bg-[#022c22] text-white shadow-lg"
                     : "bg-white text-slate-400 border border-slate-100 hover:border-emerald-200 hover:text-emerald-600"

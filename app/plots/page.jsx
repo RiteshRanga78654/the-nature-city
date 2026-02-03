@@ -56,6 +56,35 @@ const RollingNumber = ({ value }) => {
 };
 
 const PlotsPage = () => {
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
+    const [brochureForm, setBrochureForm] = useState({
+      name: "",
+      email: "",
+      phone: "",
+    });
+    const handleBrochureDownload = (e) => {
+      e.preventDefault();
+  
+      // 1. Capture user details
+      console.log("Brochure Lead:", brochureForm);
+  
+      // 👉 Later you can send this to API
+      // fetch("/api/brochure-lead", { method: "POST", body: JSON.stringify(brochureForm) })
+  
+      // 2. Download brochure
+      const link = document.createElement("a");
+      link.href = "/assets/pdf/green.pdf";
+      link.download = "The-Nature-City-Brochure.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+  
+      // 3. Close modal
+      setIsDownloadModalOpen(false);
+  
+      // 4. Reset form (optional)
+      setBrochureForm({ name: "", email: "", phone: "" });
+    };
   const router = useRouter();
 
   // 1. ALL HOOKS MUST BE INSIDE THE COMPONENT BODY
@@ -69,7 +98,6 @@ const PlotsPage = () => {
     target: containerRef,
     offset: ["start end", "end start"],
   });
-  
 
   const brochureImages = [
     "/assets/images/db-the-nature-city.jpeg",
@@ -83,13 +111,13 @@ const PlotsPage = () => {
     setCurrentBrochureIndex((prev) => (prev + 1) % brochureImages.length);
   };
   // Add this inside your component
-useEffect(() => {
-  const autoSlider = setInterval(() => {
-    nextBrochure();
-  }, 3000); // Changes image every 5 seconds
+  useEffect(() => {
+    const autoSlider = setInterval(() => {
+      nextBrochure();
+    }, 3000); // Changes image every 5 seconds
 
-  return () => clearInterval(autoSlider); // Cleanup on unmount
-}, [currentBrochureIndex]); // Restarts timer whenever index changes
+    return () => clearInterval(autoSlider); // Cleanup on unmount
+  }, [currentBrochureIndex]); // Restarts timer whenever index changes
   const neighbors = [
     {
       plot: "418",
@@ -144,24 +172,33 @@ useEffect(() => {
                   ✕
                 </button>
                 <nav className="flex flex-col gap-10">
-                  {[
-                    "Home",
-                    "Invest in Plot",
-                    "Enjoy Clubhouse",
-                   
-                  ].map((item, i) => (
-                    <motion.a
-                      key={item}
-                      href="#"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.1 }}
-                      className="text-3xl font-Condensed Sans-Serif hover:text-emerald-400 transition-colors"
-                    ><a href={item === "Home" ? "/" : item === "Invest in Plot" ? "/plots" : item === "Enjoy Clubhouse" ? "/clubhouse" : "#"} onClick={() => setIsMenuOpen(false)}>
-                      {item}
-                      </a>
-                    </motion.a>
-                  ))}
+                  {["Home", "Invest in Plot", "Enjoy Clubhouse"].map(
+                    (item, i) => (
+                      <motion.a
+                        key={item}
+                        href="#"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                        className="text-3xl font-Condensed Sans-Serif hover:text-emerald-400 transition-colors"
+                      >
+                        <a
+                          href={
+                            item === "Home"
+                              ? "/"
+                              : item === "Invest in Plot"
+                                ? "/plots"
+                                : item === "Enjoy Clubhouse"
+                                  ? "/clubhouse"
+                                  : "#"
+                          }
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {item}
+                        </a>
+                      </motion.a>
+                    ),
+                  )}
                 </nav>
               </motion.div>
             </>
@@ -360,143 +397,254 @@ useEffect(() => {
           </div>
         </section>
         {/* 5. ESTATE VIDEO & INTERACTIVE BROCHURE SECTION */}
-       <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
-  <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-    {/* VIDEO SIDE - Remains the same */}
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="space-y-12"
-    >
-      <div className="relative aspect-video rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-emerald-800/30">
-        <iframe
-          className="w-full h-full"
-          src="https://www.youtube.com/embed/vft3CThpvQc"
-          title="Villa Tour"
-        />
-      </div>
-      <div className="space-y-6">
-        <h3 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-white">
-          Why invest in a resort villa?
-        </h3>
-        <p className="text-stone-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
-          Hassle-free ownership with zero maintenance. Let our
-          professional team handle the care while you enjoy the lifestyle.
-        </p>
-      </div>
-    </motion.div>
-
-    {/* AUTOMATIC BROCHURE SLIDER SIDE */}
-    <div className="flex flex-col gap-16">
-      <div className="relative w-full max-w-sm mx-auto lg:ml-auto group">
-        <div className="absolute -top-12 left-0 text-[10px] tracking-[0.3em] text-emerald-500 font-bold opacity-60">
-          Digital Experience — Auto Playing
-        </div>
-
-        <div className="relative aspect-[4/5] w-full flex items-center justify-center">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={currentBrochureIndex}
-              src={brochureImages[currentBrochureIndex]}
-              // Slide in from right with a rotation
-              initial={{ opacity: 0, x: 100, rotate: 10 }}
-              // Center with a slight organic tilt
-              animate={{ opacity: 1, x: 0, rotate: -2 }}
-              // Exit to the left with a rotation
-              exit={{ opacity: 0, x: -100, rotate: -10 }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.4, 0, 0.2, 1] // Smooth cubic-bezier
-              }}
-              className="absolute w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-[#ffffff] p-3"
-              alt="Brochure Page"
-            />
-          </AnimatePresence>
-
-          {/* Decorative layers - Fixed rotation so they don't jump during slide */}
-          <div className="absolute inset-0 bg-emerald-900/40 -z-10 translate-x-3 translate-y-3 rounded-2xl rotate-2"></div>
-          <div className="absolute inset-0 bg-emerald-800/20 -z-20 translate-x-6 translate-y-6 rounded-2xl -rotate-1"></div>
-        </div>
-      </div>
-
-      {/* DOWNLOAD SECTION */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="text-center lg:text-right space-y-10"
-      >
-        <h4 className="text-3xl md:text-5xl font-Condensed Sans-Serif leading-tight">
-          Download our <br /> digital brochure
-        </h4>
-        <div className="pt-4">
-          <button
-            style={{
-              padding: "14px 60px",
-              backgroundColor: "#22C55E",
-              borderRadius: "8px",
-              color: "#fff",
-              fontSize: "1.1rem",
-              fontWeight: "700",
-              cursor: "pointer",
-              display: "flex",
-              textAlign: "center",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "10px",
-              position: "relative",
-              overflow: "hidden",
-              zIndex: 1,
-              border: "2px solid #22C55E",
-              margin: "0 auto",
-              letterSpacing: "1px",
-              transition: "all 0.3s ease",
-            }}
-            // Standard Hover Handlers restored from your code
-            onMouseEnter={(e) => {
-              const fill = e.currentTarget.querySelector(".hover-fill");
-              const text = e.currentTarget.querySelector(".btn-text");
-              if (fill) fill.style.width = "100%";
-              if (text) text.style.color = "#22C55E";
-            }}
-            onMouseLeave={(e) => {
-              const fill = e.currentTarget.querySelector(".hover-fill");
-              const text = e.currentTarget.querySelector(".btn-text");
-              if (fill) fill.style.width = "0%";
-              if (text) text.style.color = "#fff";
-            }}
-          >
-            <div
-              className="hover-fill"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "0%",
-                height: "100%",
-                background: "#ffffff",
-                transition: "width 0.4s ease",
-                zIndex: -1,
-              }}
-            />
-            <span
-              className="btn-text"
-              style={{
-                position: "relative",
-                zIndex: 1,
-                color: "#fff",
-                transition: "color 0.3s ease",
-              }}
+        <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
+          <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            {/* VIDEO SIDE - Remains the same */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-12"
             >
-              Download PDF
-            </span>
-          </button>
-        </div>
-      </motion.div>
-    </div>
-  </div>
-</section>
+              <div className="relative aspect-video rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-emerald-800/30">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/vft3CThpvQc"
+                  title="Villa Tour"
+                />
+              </div>
+              <div className="space-y-6">
+                <h3 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-white">
+                  Why invest in a resort villa?
+                </h3>
+                <p className="text-stone-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
+                  Hassle-free ownership with zero maintenance. Let our
+                  professional team handle the care while you enjoy the
+                  lifestyle.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* AUTOMATIC BROCHURE SLIDER SIDE */}
+            <div className="flex flex-col gap-16">
+              <div className="relative w-full max-w-sm mx-auto lg:ml-auto group">
+                <div className="absolute -top-12 left-0 text-[10px] tracking-[0.3em] text-emerald-500 font-bold opacity-60">
+                  Digital Experience — Auto Playing
+                </div>
+
+                <div className="relative aspect-[4/5] w-full flex items-center justify-center">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={currentBrochureIndex}
+                      src={brochureImages[currentBrochureIndex]}
+                      // Slide in from right with a rotation
+                      initial={{ opacity: 0, x: 100, rotate: 10 }}
+                      // Center with a slight organic tilt
+                      animate={{ opacity: 1, x: 0, rotate: -2 }}
+                      // Exit to the left with a rotation
+                      exit={{ opacity: 0, x: -100, rotate: -10 }}
+                      transition={{
+                        duration: 0.8,
+                        ease: [0.4, 0, 0.2, 1], // Smooth cubic-bezier
+                      }}
+                      className="absolute w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-[#ffffff] p-3"
+                      alt="Brochure Page"
+                    />
+                  </AnimatePresence>
+
+                  {/* Decorative layers - Fixed rotation so they don't jump during slide */}
+                  <div className="absolute inset-0 bg-emerald-900/40 -z-10 translate-x-3 translate-y-3 rounded-2xl rotate-2"></div>
+                  <div className="absolute inset-0 bg-emerald-800/20 -z-20 translate-x-6 translate-y-6 rounded-2xl -rotate-1"></div>
+                </div>
+              </div>
+
+              {/* DOWNLOAD SECTION */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="text-center lg:text-right space-y-10"
+              >
+                <h4 className="text-3xl md:text-5xl font-Condensed Sans-Serif leading-tight">
+                  Download our <br /> digital brochure
+                </h4>
+                <div className="pt-4">
+                  <button
+                    onClick={() => setIsDownloadModalOpen(true)}
+                    style={{
+                      padding: "14px 60px",
+                      backgroundColor: "#22C55E",
+                      borderRadius: "8px",
+                      color: "#fff",
+                      fontSize: "1.1rem",
+                      fontWeight: "700",
+                      cursor: "pointer",
+                      // display: "flex",
+                      textAlign: "center",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "10px",
+                      position: "relative",
+                      overflow: "hidden",
+                      zIndex: 1,
+                      border: "2px solid #22C55E",
+                      margin: "0 auto",
+                      letterSpacing: "1px",
+                      transition: "all 0.3s ease",
+                    }}
+                    // Standard Hover Handlers restored from your code
+                    onMouseEnter={(e) => {
+                      const fill = e.currentTarget.querySelector(".hover-fill");
+                      const text = e.currentTarget.querySelector(".btn-text");
+                      if (fill) fill.style.width = "100%";
+                      if (text) text.style.color = "#22C55E";
+                    }}
+                    onMouseLeave={(e) => {
+                      const fill = e.currentTarget.querySelector(".hover-fill");
+                      const text = e.currentTarget.querySelector(".btn-text");
+                      if (fill) fill.style.width = "0%";
+                      if (text) text.style.color = "#fff";
+                    }}
+                  >
+                    <div
+                      className="hover-fill"
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "0%",
+                        height: "100%",
+                        background: "#ffffff",
+                        transition: "width 0.4s ease",
+                        zIndex: -1,
+                      }}
+                    />
+                    <span
+                      className="btn-text"
+                      style={{
+                        position: "relative",
+                        zIndex: 1,
+                        color: "#fff",
+                        transition: "color 0.3s ease",
+                      }}
+                    >
+                      Download PDF
+                    </span>
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+          <AnimatePresence>
+                  {isDownloadModalOpen && (
+                    <>
+                      {/* Backdrop */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setIsDownloadModalOpen(false)}
+                        className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[300]"
+                      />
+          
+                      {/* Modal */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9, y: 40 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, y: 40 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="fixed inset-0 z-[310] flex items-center justify-center px-4"
+                      >
+                        <div className="w-full max-w-xl bg-[#022c22] border border-emerald-800/40 rounded-3xl shadow-[0_40px_80px_rgba(0,0,0,0.6)] p-8 md:p-12 relative">
+                          {/* Close Button */}
+                          <button
+                            onClick={() => setIsDownloadModalOpen(false)}
+                            className="absolute top-6 right-6 text-white/70 hover:text-white text-2xl"
+                          >
+                            ✕
+                          </button>
+          
+                          {/* Heading */}
+                          <h3 className="text-3xl md:text-4xl font-Condensed Sans-Serif text-white mb-4">
+                            Download Brochure
+                          </h3>
+                          <p className="text-stone-400 text-sm md:text-base mb-10">
+                            Enter your details to receive the digital brochure instantly.
+                          </p>
+          
+                          {/* Form */}
+                          <form className="space-y-8" onSubmit={handleBrochureDownload}>
+                            <div className="relative">
+                              <input
+                                type="text"
+                                required
+                                value={brochureForm.name}
+                                onChange={(e) =>
+                                  setBrochureForm({
+                                    ...brochureForm,
+                                    name: e.target.value,
+                                  })
+                                }
+                                placeholder=" "
+                                className="peer w-full bg-transparent border-b border-emerald-800/60 py-3 text-white focus:outline-none focus:border-emerald-400 placeholder-transparent"
+                              />
+                              <label className="absolute left-0 -top-3.5 text-xs tracking-widest text-emerald-500 peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs">
+                                Full Name
+                              </label>
+                            </div>
+          
+                            <div className="relative">
+                              <input
+                                type="email"
+                                required
+                                value={brochureForm.email}
+                                onChange={(e) =>
+                                  setBrochureForm({
+                                    ...brochureForm,
+                                    email: e.target.value,
+                                  })
+                                }
+                                placeholder=" "
+                                className="peer w-full bg-transparent border-b border-emerald-800/60 py-3 text-white focus:outline-none focus:border-emerald-400 placeholder-transparent"
+                              />
+                              <label className="absolute left-0 -top-3.5 text-xs tracking-widest text-emerald-500 peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs">
+                                Email Address
+                              </label>
+                            </div>
+          
+                            <div className="relative">
+                              <input
+                                type="tel"
+                                required
+                                value={brochureForm.phone}
+                                onChange={(e) =>
+                                  setBrochureForm({
+                                    ...brochureForm,
+                                    phone: e.target.value,
+                                  })
+                                }
+                                placeholder=" "
+                                className="peer w-full bg-transparent border-b border-emerald-800/60 py-3 text-white focus:outline-none focus:border-emerald-400 placeholder-transparent"
+                              />
+                              <label className="absolute left-0 -top-3.5 text-xs tracking-widest text-emerald-500 peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs">
+                                Phone Number
+                              </label>
+                            </div>
+          
+                            {/* Submit */}
+                            <button
+                              type="submit"
+                              className="w-full mt-6 py-4 bg-[#22C55E] text-white font-bold rounded-xl tracking-widest text-sm hover:bg-emerald-500 transition-all"
+                            >
+                              Download Now
+                            </button>
+                          </form>
+                        </div>
+                      </motion.div>
+                    </>
+                  )}
+                </AnimatePresence>
+        </section>
 
         <section className="relative bg-stone-50 py-20 md:py-30 px-4 md:px-6 overflow-visible">
           <div className="max-w-7xl mx-auto">

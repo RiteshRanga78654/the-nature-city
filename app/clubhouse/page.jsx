@@ -125,12 +125,12 @@ const Page = () => {
                 ✕
               </button>
               <nav className="flex flex-col gap-10">
-                {["Home", "Invest in Plot", "Enjoy Clubhouse"].map(
+                {["Luxury Villas", "Invest in Plot", "Enjoy Clubhouse"].map(
                   (item, i) => (
                     <motion.a
                       key={item}
                       href={
-                        item === "Home"
+                        item === "Luxury Villas"
                           ? "/"
                           : item === "Invest in Plot"
                             ? "/plots"
@@ -216,12 +216,12 @@ const Page = () => {
               className={`relative flex flex-col items-center cursor-pointer justify-center transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "learn"
-            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            ? "flex-[1.5] bg-emerald-600 text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
             : "flex-1 bg-[#011411] text-stone-400 z-10"
         }`}
             >
               <span
-                className={`font-serif  leading-none transition-all duration-500 ${activeTab === "learn" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                className={`font-Condensed Sans-Serif leading-none transition-all duration-500 ${activeTab === "learn" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
               >
                 Buy
               </span>
@@ -239,12 +239,12 @@ const Page = () => {
               className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "community"
-            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            ? "flex-[1.5] bg-emerald-600 text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
             : "flex-1 bg-[#011411] text-stone-400 z-10 border-l border-white/5"
         }`}
             >
               <span
-                className={`font-serif  leading-none transition-all duration-500 ${activeTab === "community" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                className={`font-Condensed Sans-Serif leading-none transition-all duration-500 ${activeTab === "community" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
               >
                 Invest
               </span>
@@ -262,12 +262,12 @@ const Page = () => {
               className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "Clubhouse"
-            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            ? "flex-[1.5] bg-emerald-600 text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
             : "flex-1 bg-[#011411] text-stone-400 z-10 border-l border-white/5"
         }`}
             >
               <span
-                className={`font-serif  leading-none transition-all duration-500 ${activeTab === "Clubhouse" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                className={`font-Condensed Sans-Serif leading-none transition-all duration-500 ${activeTab === "Clubhouse" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
               >
                 Enjoy
               </span>
@@ -282,11 +282,11 @@ const Page = () => {
       <section className="relative bg-white py-20 z-10 px-4">
         <div className="max-w-7xl mx-auto mt-15 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-800 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-Condensed Sans-Serif  text-emerald-900 leading-tight">
               Experience Luxury at the{" "}
-              <span className="text-emerald-500">Clubhouse</span>
+              <span className="text-emerald-600">Clubhouse</span>
             </h1>
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-slate-600 font-Condensed Sans-Serif leading-relaxed">
               Our world-class resort clubhouse offers premium amenities, from
               fine dining to relaxing lounge areas.
             </p>

@@ -76,7 +76,7 @@ const Page = () => {
 
   const villaData = {
     "1BHK": {
-      title: "1BHK Resort Villa",
+      title: "1BHK Luxury Villa",
       price: "₹1.5Cr",
       size: "1200 sft built up",
       heroImg:
@@ -89,7 +89,7 @@ const Page = () => {
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM.jpeg", // New key
     },
     "2BHK": {
-      title: "2BHK Resort Villa",
+      title: "2BHK Luxury Villa",
       price: "₹2.5Cr",
       size: "2100 sft built up",
       heroImg:
@@ -102,7 +102,7 @@ const Page = () => {
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.00 AM.jpeg", // New key
     },
     "3BHK": {
-      title: "3BHK Resort Villa",
+      title: "3BHK Luxury Villa",
       price: "₹3.5Cr",
       size: "3175 sft built up",
       heroImg:
@@ -115,7 +115,7 @@ const Page = () => {
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg", // Original
     },
     "4BHK": {
-      title: "4BHK Resort Villa",
+      title: "4BHK Luxury Villa",
       price: "₹4.5Cr",
       size: "4200 sft built up",
       heroImg:
@@ -159,7 +159,7 @@ const Page = () => {
               </button>
               <nav className="flex flex-col gap-10">
                 {[
-                  "Home", 
+                  "Luxury Villas", 
                   "Invest in Plot",
                   "Enjoy Clubhouse",
                   
@@ -172,7 +172,7 @@ const Page = () => {
                     transition={{ delay: i * 0.1 }}
                     className="text-3xl font-Condensed Sans-Serif hover:text-emerald-400 transition-colors"
                   >
-                    <a href={item === "Home" ? "/" : item === "Invest in Plot" ? "/plots" : item === "Enjoy Clubhouse" ? "/clubhouse" : "#"} onClick={() => setIsMenuOpen(false)}>
+                    <a href={item === "Luxury Villas" ? "/" : item === "Invest in Plot" ? "/plots" : item === "Enjoy Clubhouse" ? "/clubhouse" : "#"} onClick={() => setIsMenuOpen(false)}>
                     {item}
                     </a>
                   </motion.a>
@@ -233,7 +233,7 @@ const Page = () => {
           </h1>
 
           <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]mb-10 text-emerald-400 opacity-90">
-            Premium Plots • Resort Villas • Elite Clubhouse
+            {/* •LuxuryVillas  */}
           </p>
         </motion.div>
         {/* Navigation Buttons */}
@@ -248,17 +248,17 @@ const Page = () => {
               className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "learn"
-            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            ? "flex-[1.5] bg-emerald-600 text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
             : "flex-1 bg-[#011411] text-stone-400 z-10"
         }`}
             >
               <span
-                className={`font-serif  leading-none transition-all duration-500 ${activeTab === "learn" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                className={`font-Condensed Sans-Serif  leading-none transition-all duration-500 ${activeTab === "learn" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
               >
                 Buy
               </span>
               <span className="text-[7px] md:text-[13px] font-bold tracking-[0.15em] uppercase">
-                A Resort Villa
+                A Luxury Villa
               </span>
             </button>
 
@@ -271,12 +271,12 @@ const Page = () => {
               className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "community"
-            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            ? "flex-[1.5] bg-emerald-600 text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
             : "flex-1 bg-[#011411] text-stone-400 z-10 border-l border-white/5"
         }`}
             >
               <span
-                className={`font-serif  leading-none transition-all duration-500 ${activeTab === "community" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                className={`font-Condensed Sans-Serif leading-none transition-all duration-500 ${activeTab === "community" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
               >
                 Invest
               </span>
@@ -294,12 +294,12 @@ const Page = () => {
               className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "Clubhouse"
-            ? "flex-[1.5] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            ? "flex-[1.5] bg-emerald-600 text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
             : "flex-1 bg-[#011411] text-stone-400 z-10 border-l border-white/5"
         }`}
             >
               <span
-                className={`font-serif  leading-none transition-all duration-500 ${activeTab === "Clubhouse" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                className={`font-Condensed Sans-Serif  leading-none transition-all duration-500 ${activeTab === "Clubhouse" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
               >
                 Enjoy
               </span>
@@ -336,6 +336,13 @@ const Page = () => {
           </motion.div>
         </div>
       </section>
+            <div className="relative group overflow-hidden h-[550px] w-full">
+              <img
+                src="/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.04 AM.jpeg"
+                alt="Plot Map"
+                className="w-full h-[550px] object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
       {/* 5. VIDEO & INTERACTIVE BROCHURE SECTION */}
       <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
@@ -355,7 +362,7 @@ const Page = () => {
             </div>
             <div className="space-y-6">
               <h3 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-white">
-                Why invest in a resort villa?
+                Why Invest in a Luxury Villa?
               </h3>
               <p className="text-stone-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
                 Hassle-free ownership with zero maintenance. Let our
@@ -405,7 +412,7 @@ const Page = () => {
               className="text-center lg:text-right space-y-10"
             >
               <h4 className="text-3xl md:text-5xl font-Condensed Sans-Serif leading-tight">
-                Download our <br /> digital brochure
+                Download our <br /> Digital Brochure
               </h4>
               <div className="pt-4">
                 <button
@@ -907,7 +914,7 @@ const Page = () => {
             <div className="lg:pt-24 space-y-16 order-2">
               <div className="space-y-6">
                 <h3 className="text-2xl md:text-3xl font-Condensed Sans-Serif text-[#022c22]">
-                  What does my resort villa look like?
+                  What does my Luxury villa look like?
                 </h3>
                 <div className="w-16 h-1 bg-emerald-600 rounded-full"></div>
                 <p className="text-stone-600 font-light leading-relaxed text-base md:text-lg">
@@ -956,219 +963,9 @@ const Page = () => {
           </div>
         </div>
       </section>
-      {/* 9. INVESTMENT ASSET SECTION */}
-      {/* <section className="bg-stone-50 py-10 md:py-15">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            
-            <div className="lg:col-span-5 space-y-12">
-              <div className="space-y-6">
-                <h2 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-[#022c22]">
-                  Can a resort villa <br />
-                  <span className=" text-emerald-600">be an asset?</span>
-                </h2>
-                <p className="text-stone-500 font-light leading-relaxed">
-                  A resort villa like this has a monthly maintenance fee of
-                  ₹60,000 to ₹80,000, which can seem high. However, professional
-                  management ensures your property remains a valuable,
-                  appreciating asset.
-                </p>
-              </div>
-
-              <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-white group">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/vft3CThpvQc"
-                  title="Investment Talk"
-                />
-                <div className="absolute inset-0 bg-emerald-900/10 pointer-events-none group-hover:bg-transparent transition-colors" />
-              </div>
-            </div>
-
-          
-            <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4">
-              {[
-                {
-                  title: "6 Months Free",
-                  usage: "Use for 6 months; rent for 6 months",
-                  yield: "5% p.a.",
-                  total: "5% p.a.",
-                  highlight: false,
-                },
-                {
-                  title: "Guaranteed Income",
-                  usage: "30 complimentary nights per year",
-                  yield: "3-5% p.a.",
-                  total: "8-10% p.a.",
-                  highlight: true,
-                },
-                {
-                  title: "Revenue Share",
-                  usage: "30 complimentary nights per year",
-                  yield: "0-10% p.a.",
-                  total: "5-15% p.a.",
-                  highlight: false,
-                },
-              ].map((scheme, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -10 }}
-                  className={`p-8 rounded-[2rem] border transition-all ${
-                    scheme.highlight
-                      ? "bg-[#022c22] text-white border-emerald-500 shadow-2xl scale-105 z-10"
-                      : "bg-white text-[#022c22] border-stone-200"
-                  }`}
-                >
-                  <p className="text-[10px]  tracking-widest font-bold mb-4 opacity-60">
-                    Scheme
-                  </p>
-                  <h3 className="text-xl font-Condensed Sans-Serif mb-6 h-12 leading-tight">
-                    {scheme.title}
-                  </h3>
-
-                  <div className="space-y-6">
-                    <div className="pt-6 border-t border-current/10">
-                      <p className="text-[10px]  font-bold opacity-50 mb-1">
-                        Maintenance
-                      </p>
-                      <p className="text-sm">Zero monthly fees</p>
-                    </div>
-                    <div>
-                      <p className="text-[10px]  font-bold opacity-50 mb-1">
-                        Usage
-                      </p>
-                      <p className="text-sm leading-snug">{scheme.usage}</p>
-                    </div>
-                    <div>
-                      <p className="text-[10px]  font-bold opacity-50 mb-1">
-                        Asset Appreciation
-                      </p>
-                      <p className="text-sm font-bold text-emerald-500">
-                        5% p.a.
-                      </p>
-                    </div>
-                    <div className="pt-6 border-t-2 border-emerald-500/30">
-                      <p className="text-[10px]  font-bold opacity-50 mb-1 text-emerald-400">
-                        Total Value
-                      </p>
-                      <p className="text-2xl font-bold">{scheme.total}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section> */}
-      {/* 10. AMENITIES SECTION - Bright Glass & Forest */}
-      {/* <section className="bg-[#051d17] py-20 md:py-30 relative overflow-hidden">
-       
-        <div className="absolute -top-24 -left-24 w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-8">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-xl">
-                <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-                <span className="text-emerald-950 text-[10px] font-bold  tracking-[0.3em]">
-                  Premium Lifestyle
-                </span>
-              </div>
-              <h2 className="text-5xl md:text-8xl font-Condensed Sans-Serif text-white">
-                61+
-                <span className="text-white decoration-white/30">
-                  Amenities.
-                </span>
-              </h2>
-            </div>
-            <p className="max-w-md text-white/80 font-light text-lg md:text-xl leading-relaxed">
-              From Olympic-sized pools to digital workouts, every detail is
-              crafted for a
-              <span className="text-white font-medium">
-                world-class resort experience.
-              </span>
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {[
-              {
-                label: "Clubhouse Life & Pool",
-                items: [
-                  "Function Hall",
-                  "Dance Floor",
-                  "Zumba Room",
-                  "Reading Lounge",
-                  "Digital Workout",
-                  "Swimming Pool",
-                  "Aqua Gym",
-                ],
-              },
-              {
-                label: "Sports & Play",
-                items: [
-                  "Tennis Court",
-                  "Cricket Nets",
-                  "Kabbadi Court",
-                  "Badminton Court",
-                  "Volley Ball",
-                  "Kids Play Area",
-                  "Sand Pit",
-                ],
-              },
-              {
-                label: "Outdoor & Nature",
-                items: [
-                  "Avenue Plantation",
-                  "Jogging Track",
-                  "Yoga Lawn",
-                  "Tree Plaza",
-                  "Cycle Racks",
-                  "Hammock Garden",
-                ],
-              },
-              {
-                label: "Facilities & Security",
-                items: [
-                  "24/7 Security",
-                  "RFID Gate Barrier",
-                  "Rain Water Harvesting",
-                  "Solar Power Backup",
-                  "Car Parking",
-                  "CCTV",
-                ],
-              },
-            ].map((cat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white/90 border border-white p-8 rounded-[2.5rem] hover:bg-white transition-all duration-500 group shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
-              >
-                <h3 className="text-emerald-900 font-bold  tracking-[0.2em] text-[10px] mb-8 group-hover:translate-x-2 transition-transform">
-                  {cat.label}
-                </h3>
-                <ul className="space-y-4">
-                  {cat.items.map((item, j) => (
-                    <li
-                      key={j}
-                      className="flex items-center gap-3 text-slate-700 text-sm font-medium group-hover:text-emerald-600 transition-colors"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section> */}
+     
       {/* 11. FAQ SECTION - Brightened Background */}
-      <section className="relative bg-[#051d17] py-20 md:py-30 overflow-hidden border-t border-white/10">
+      <section className="relative bg-[#051d17] py-20 md:py-25 overflow-hidden border-t border-white/10">
         {/* Brightened Background Image Layer */}
         <div className="absolute inset-0 opacity-60 pointer-events-none">
           {/* Increased opacity from 0.4 to 0.6 */}
@@ -1214,7 +1011,7 @@ const Page = () => {
                   tag: "Architecture",
                 },
                 {
-                  q: "How much does a resort villa cost?",
+                  q: "How much does a Luxury villa cost?",
                   a: "The investment starts at ₹2.7 crores and scales with villa size. This includes elite Clubhousehouse access and estate management.",
                   tag: "Investment",
                 },
@@ -1233,14 +1030,14 @@ const Page = () => {
                   key={i}
                   onMouseEnter={() => setActiveImg(i)}
                   onMouseLeave={() => setActiveImg(null)}
-                  className={`p-8 md:p-10 rounded-[2.5rem] transition-all duration-500 border cursor-pointer ${
+                  className={`p-8 md:p-5 rounded-[0.5rem] transition-all duration-500 border cursor-pointer ${
                     activeImg === i
                       ? "bg-white border-white shadow-[0_30px_60px_rgba(0,0,0,0.3)] scale-[1.02]"
                       : "bg-white/20 border-white/30 backdrop-blur-md hover:bg-white/30"
                   }`}
                 >
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                       <span
                         className={`font-bold text-[10px]  tracking-widest transition-colors ${activeImg === i ? "text-emerald-600" : "text-white"}`}
                       >
@@ -1267,7 +1064,7 @@ const Page = () => {
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden"
                       >
-                        <p className="pt-8 mt-8 border-t border-emerald-100 text-slate-600 font-light  text-lg leading-relaxed">
+                        <p className="pt-4 mt-4 border-t border-emerald-100 text-slate-600 font-light  text-lg leading-relaxed">
                           {faq.a}
                         </p>
                       </motion.div>
@@ -1277,217 +1074,6 @@ const Page = () => {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-      <section className="relative bg-[#f8f9f8] py-20 md:py-30 lg:py-32 px-4 sm:px-6 overflow-hidden">
-        {/* Light Aesthetic Background Elements - Hidden on very small screens to improve performance */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-              x: [0, 50, 0],
-              y: [0, 30, 0],
-            }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[5%] left-[-10%] md:top-[10%] md:left-[15%] w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-emerald-100 rounded-full blur-[60px] md:blur-[100px]"
-          />
-          <motion.div
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.2, 0.4, 0.2],
-              x: [0, -40, 0],
-              y: [0, -50, 0],
-            }}
-            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-[5%] right-[-10%] md:bottom-[10%] md:right-[10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-stone-200 rounded-full blur-[80px] md:blur-[120px]"
-          />
-        </div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col lg:flex-row rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] md:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] border border-white bg-white/40 backdrop-blur-md"
-          >
-            {/* Left Side: Information (40% Width) */}
-            <div className="lg:w-2/5 p-8 sm:p-12 md:p-16 bg-[#0a241f] flex flex-col justify-between relative overflow-hidden">
-              {/* Subtle texture overlay */}
-              <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] pointer-events-none"></div>
-
-              <div className="relative z-10 space-y-8 md:space-y-12">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans text-white leading-[1.1] tracking-tight">
-                  Begin your <br />
-                  <span className=" text-emerald-400 font-light">Journey.</span>
-                </h2>
-
-                <div className="space-y-6 md:space-y-10 pt-8 md:pt-10 border-t border-white/10">
-                  {[
-                    { l: "Sales Inquiry", d: "+91 98450-77177" },
-                    { l: "Estate Office", d: "Devanahalli, Bengaluru" },
-                    { l: "Email", d: "concierge@natureCity.com" },
-                  ].map((item, i) => (
-                    <motion.div
-                      key={i}
-                      whileHover={{ x: 10 }}
-                      className="group cursor-default"
-                    >
-                      <p className="text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] text-emerald-500 mb-1 md:mb-2 font-black ">
-                        {item.l}
-                      </p>
-                      <p className="text-lg md:text-xl text-white font-light tracking-wide group-hover:text-emerald-200 transition-colors">
-                        {item.d}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Right Side: Form (60% Width) */}
-            <div className="lg:w-3/5 p-8 sm:p-12 md:p-16 lg:p-20 bg-white/90 flex items-center">
-              <div className="w-full">
-                <div className="mb-10 md:mb-14">
-                  <h3 className="text-emerald-950 text-[10px] md:text-[11px] font-black tracking-[0.4em] md:tracking-[0.5em] mb-3 md:mb-4 ">
-                    Discovery Request
-                  </h3>
-                  <div className="h-1 w-10 md:w-12 bg-emerald-600 rounded-full"></div>
-                </div>
-
-                <form className="space-y-8 md:space-y-12">
-                  <div className="relative group">
-                    <input
-                      type="text"
-                      required
-                      placeholder=" "
-                      className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-lg md:text-xl font-light focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
-                    />
-                    <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
-                      Full Name
-                    </label>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                    <div className="relative group">
-                      <input
-                        type="email"
-                        required
-                        placeholder=" "
-                        className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-base focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
-                      />
-                      <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
-                        Email
-                      </label>
-                    </div>
-
-                    <div className="relative group">
-                      <input
-                        type="tel"
-                        required
-                        placeholder=" "
-                        className="peer w-full bg-transparent border-b border-stone-200 py-3 md:py-4 text-emerald-950 text-base focus:outline-none focus:border-emerald-600 transition-all placeholder-transparent"
-                      />
-                      <label className="absolute left-0 -top-4 text-[9px] md:text-[10px] tracking-widest font-bold text-stone-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-emerald-600">
-                        Phone
-                      </label>
-                    </div>
-                  </div>
-                  <div className="pt-4">
-                    {/* Changed Button to Gold Theme */}
-                    <button
-                      style={{
-                        padding: "14px 40px",
-                        backgroundColor: "#22C55E", // Default Gold Background
-                        borderRadius: "8px",
-                        color: "#fff", // Default White Text
-                        fontSize: "1.1rem",
-                        fontWeight: "700",
-                        cursor: "pointer",
-                        display: "flex",
-                        textAlign: "center",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        gap: "10px",
-                        position: "relative",
-                        overflow: "hidden",
-                        zIndex: 1,
-                        border: "2px solid #22C55E", // Border keeps the button size stable
-                        margin: "0 auto",
-                        letterSpacing: "1px",
-                        transition: "all 0.3s ease",
-                      }}
-                      onMouseEnter={(e) => {
-                        const fill =
-                          e.currentTarget.querySelector(".hover-fill");
-                        const text = e.currentTarget.querySelector(".btn-text");
-
-                        // Slide in the white background
-                        if (fill) fill.style.width = "100%";
-
-                        // Change text color to Gold
-                        if (text) text.style.color = "#22C55E";
-                      }}
-                      onMouseLeave={(e) => {
-                        const fill =
-                          e.currentTarget.querySelector(".hover-fill");
-                        const text = e.currentTarget.querySelector(".btn-text");
-
-                        // Slide out the white background
-                        if (fill) fill.style.width = "0%";
-
-                        // Reset text color to White
-                        if (text) text.style.color = "#fff";
-                      }}
-                    >
-                      {/* Hover Fill Layer: White */}
-                      <div
-                        className="hover-fill"
-                        style={{
-                          position: "absolute",
-                          top: 0,
-                          left: 0,
-                          width: "0%",
-                          height: "100%",
-                          background: "#ffffff", // White background on hover
-                          transition: "width 0.4s ease",
-                          zIndex: -1,
-                        }}
-                      />
-
-                      {/* Text Span with Transition */}
-                      <span
-                        className="btn-text"
-                        style={{
-                          position: "relative",
-                          zIndex: 1,
-                          color: "#fff", // Initial color
-                          transition: "color 0.3s ease",
-                        }}
-                      >
-                        Send Request
-                      </span>
-                    </button>
-                  </div>
-
-                  {/* <motion.button
-                    whileHover={{
-                      scale: 1.02,
-                      backgroundColor: "#059669",
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full md:w-auto px-10 md:px-14 py-4 md:py-5 bg-emerald-600 text-white font-bold rounded-full tracking-[0.2em] text-[10px] shadow-lg flex items-center justify-center gap-4 transition-all"
-                  >
-                    Send Request
-                    <span className="transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </motion.button> */}
-                </form>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 

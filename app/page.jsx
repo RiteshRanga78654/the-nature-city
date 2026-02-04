@@ -483,7 +483,173 @@ const Page = () => {
         </div>
       </section>
       <Slider />
-      {/* 6. INTERACTIVE MAP, OVERLAPPING FORM & LOCATION INTEL */}
+      
+      {/* VILLA ORIENTATION TOGGLE & DETAILS SECTION */}
+      <section className="bg-stone-50 relative overflow-visible">
+        {/* HERO IMAGE & TOGGLE */}
+        <div className="relative h-[60vh] md:h-[80vh] w-full overflow-visible">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={orientation}
+              src={villaData[orientation].heroImg}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="w-full h-full object-cover"
+              alt={villaData[orientation].title}
+            />
+          </AnimatePresence>
+
+          {/* OVERLAPPING TOGGLE BUTTONS - Fixed Z-Index & Responsiveness */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[95%] md:max-w-5xl px-2">
+            {/* Container with overflow-visible to allow the growth to pop out */}
+            <div className="flex h-[75px] md:h-[95px] w-full items-center overflow-visible">
+              {["1BHK", "2BHK", "3BHK", "4BHK"].map((type, index) => {
+                const isActive = orientation === type;
+
+                return (
+                  <button
+                    key={type}
+                    onClick={() => setOrientation(type)}
+                    className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
+            ${index !== 0 ? "border-l border-white/10" : ""} 
+            ${
+              isActive
+                ? "flex-[1.8] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+                : "flex-1 bg-[#011411] text-stone-400 z-10 hover:bg-[#021c17]"
+            }`}
+                  >
+                    {/* Main Title - Using your Serif style */}
+                    <span
+                      className={`font-serif  leading-none transition-all duration-500 ${
+                        isActive
+                          ? "text-2xl md:text-4xl mb-1"
+                          : "text-lg md:text-2xl"
+                      }`}
+                    >
+                      {type.charAt(0)}
+                    </span>
+
+                    {/* Subtitle - Using your bold uppercase style */}
+                    <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
+                      BHK Villa
+                    </span>
+
+                    {/* Optional: Active Indicator Dot */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeDot"
+                        className="absolute top-2 right-2 w-1 h-1 bg-emerald-400 rounded-full"
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* DETAILS & FLOOR PLANS */}
+        <div className="pt-20 md:pt-30 pb-10 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20">
+            {/* LEFT: TEXT & FLOOR PLANS */}
+            <div className="space-y-12 order-1">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={orientation}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  className="space-y-3"
+                >
+                  <h2 className="text-3xl md:text-6xl font-Condensed Sans-Serif text-[#022c22] leading-tight">
+                    {villaData[orientation].title}
+                  </h2>
+                  <div className="flex flex-wrap gap-4 items-center">
+                    <p className="text-base md:text-lg text-stone-500 font-light ">
+                      {villaData[orientation].size}
+                    </p>
+                    <span className="hidden md:block h-4 w-[1px] bg-stone-300"></span>
+                    <p className="text-xl md:text-2xl font-bold text-emerald-700">
+                      Starting at {villaData[orientation].price}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
+                {villaData[orientation].floorPlans.map((plan, idx) => (
+                  <motion.div
+                    key={`${orientation}-plan-${idx}`}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="bg-white p-4 shadow-xl rounded-2xl border border-stone-100 group overflow-hidden"
+                  >
+                    <img
+                      src={plan}
+                      alt="Villa Floor Plan"
+                      className="w-full h-auto rounded-lg group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* RIGHT: BROCHURE & NEXT STEPS */}
+            <div className="lg:pt-24 space-y-16 order-2">
+              <div className="space-y-6">
+                <h3 className="text-2xl md:text-3xl font-Condensed Sans-Serif text-[#022c22]">
+                  What does my Luxury villa look like?
+                </h3>
+                <div className="w-16 h-1 bg-emerald-600 rounded-full"></div>
+                <p className="text-stone-600 font-light leading-relaxed text-base md:text-lg">
+                  All villas are 3100 sq. ft., but layouts vary based on plot
+                  orientation. Once you choose your plot, the appropriate design
+                  will be built for you.
+                </p>
+              </div>
+              {/* MASTERPLAN IMAGE - Now Dynamic */}
+              <motion.div
+                whileHover={{ y: -8 }}
+                className="bg-emerald-50 p-6 md:p-8 rounded-[2.5rem] border border-emerald-100 shadow-sm"
+              >
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={`${orientation}-masterplan`} // Ensures animation triggers on change
+                    src={villaData[orientation].masterPlan} // Dynamic source
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    alt="Estate Layout"
+                    className="w-full h-auto rounded-2xl shadow-lg"
+                  />
+                </AnimatePresence>
+                <p className="mt-4 text-center text-[9px] tracking-[0.3em] text-emerald-800 font-bold">
+                  Estate Masterplan View ({orientation})
+                </p>
+              </motion.div>
+
+              {/* NEXT STEPS LIST */}
+              <div className="bg-[#022c22] p-8 md:p-12 rounded-3xl text-white shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+                <h4 className="text-xl md:text-2xl font-Condensed Sans-Serif mb-8 border-b border-emerald-800 pb-4">
+                  Next Steps
+                </h4>
+                <ol className="space-y-5 text-stone-300 font-light list-decimal pl-5 marker:text-emerald-500 marker:font-bold">
+                  <li className="pl-2">Pick your plot</li>
+                  <li className="pl-2">Buy and register your plot</li>
+                  <li className="pl-2">Sign Construction Agreement</li>
+                  <li className="pl-2">Sign managed service agreement</li>
+                  <li className="pl-2">Villa Build Starts</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+     {/* 6. INTERACTIVE MAP, OVERLAPPING FORM & LOCATION INTEL */}
       <section className="relative bg-stone-50 pb-20 md:pb-30 px-4 md:px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           {/* MAP CONTAINER WITH DEPTH EFFECTS */}
@@ -798,172 +964,6 @@ const Page = () => {
           </div>
         </div>
       </section>
-      {/* VILLA ORIENTATION TOGGLE & DETAILS SECTION */}
-      <section className="bg-stone-50 relative overflow-visible">
-        {/* HERO IMAGE & TOGGLE */}
-        <div className="relative h-[60vh] md:h-[80vh] w-full overflow-visible">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={orientation}
-              src={villaData[orientation].heroImg}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-              className="w-full h-full object-cover"
-              alt={villaData[orientation].title}
-            />
-          </AnimatePresence>
-
-          {/* OVERLAPPING TOGGLE BUTTONS - Fixed Z-Index & Responsiveness */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[95%] md:max-w-5xl px-2">
-            {/* Container with overflow-visible to allow the growth to pop out */}
-            <div className="flex h-[75px] md:h-[95px] w-full items-center overflow-visible">
-              {["1BHK", "2BHK", "3BHK", "4BHK"].map((type, index) => {
-                const isActive = orientation === type;
-
-                return (
-                  <button
-                    key={type}
-                    onClick={() => setOrientation(type)}
-                    className={`relative flex flex-col items-center justify-center transition-all duration-500 ease-in-out h-full
-            ${index !== 0 ? "border-l border-white/10" : ""} 
-            ${
-              isActive
-                ? "flex-[1.8] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
-                : "flex-1 bg-[#011411] text-stone-400 z-10 hover:bg-[#021c17]"
-            }`}
-                  >
-                    {/* Main Title - Using your Serif style */}
-                    <span
-                      className={`font-serif  leading-none transition-all duration-500 ${
-                        isActive
-                          ? "text-2xl md:text-4xl mb-1"
-                          : "text-lg md:text-2xl"
-                      }`}
-                    >
-                      {type.charAt(0)}
-                    </span>
-
-                    {/* Subtitle - Using your bold uppercase style */}
-                    <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
-                      BHK Villa
-                    </span>
-
-                    {/* Optional: Active Indicator Dot */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeDot"
-                        className="absolute top-2 right-2 w-1 h-1 bg-emerald-400 rounded-full"
-                      />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* DETAILS & FLOOR PLANS */}
-        <div className="pt-20 md:pt-30 pb-10 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20">
-            {/* LEFT: TEXT & FLOOR PLANS */}
-            <div className="space-y-12 order-1">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={orientation}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  className="space-y-3"
-                >
-                  <h2 className="text-3xl md:text-6xl font-Condensed Sans-Serif text-[#022c22] leading-tight">
-                    {villaData[orientation].title}
-                  </h2>
-                  <div className="flex flex-wrap gap-4 items-center">
-                    <p className="text-base md:text-lg text-stone-500 font-light ">
-                      {villaData[orientation].size}
-                    </p>
-                    <span className="hidden md:block h-4 w-[1px] bg-stone-300"></span>
-                    <p className="text-xl md:text-2xl font-bold text-emerald-700">
-                      Starting at {villaData[orientation].price}
-                    </p>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
-                {villaData[orientation].floorPlans.map((plan, idx) => (
-                  <motion.div
-                    key={`${orientation}-plan-${idx}`}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="bg-white p-4 shadow-xl rounded-2xl border border-stone-100 group overflow-hidden"
-                  >
-                    <img
-                      src={plan}
-                      alt="Villa Floor Plan"
-                      className="w-full h-auto rounded-lg group-hover:scale-[1.03] transition-transform duration-500"
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* RIGHT: BROCHURE & NEXT STEPS */}
-            <div className="lg:pt-24 space-y-16 order-2">
-              <div className="space-y-6">
-                <h3 className="text-2xl md:text-3xl font-Condensed Sans-Serif text-[#022c22]">
-                  What does my Luxury villa look like?
-                </h3>
-                <div className="w-16 h-1 bg-emerald-600 rounded-full"></div>
-                <p className="text-stone-600 font-light leading-relaxed text-base md:text-lg">
-                  All villas are 3100 sq. ft., but layouts vary based on plot
-                  orientation. Once you choose your plot, the appropriate design
-                  will be built for you.
-                </p>
-              </div>
-              {/* MASTERPLAN IMAGE - Now Dynamic */}
-              <motion.div
-                whileHover={{ y: -8 }}
-                className="bg-emerald-50 p-6 md:p-8 rounded-[2.5rem] border border-emerald-100 shadow-sm"
-              >
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={`${orientation}-masterplan`} // Ensures animation triggers on change
-                    src={villaData[orientation].masterPlan} // Dynamic source
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    alt="Estate Layout"
-                    className="w-full h-auto rounded-2xl shadow-lg"
-                  />
-                </AnimatePresence>
-                <p className="mt-4 text-center text-[9px] tracking-[0.3em] text-emerald-800 font-bold">
-                  Estate Masterplan View ({orientation})
-                </p>
-              </motion.div>
-
-              {/* NEXT STEPS LIST */}
-              <div className="bg-[#022c22] p-8 md:p-12 rounded-3xl text-white shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-                <h4 className="text-xl md:text-2xl font-Condensed Sans-Serif mb-8 border-b border-emerald-800 pb-4">
-                  Next Steps
-                </h4>
-                <ol className="space-y-5 text-stone-300 font-light list-decimal pl-5 marker:text-emerald-500 marker:font-bold">
-                  <li className="pl-2">Pick your plot</li>
-                  <li className="pl-2">Buy and register your plot</li>
-                  <li className="pl-2">Sign Construction Agreement</li>
-                  <li className="pl-2">Sign managed service agreement</li>
-                  <li className="pl-2">Villa Build Starts</li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-     
       {/* 11. FAQ SECTION - Brightened Background */}
       <section className="relative bg-[#051d17] py-20 md:py-25 overflow-hidden border-t border-white/10">
         {/* Brightened Background Image Layer */}

@@ -8,14 +8,14 @@ const clubhouseGallery = [
   { 
     id: 1, 
     title: "The Grand Entrance", 
-    cat: "Architecture", 
+    cat: "Wellness", 
     src: "/assets/images/slider/WhatsApp Image 2026-01-28 at 6.36.15 PM (1).jpeg", 
     icon: <Sparkles size={16} /> 
   },
   { 
     id: 2, 
     title: "Infinity Poolside", 
-    cat: "Leisure", 
+    cat: "Sports", 
     src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.52 AM (1).jpeg", 
     icon: <Waves size={16} /> 
   },
@@ -29,7 +29,7 @@ const clubhouseGallery = [
   { 
     id: 4, 
     title: "Social Lounge", 
-    cat: "Social", 
+    cat: "Adventures", 
     src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM (1).jpeg", 
     icon: <Users size={16} /> 
   },
@@ -43,13 +43,13 @@ const clubhouseGallery = [
   { 
     id: 6, 
     title: "Evening Deck", 
-    cat: "Leisure", 
+    cat: "Sports", 
     src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM.jpeg", 
     icon: <Waves size={16} /> 
   },
 ];
 
-const categories = ["All", "Leisure", "Dining", "Social", "Architecture"];
+const categories = ["All", "Sports", "Adventures", "Wellness", "Dining"];
 
 const ClubhouseGallery = () => {
   const [filter, setFilter] = useState("All");
@@ -132,10 +132,10 @@ const ClubhouseGallery = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#022c22]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
                   <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end">
                     <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                      <div className="flex items-center gap-2 text-emerald-400 mb-2">
+                      {/* <div className="flex items-center gap-2 text-emerald-400 mb-2">
                         {img.icon}
                         <span className="text-[10px] font-bold tracking-widest uppercase">{img.cat}</span>
-                      </div>
+                      </div> */}
                       <h4 className="text-white text-3xl font-Condensed Sans-Serif">
                         {img.title}
                       </h4>

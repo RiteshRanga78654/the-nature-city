@@ -11,35 +11,58 @@ import "swiper/css/grid";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import {
-  TreePine, Wifi, Globe, Car, Map, Wallet, ShowerHead,
-  Users, Stethoscope, Waves, Mountain, Wind, Flame,
-  Gamepad2, Bath, Utensils, UserPlus, Trash2
-} from "lucide-react";
+import { 
+  Bike, Zap, Trophy, Tent, Smile, Building2, Ship, Telescope, 
+  Dumbbell, BookOpen, PartyPopper, ShieldCheck, Heart, Users, 
+  Sun, Video, Wifi, FlameKindling, Droplets, ArrowDownToLine, 
+  ZapOff, Camera, Stethoscope, Bed, Bath, Car, Map, TreePine, 
+  Wind, Theater, Waves, Construction, Eye, Trees 
+} from 'lucide-react';
 
 export default function AmenitiesSection() {
   const brandGreen = "#22c55e";
 
   const baseAmenities = [
-    { icon: <TreePine />, title: "Plantation Walks" },
-    { icon: <Waves />, title: "Natural Rivulet" },
-    { icon: <Mountain />, title: "Trekking" },
-    { icon: <Flame />, title: "Campfire" },
-    { icon: <Gamepad2 />, title: "Indoor Games" },
-    { icon: <Utensils />, title: "BBQ" },
-    { icon: <Trash2 />, title: "Farm Animals" },
-    { icon: <Map />, title: "Local Tours" },
-    { icon: <Wallet />, title: "Guide on Demand" },
-    { icon: <Wifi />, title: "Free Wifi" },
-    { icon: <Globe />, title: "Travel Desk" },
-    { icon: <Car />, title: "Car Parking" },
-    { icon: <ShowerHead />, title: "Premium bathroom" },
-    { icon: <Users />, title: "Conference Room" },
-    { icon: <Stethoscope />, title: "Doctor on Call" },
-    { icon: <Wind />, title: "Hair Dryer" },
-    { icon: <Bath />, title: "24hr Hot Water" },
-    { icon: <UserPlus />, title: "Group Booking" },
-  ];
+  { icon: <Bike />, title: "Sky Cycling" },
+  { icon: <Zap />, title: "Ziplining" },
+  { icon: <Trophy />, title: "Go-Karting" },
+  { icon: <Construction />, title: "Track ATV" },
+  { icon: <Tent />, title: "Night Camping & Camp Fire Zone" },
+  { icon: <Smile />, title: "Laughing Park" },
+  { icon: <Building2 />, title: "Temple" },
+  { icon: <Ship />, title: "Boating in Ponds" },
+  { icon: <Telescope />, title: "Sky Gazing Deck" },
+  { icon: <Bike />, title: "Cycle Track & Skating Rink" },
+  { icon: <Dumbbell />, title: "Outdoor Gym & Indoor Gym" },
+  { icon: <BookOpen />, title: "Reading Lounge & Reading Zone" },
+  { icon: <PartyPopper />, title: "Party Hall & Party Lawn" },
+  { icon: <Building2 />, title: "Club House" },
+  { icon: <ShieldCheck />, title: "24/7 Security" },
+  { icon: <Heart />, title: "Goshala (Cow Shelter)" },
+  { icon: <Users />, title: "Senior Citizen Park" },
+  { icon: <Sun />, title: "Vitamin D Zone" },
+  { icon: <Video />, title: "CCTV Video Surveillance & RFID System" },
+  { icon: <Wifi />, title: "WiFi in Common Areas" },
+  { icon: <FlameKindling />, title: "Fire Fighting System" },
+  { icon: <Droplets />, title: "Overhead Water Tank" },
+  { icon: <ArrowDownToLine />, title: "Underground Drainage System" },
+  { icon: <ZapOff />, title: "Power Backup Generator" },
+  { icon: <Camera />, title: "Selfie Point" },
+  { icon: <Stethoscope />, title: "Emergency Room" },
+  { icon: <Bed />, title: "Staff Accommodation" },
+  { icon: <Bath />, title: "Driver & Servant Toilets" },
+  { icon: <Droplets />, title: "Drinking Water Facility" },
+  { icon: <Car />, title: "Car Washing Facility" },
+  { icon: <Trophy />, title: "Multiple Sports Courts" },
+  { icon: <Map />, title: "Wide 12M Internal Roads" },
+  { icon: <TreePine />, title: "Designer Landscaping & Drip Irrigation" },
+  { icon: <Eye />, title: "Signature Grand Entrance & Exit" },
+  { icon: <Trees />, title: "Tree House with Mountain View" },
+  { icon: <Wind />, title: "O3 Zone" },
+  { icon: <Theater />, title: "Amphitheatre" },
+  { icon: <Waves />, title: "Swimming Pool" },
+  { icon: <Bike />, title: "Complimentary Bikes with Cycle Stand" },
+];
 
   const allAmenities = Array(12).fill(baseAmenities).flat().slice(0, 216);
 

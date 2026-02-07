@@ -66,7 +66,7 @@ const Page = () => {
     "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.22 PM (2).jpeg",
     "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.17 PM.jpeg",
     "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.18 PM (1).jpeg",
-    "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.18 PM.jpeg",
+    // "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.18 PM.jpeg",
   ];
   const nextBrochure = () => {
     setCurrentBrochureIndex((prev) => (prev + 1) % brochureImages.length);
@@ -76,9 +76,9 @@ const Page = () => {
 
   const villaData = {
     "1BHK": {
-      title: "1BHK Luxury Villa",
-      price: "₹1.5Cr",
-      size: "1200 sft built up",
+      title: "Premium Villas",
+      price: "Request",
+      size: "4 villa configurations available",
       heroImg:
         "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.19 PM (1).jpeg",
       floorPlans: [
@@ -158,25 +158,33 @@ const Page = () => {
                 ✕
               </button>
               <nav className="flex flex-col gap-10">
-                {[
-                  "Luxury Villas", 
-                  "Invest in Plot",
-                  "Enjoy Clubhouse",
-                  
-                ].map((item, i) => (
-                  <motion.a
-                    key={item}
-                    href="#"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="text-3xl font-Condensed Sans-Serif hover:text-emerald-400 transition-colors"
-                  >
-                    <a href={item === "Luxury Villas" ? "/" : item === "Invest in Plot" ? "/plots" : item === "Enjoy Clubhouse" ? "/clubhouse" : "#"} onClick={() => setIsMenuOpen(false)}>
-                    {item}
-                    </a>
-                  </motion.a>
-                ))}
+                {["Luxury Villas", "Invest in Plot", "Enjoy Clubhouse"].map(
+                  (item, i) => (
+                    <motion.a
+                      key={item}
+                      href="#"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="text-3xl font-Condensed Sans-Serif hover:text-emerald-400 transition-colors"
+                    >
+                      <a
+                        href={
+                          item === "Luxury Villas"
+                            ? "/"
+                            : item === "Invest in Plot"
+                              ? "/plots"
+                              : item === "Enjoy Clubhouse"
+                                ? "/clubhouse"
+                                : "#"
+                        }
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item}
+                      </a>
+                    </motion.a>
+                  ),
+                )}
               </nav>
             </motion.div>
           </>
@@ -228,8 +236,8 @@ const Page = () => {
           transition={{ duration: 1 }}
           className="relative z-10 text-center px-4 -mt-10"
         >
-          <h1 className="text-5xl md:text-[110px] leading-[0.85] font-Condensed Sans-Serif mb-6 text-emerald-400 tracking-tight">
-            Nature's Embrace
+          <h1  className="text-5xl md:text-[110px] leading-[0.85] font-Condensed Sans-Serif mb-6 text-emerald-400 tracking-tight">
+            Where Adventure Meets Calmness
           </h1>
 
           <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]mb-10 text-emerald-400 opacity-90">
@@ -317,10 +325,11 @@ const Page = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-5xl md:text-8xl font-Condensed Sans-Serif leading-tight text-emerald-900"
+            className="text-4xl md:text-7xl font-Condensed Sans-Serif leading-tight text-emerald-900"
           >
-            Luxury <br />
-            <span className="text-emerald-600 ">Redefined.</span>
+            More Than a Township. 
+            <br />
+            <span className="text-emerald-600 "> A Way of Life.</span>
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, x: 30 }}
@@ -329,20 +338,32 @@ const Page = () => {
           >
             <div className="w-20 h-1 bg-emerald-600 mb-8"></div>
             <p className="text-xl md:text-2xl font-light leading-relaxed text-emerald-800/80">
-              Own a sanctuary where modern design meets the tranquility of
-              nature. Our BMRDA-approved plots and 3175 sq. ft. villas offer the
-              ultimate escape.
+             The Nature City Spread across 43 RERA-approved acres in Bondapalli, Vizianagaram .Welcome to India's most adventurous gated community with IGBC Platinum-certified living with Miyawaki Forest.
             </p>
           </motion.div>
         </div>
       </section>
-            <div className="relative group overflow-hidden h-[550px] w-full">
-              <img
-                src="/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.04 AM.jpeg"
-                alt="Plot Map"
-                className="w-full h-[550px] object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
+      <div className="relative group overflow-hidden h-[550px] w-full">
+        <img
+          src="/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.04 AM.jpeg"
+          alt="Plot Map"
+          className="w-full h-[550px] object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="relative z-10 text-center px-4 -mt-90"
+        >
+          <h1 className="text-3xl md:text-6xl leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
+            Breathe Pure. Live Green. Thrive Naturally.
+          </h1>
+
+          <p className="text-[12px] md:text-[20px] font-bold tracking-[0.4em]mb-10 text-white opacity-90">
+            Your Kids Deserve Better give them 281+ amenities designed for childhood as it should be wild, wonderful, and worry-free.
+          </p>
+        </motion.div>
+      </div>
       {/* 5. VIDEO & INTERACTIVE BROCHURE SECTION */}
       <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
@@ -362,11 +383,12 @@ const Page = () => {
             </div>
             <div className="space-y-6">
               <h3 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-white">
-                Why Invest in a Luxury Villa?
+                Why The Nature City?
               </h3>
               <p className="text-stone-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
-                Hassle-free ownership with zero maintenance. Let our
-                professional team handle the care while you enjoy the lifestyle.
+                Safe, gated community with dedicated zones for kids, seniors, and everyone in between.
+India's first residential township with go-karting, sky cycling, zipline, paintball, ATV rides, and 20+ adventure activities right at your doorstep.
+
               </p>
             </div>
           </motion.div>
@@ -483,7 +505,7 @@ const Page = () => {
         </div>
       </section>
       <Slider />
-      
+
       {/* VILLA ORIENTATION TOGGLE & DETAILS SECTION */}
       <section className="bg-stone-50 relative overflow-visible">
         {/* HERO IMAGE & TOGGLE */}
@@ -499,6 +521,23 @@ const Page = () => {
               className="w-full h-full object-cover"
               alt={villaData[orientation].title}
             />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="relative z-10 text-center px-4 -mt-100"
+            >
+              <h1 className="text-3xl md:text-6xl leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
+                281+ Amenities Designed for Extraordinary Living
+              </h1>
+
+              <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]mb-10 text-white opacity-90">
+                Our 43-acre township is meticulously zoned to create distinct experiences while maintaining seamless connectivity.
+              </p>
+              <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]mb-10 text-white opacity-90">
+                Adventure Zone | Wellness Zone | Water Recreation Zone | Sports Zone | Kids' Kingdom
+              </p>
+            </motion.div>
           </AnimatePresence>
 
           {/* OVERLAPPING TOGGLE BUTTONS - Fixed Z-Index & Responsiveness */}
@@ -572,7 +611,7 @@ const Page = () => {
                     </p>
                     <span className="hidden md:block h-4 w-[1px] bg-stone-300"></span>
                     <p className="text-xl md:text-2xl font-bold text-emerald-700">
-                      Starting at {villaData[orientation].price}
+                      Starting Price on {villaData[orientation].price}
                     </p>
                   </div>
                 </motion.div>
@@ -600,13 +639,11 @@ const Page = () => {
             <div className="lg:pt-24 space-y-16 order-2">
               <div className="space-y-6">
                 <h3 className="text-2xl md:text-3xl font-Condensed Sans-Serif text-[#022c22]">
-                  What does my Luxury villa look like?
+                  What lifestyle does my Villa unlock?
                 </h3>
                 <div className="w-16 h-1 bg-emerald-600 rounded-full"></div>
                 <p className="text-stone-600 font-light leading-relaxed text-base md:text-lg">
-                  All villas are 3100 sq. ft., but layouts vary based on plot
-                  orientation. Once you choose your plot, the appropriate design
-                  will be built for you.
+                  We offer 4 distinct villa types designed for different family needs. Every villa includes 281+ amenity access, 5 years free maintenance all within walking distance from your doorstep.
                 </p>
               </div>
               {/* MASTERPLAN IMAGE - Now Dynamic */}
@@ -635,21 +672,35 @@ const Page = () => {
               <div className="bg-[#022c22] p-8 md:p-12 rounded-3xl text-white shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
                 <h4 className="text-xl md:text-2xl font-Condensed Sans-Serif mb-8 border-b border-emerald-800 pb-4">
-                  Next Steps
+                  Why The Nature City Changes Everything
                 </h4>
                 <ol className="space-y-5 text-stone-300 font-light list-decimal pl-5 marker:text-emerald-500 marker:font-bold">
-                  <li className="pl-2">Pick your plot</li>
-                  <li className="pl-2">Buy and register your plot</li>
-                  <li className="pl-2">Sign Construction Agreement</li>
-                  <li className="pl-2">Sign managed service agreement</li>
-                  <li className="pl-2">Villa Build Starts</li>
+                  <li className="pl-2">
+                    281+ amenities (Industry average: 20-30)
+                  </li>
+                  <li className="pl-2">
+                    30 acres dedicated agricultural land (Industry standard: 0)
+                  </li>
+                  <li className="pl-2">
+                    25,000 trees and plants (Most projects: Few hundred)
+                  </li>
+                  <li className="pl-2">
+                    IGBC Platinum certified (Only 2% of Indian townships achieve
+                    this)
+                  </li>
+                  <li className="pl-2">43 acres RERA-approved development</li>
+                  {/* <li className="pl-2">600 units designed for balanced community</li>
+                  <li className="pl-2">70% construction already complete</li>
+                  <li className="pl-2">5 years complimentary maintenance</li>
+                  <li className="pl-2">30 minutes to airport</li>
+                  <li className="pl-2">5 minutes to railway station</li> */}
                 </ol>
               </div>
             </div>
           </div>
         </div>
       </section>
-     {/* 6. INTERACTIVE MAP, OVERLAPPING FORM & LOCATION INTEL */}
+      {/* 6. INTERACTIVE MAP, OVERLAPPING FORM & LOCATION INTEL */}
       <section className="relative bg-stone-50 pb-20 md:pb-30 px-4 md:px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           {/* MAP CONTAINER WITH DEPTH EFFECTS */}
@@ -660,11 +711,17 @@ const Page = () => {
             className="relative z-0 rounded-2xl md:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-stone-200 bg-white group"
           >
             <div className="absolute inset-0 bg-emerald-900/10 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none" />
-           <a href="https://maps.app.goo.gl/J8HYx5LFmu9Yd1Gu7?g_st=ic" target="_blank"> <img
-              src="/assets/images/nature-city-map.png"
-              alt="The Nature City Site Map"
-              className="w-full h-[400px] md:h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
-            /></a>
+            <a
+              href="https://maps.app.goo.gl/J8HYx5LFmu9Yd1Gu7?g_st=ic"
+              target="_blank"
+            >
+              {" "}
+              <img
+                src="/assets/images/nature-city-map.png"
+                alt="The Nature City Site Map"
+                className="w-full h-[400px] md:h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+              />
+            </a>
           </motion.div>
 
           {/* OVERLAPPING PREMIUM FORM */}
@@ -824,11 +881,15 @@ const Page = () => {
               className="lg:col-span-5 space-y-10"
             >
               <h2 className="text-5xl md:text-7xl font-Condensed Sans-Serif text-[#022c22] leading-[1.1]">
-                Minutes from <br />
-                <span className="text-emerald-600 ">Global Connectivity.</span>
+                Location Intelligence for
+                <br />
+                <span className="text-emerald-600 ">Investment Returns</span>
               </h2>
               <div className="flex flex-col sm:flex-row gap-6">
-                <a href="https://maps.app.goo.gl/J8HYx5LFmu9Yd1Gu7?g_st=ic" target="_blank">
+                <a
+                  href="https://maps.app.goo.gl/J8HYx5LFmu9Yd1Gu7?g_st=ic"
+                  target="_blank"
+                >
                   <div className="pt-4">
                     {/* Changed Button to Gold Theme */}
                     <button
@@ -925,19 +986,19 @@ const Page = () => {
                 {[
                   {
                     title: "Airport Access",
-                    desc: "25 minutes to Bengaluru International Airport.",
+                    desc: "30 Minutes to Airport.You're closer to the airport than most city.",
                   },
                   {
-                    title: "Prime Hubs",
-                    desc: "Bordering the Government IT Investment Region.",
+                    title: "Route with Reach",
+                    desc: "5 Minutes to the Railway Station. Weekend getaways made effortless.",
                   },
                   {
-                    title: "Luxury Near",
-                    desc: "12 minute drive from JW Marriott.",
+                    title: "Fresh Air, Quantified",
+                    desc: "Our IGBC Platinum certification ensures 40%+ green cover.",
                   },
                   {
-                    title: "Care Within Reach",
-                    desc: "20 minute drive to Manipal Hospital.",
+                    title: "Commute Advantage",
+                    desc: "Yes, you're 2 minutes from adventure, and 5 minutes from community.",
                   },
                 ].map((item, index) => (
                   <motion.div
@@ -1006,25 +1067,25 @@ const Page = () => {
             <div className="lg:w-2/3 w-full space-y-4 md:space-y-6">
               {[
                 {
-                  q: "How does the villa design cater to holiday living?",
-                  a: "The villas provide a seamless blend of indoor and outdoor living with expansive windows, open-plan areas, and smooth transitions to private decks.",
-                  tag: "Architecture",
+                  q: "What does IGBC Platinum certification mean for me?",
+                  a: "IGBC Platinum is India's highest green building certification, achieved by only 2% of residential projects. For you, this means: lower electricity bills, cleaner air and higher property appreciation as eco-certified properties command premium pricing. ",
+                  tag: "Sustainability",
                 },
                 {
-                  q: "How much does a Luxury villa cost?",
-                  a: "The investment starts at ₹2.7 crores and scales with villa size. This includes elite Clubhousehouse access and estate management.",
-                  tag: "Investment",
-                },
-                {
-                  q: "How do the rental yield schemes work?",
-                  a: "Choose between Guaranteed Income (8-10% p.a.), Revenue Share (up to 15%), or a balanced 6-month free usage model.",
-                  tag: "Returns",
-                },
-                {
-                  q: "What amenities are included in the estate?",
-                  a: "The City features 61+ amenities including an Aqua Gym, Digital Workouts, and professional sports courts.",
+                  q: "What makes your amenity count so high compared to other townships?",
+                  a: "We offer 281+ comprehensive amenities including: Adventure zones ,6 gym types , swimming pool complex, sports courts and wellness sanctuaries that others can't match  built on 43 acres optimized for experiences, not maximum plot count.",
                   tag: "Facilities",
                 },
+                {
+                  q: "What security measures are in place?",
+                  a: "We employ a comprehensive 3-tier security system: 24/7 CCTV surveillance with GEO tagging of every plot and structure, plus emergency support. Your family's safety is our priority.",
+                  tag: "Security",
+                },
+                // {
+                //   q: "What amenities are included in the estate?",
+                //   a: "The City features 61+ amenities including an Aqua Gym, Digital Workouts, and professional sports courts.",
+                //   tag: "Facilities",
+                // },
               ].map((faq, i) => (
                 <motion.div
                   key={i}

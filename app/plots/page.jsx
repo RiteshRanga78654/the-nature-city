@@ -370,8 +370,8 @@ const PlotsPage = () => {
               viewport={{ once: true }}
               className="text-5xl md:text-8xl font-Condensed Sans-Serif leading-tight text-emerald-900"
             >
-              977 Plots. <br />
-              <span className="text-emerald-600">Pure Nature.</span>
+              Build Your <br />
+              <span className="text-emerald-600">Dream Home </span>
             </motion.h2>
 
             <motion.div
@@ -382,15 +382,12 @@ const PlotsPage = () => {
               <div className="w-20 h-1 bg-emerald-600 mb-8"></div>
               <div className="space-y-6">
                 <p className="text-xl md:text-2xl font-light leading-relaxed text-emerald-800/80">
-                  Spread across 112 acres, each plot comes with fruit and
-                  flower-bearing trees. With sizes ranging from 1200 sq.ft. to
-                  5000 sq.ft., we offer a canvas for every dream.
+                  The Nature City plots aren't just land parcels ,they're your ticket to India's most adventurous lifestyle township.Where your morning coffee comes with forest trails and organic farms.
                 </p>
 
                 <p className="text-lg md:text-xl font-light leading-relaxed text-emerald-700/70">
-                  Enjoy trouble-free instant registrations and seamless
-                  financing, as our project is approved by all major banks for
-                  your loan requirements. Secure your piece of the City today.
+                 281+ Amenities Ready for You From 6 specialized gyms to swimming pool complex,everything is ready. 
+
                 </p>
               </div>
             </motion.div>
@@ -402,6 +399,20 @@ const PlotsPage = () => {
                 alt="Plot Map"
                 className="w-full h-[550px] object-cover transition-transform duration-500 group-hover:scale-105"
               />
+              <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
+                        className="relative z-10 text-center px-4 -mt-100"
+                      >
+                        <h1 className="text-3xl md:text-6xl leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
+                          Most Townships Give You a House. We Give You a Universe
+                        </h1>
+              
+                        <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]mb-10 text-white opacity-90">
+                          {/* •LuxuryVillas  */}
+                        </p>
+                      </motion.div>
             </div>
         {/* 5. ESTATE VIDEO & INTERACTIVE BROCHURE SECTION */}
         <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
@@ -726,12 +737,11 @@ const PlotsPage = () => {
             >
               <div className="relative z-10 max-w-2xl mx-auto space-y-8">
                 <h4 className="text-3xl font-Condensed text-[#022c22]">
-                  Join a community of{" "}
-                  <span className="text-emerald-600 ">977 families</span>{" "}
-                  already investing in their future.
+                  Your Dream Home.{" "}
+                  <span className="text-emerald-600 ">Ready When You Are.</span>{" "}
                 </h4>
                 <p className="text-stone-400 text-sm tracking-widest  font-bold">
-                  Approved by all major banks for home loans
+                 Our villas aren't just built ,they're choreographed to enhance life. 
                 </p>
               </div>
               {/* Subtle background graphic */}
@@ -769,7 +779,7 @@ const PlotsPage = () => {
                 </div>
                 <h2 className="text-4xl md:text-7xl font-Condensed leading-[0.85] tracking-tighter ">
                   Take an aerial tour <br />
-                  <span className="text-emerald-500 ">of the property.</span>
+                  <span className="text-emerald-500 ">of paradise.</span>
                 </h2>
               </motion.div>
 
@@ -780,8 +790,7 @@ const PlotsPage = () => {
                 className="lg:col-span-5 pb-4"
               >
                 <p className="text-stone-400 font-light text-xl leading-relaxed">
-                  Spanning 112 acres across 4 Sectors. Featuring 24/7 security,
-                  meditation centers, and a clubhouse designed for elite living.
+                  Spanning 43 acres of IGBC Platinum-certified paradise. Featuring 281+ amenities, 30-acre agricultural zone, Miyawaki Forest,adventure zones with ziplines & Go-Karting, 30-acre organic farmland, and a clubhouse that redefines luxury.
                 </p>
               </motion.div>
             </div>
@@ -1034,9 +1043,9 @@ const PlotsPage = () => {
             {/* BOTTOM STATS - Minimalist */}
             <div className="mt-15 mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 border-t text-center border-white/10 pt-12">
               {[
-                { label: "Sectors", val: "4" },
-                { label: "Plot Units", val: "977" },
-                { label: "Estate Scale", val: "112 Acres" },
+                { label: "Amenities", val: "281" },
+                { label: "Plot Units", val: "600" },
+                { label: "Estate Scale", val: "43 Acres" },
                 { label: "Electricity", val: "24/7" },
               ].map((stat, i) => (
                 <div key={i} className="space-y-1">
@@ -1246,12 +1255,10 @@ const PlotsPage = () => {
               >
                 <h2 className="text-5xl md:text-7xl font-Condensed Sans-Serif text-[#022c22] leading-[1.1]">
                   Gateway to <br />
-                  <span className="text-emerald-600">Premium Living.</span>
+                  <span className="text-emerald-600">Adventure Living.</span>
                 </h2>
                 <p className="text-stone-500 font-light text-xl leading-relaxed">
-                  Strategically located in Bhogapuram, Nature Valley offers an
-                  exclusive opportunity to own premium villa plots in North
-                  Bengaluru's growth corridor.
+                  Perfectly positioned in Bondapalli, Vizianagaram, The Nature City offers an exceptional opportunity to experience premium villa plots with 281+ amenities in Andhra Pradesh's emerging growth corridor.
                 </p>
               </motion.div>
 
@@ -1264,20 +1271,20 @@ const PlotsPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {[
                     {
-                      title: "Aviation Hub",
-                      desc: "Just 15 minutes away from the upcoming Bhogapuram International Airport.",
+                      title: "Airport Connectivity",
+                      desc: "Just 30 minutes away from Visakhapatnam International Airport.",
                     },
                     {
-                      title: "Highway Access",
-                      desc: "A quick 2-minute drive to the 6-lane National Highway ($NH-16$).",
+                      title: "Commute Ease",
+                      desc: "Only 5 minutes to Vizianagaram Railway Station for stress-free daily travel.",
                     },
                     {
-                      title: "Coastal Leisure",
-                      desc: "Located only 10 minutes from the pristine Chinthapalli Beach.",
+                      title: "IGBC Excellence",
+                      desc: "Located in Andhra Pradesh's only IGBC Platinum-certified residential township.",
                     },
                     {
-                      title: "Adventure Ready",
-                      desc: "Proximity to the upcoming AP Tourism Scuba Diving Training Center.",
+                      title: "Adventure Living",
+                      desc: "Home to India's first residential Go-Karting track, ziplines, and 275+ more amenities.",
                     },
                   ].map((item, index) => (
                     <motion.div

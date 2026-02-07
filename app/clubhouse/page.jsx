@@ -283,12 +283,11 @@ const Page = () => {
         <div className="max-w-7xl mx-auto mt-15 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-6xl font-Condensed Sans-Serif  text-emerald-900 leading-tight">
-              Experience Luxury at the{" "}
+              Extraordinary Life at the {" "}
               <span className="text-emerald-600">Clubhouse</span>
             </h1>
             <p className="text-lg text-slate-600 font-Condensed Sans-Serif leading-relaxed">
-              Our world-class resort clubhouse offers premium amenities, from
-              fine dining to relaxing lounge areas.
+              Our world-class clubhouse complex offers 281+ premium amenities,from adventure zones and paintball arenas to serene Miyawaki Forest trails and 30-acre organic farmland.
             </p>
             <div className="flex gap-4">
               {/* Updated Button to trigger state */}
@@ -365,7 +364,7 @@ const Page = () => {
 
           <div className="relative h-[400px] md:h-[500px] overflow-hidden shadow-2xl">
             <img
-              src="/assets/images/slider/WhatsApp Image 2026-01-28 at 6.36.15 PM (1).jpeg"
+              src="/assets/images/clubhouseimg.png"
               alt="Clubhouse Interior"
               className="w-full h-full object-cover"
             />

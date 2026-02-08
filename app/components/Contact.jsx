@@ -27,21 +27,21 @@ export default function ContactLocation() {
   ];
 
   return (
-    <section className="relative py-24 px-4 bg-white overflow-hidden">
-      <div className="max-w-[1400px] mx-auto">
+    <section className="relative py-15 px-4 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto">
         {/* --- Header --- */}
-        <div className="text-center mb-20">
+        <div className="text-left mb-20">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-[10px] tracking-[0.5em] text-emerald-600 font-bold mb-4 uppercase"
+            className="text-[10px] tracking-[0.5em] text-emerald-500 font-bold mb-4 uppercase"
           >
             Connect With Us
           </motion.p>
-          <h2 className="text-5xl md:text-7xl font-Condensed Sans-Serif text-slate-900 leading-none">
-            Visit the <span style={{ color: brandGreen }}>Heart of Nature</span>
+          <h2 className="text-5xl md:text-7xl font-semibold font-Condensed Sans-Serif text-emerald-900 leading-none">
+            Visit the <span className="text-emerald-500">Heart of Nature</span>
           </h2>
-          <div className="w-24 h-1 bg-emerald-500 mx-auto mt-8"></div>
+          {/* <div className="w-24 h-1 bg-emerald-500 mx-auto mt-8"></div> */}
         </div>
 
         {/* --- Grid Layout: 4 Columns Text | 8 Columns Map --- */}

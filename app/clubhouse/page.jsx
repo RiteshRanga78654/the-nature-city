@@ -197,10 +197,10 @@ const Page = () => {
           transition={{ duration: 1 }}
           className="relative z-10 text-center px-4 -mt-10"
         >
-          <h1 className="text-5xl md:text-[110px] leading-[0.85] font-Condensed Sans-Serif mb-6 text-emerald-400 tracking-tight">
-            Enjoy the Clubhouse
+          <h1 className="text-5xl md:text-[110px] leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
+            Enjoy the <span className="text-emerald-500">Clubhouse</span>
           </h1>
-          <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em] text-emerald-400 opacity-90">
+          <p className="text-[12px] md:text-[22px] font-bold tracking-[0.4em] text-white opacity-90">
             THE NATURE CITY CLUBHOUSE
           </p>
         </motion.div>
@@ -282,7 +282,7 @@ const Page = () => {
       <section className="relative bg-white py-20 z-10 px-4">
         <div className="max-w-7xl mx-auto mt-15 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-6xl font-Condensed Sans-Serif  text-emerald-900 leading-tight">
+            <h1 className="text-4xl md:text-7xl font-semibold font-Condensed Sans-Serif  text-emerald-900 leading-tight">
               Extraordinary Life at the {" "}
               <span className="text-emerald-600">Clubhouse</span>
             </h1>

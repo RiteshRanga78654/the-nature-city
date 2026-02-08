@@ -38,15 +38,16 @@ export default function ResortSlider() {
   };
 
   return (
-    <section className="bg-white py-16 px-4">
+    <section className="bg-white py-20 px-4">
       <div className="max-w-9xl mx-auto">
         {" "}
         {/* Changed to 7xl for better proportions with 4 images */}
         {/* Section Heading */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-slate-800 mb-4">
-            Take a look around the Luxury Villas
+          <h2 className="text-4xl md:text-6xl font-semibold font-Condensed Sans-Serif text-emerald-900 mb-4">
+            Take a look around the <span className="text-emerald-600"> Luxury Villas</span>
           </h2>
+
           <div className="h-1 w-20 bg-emerald-500 mx-auto rounded-full"></div>
         </div>
         {/* Slider Container */}

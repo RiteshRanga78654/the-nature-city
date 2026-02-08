@@ -236,8 +236,8 @@ const Page = () => {
           transition={{ duration: 1 }}
           className="relative z-10 text-center px-4 -mt-10"
         >
-          <h1  className="text-5xl md:text-[110px] leading-[0.85] font-Condensed Sans-Serif mb-6 text-emerald-400 tracking-tight">
-            Where Adventure Meets Calmness
+          <h1  className="text-5xl md:text-[110px] leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight gap-2">
+            Where Adventure Meets <br/><span className="text-emerald-500">Calmness</span>
           </h1>
 
           <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]mb-10 text-emerald-400 opacity-90">
@@ -325,7 +325,7 @@ const Page = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-7xl font-Condensed Sans-Serif leading-tight text-emerald-900"
+            className="text-4xl md:text-7xl font-semibold font-Condensed Sans-Serif leading-tight text-emerald-900"
           >
             More Than a Township. 
             <br />
@@ -343,7 +343,7 @@ const Page = () => {
           </motion.div>
         </div>
       </section>
-      <div className="relative group overflow-hidden h-[550px] w-full">
+      <div className="relative group overflow-hidden h-[300px] md:h-[550px] w-full">
         <img
           src="/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.04 AM.jpeg"
           alt="Plot Map"
@@ -353,14 +353,14 @@ const Page = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="relative z-10 text-center px-4 -mt-90"
+          className="relative z-10 text-center px-4 -mt-120 md:-mt-90"
         >
-          <h1 className="text-3xl md:text-6xl leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
+          <h1 className="text-3xl md:text-7xl leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
             Breathe Pure. Live Green. Thrive Naturally.
           </h1>
 
-          <p className="text-[12px] md:text-[20px] font-bold tracking-[0.4em]mb-10 text-white opacity-90">
-            Your Kids Deserve Better give them 281+ amenities designed for childhood as it should be wild, wonderful, and worry-free.
+          <p className="text-[12px] md:text-[22px] font-bold tracking-[0.1em] mb-10 text-white opacity-90">
+            Your Kids Deserve Better give them 281+ amenities designed for childhood as <br/>it should be wild, wonderful, and worry-free.
           </p>
         </motion.div>
       </div>
@@ -509,7 +509,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
       {/* VILLA ORIENTATION TOGGLE & DETAILS SECTION */}
       <section className="bg-stone-50 relative overflow-visible">
         {/* HERO IMAGE & TOGGLE */}
-        <div className="relative h-[60vh] md:h-[80vh] w-full overflow-visible">
+        <div className="relative h-[350px] md:h-[600px] w-full overflow-visible">
           <AnimatePresence mode="wait">
             <motion.img
               key={orientation}
@@ -525,18 +525,18 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="relative z-10 text-center px-4 -mt-100"
+              className="relative z-10 text-center px-4 -mt-60 md:-mt-110"
             >
-              <h1 className="text-3xl md:text-6xl leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
-                281+ Amenities Designed for Extraordinary Living
+              <h1 className="text-3xl md:text-7xl leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
+                281+ Amenities for Extraordinary Living
               </h1>
 
-              <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]mb-10 text-white opacity-90">
-                Our 43-acre township is meticulously zoned to create distinct experiences while maintaining seamless connectivity.
+              <p className="text-[12px] md:text-[22px] font-bold tracking-[0.1em] mb-10 text-white opacity-90">
+                Our 43-acre township is meticulously zoned to create distinct experiences while <br/> maintaining seamless connectivity.
               </p>
-              <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]mb-10 text-white opacity-90">
+              {/* <p className="text-[12px] md:text-[22px] font-bold tracking-[0.1em] mb-10 text-white opacity-90">
                 Adventure Zone | Wellness Zone | Water Recreation Zone | Sports Zone | Kids' Kingdom
-              </p>
+              </p> */}
             </motion.div>
           </AnimatePresence>
 
@@ -561,19 +561,19 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   >
                     {/* Main Title - Using your Serif style */}
                     <span
-                      className={`font-serif  leading-none transition-all duration-500 ${
+                      className={`font-Condensed Sans-Serif  leading-none transition-all duration-500 ${
                         isActive
-                          ? "text-2xl md:text-4xl mb-1"
+                          ? "text-2xl md:text-3xl "
                           : "text-lg md:text-2xl"
                       }`}
                     >
-                      {type.charAt(0)}
+                      {type.charAt(0)}BHK Villa
                     </span>
 
                     {/* Subtitle - Using your bold uppercase style */}
-                    <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
+                    {/* <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
                       BHK Villa
-                    </span>
+                    </span> */}
 
                     {/* Optional: Active Indicator Dot */}
                     {isActive && (

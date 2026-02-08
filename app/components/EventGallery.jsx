@@ -16,15 +16,15 @@ import "swiper/css/effect-coverflow";
 
 const events = [
   { id: 1, title: "NYE Bash '26", date: "31 Dec 2025", src: "/assets/images/slider/WhatsApp Image 2026-01-28 at 6.36.15 PM (1).jpeg" },
-  { id: 2, title: "MasterChef Weekend", date: "15 Jan 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.52 AM (1).jpeg" },
-  { id: 3, title: "Golf Championship", date: "02 Feb 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.53 AM (1).jpeg" },
-  { id: 4, title: "Musical Evening", date: "14 Feb 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM (1).jpeg" },
-  { id: 5, title: "Yoga Retreat", date: "21 Mar 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (1).jpeg" },
-  { id: 6, title: "Summer Festival", date: "15 Apr 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.56 AM (1).jpeg" },
-  { id: 7, title: "MasterChef Weekend", date: "15 Jan 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.52 AM (1).jpeg" },
-  { id: 8, title: "Golf Championship", date: "02 Feb 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.53 AM (1).jpeg" },
-  { id: 9, title: "Musical Evening", date: "14 Feb 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM (1).jpeg" },
-  { id: 10, title: "Yoga Retreat", date: "21 Mar 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (1).jpeg" },
+  { id: 2, title: "MasterChef Weekend", date: "15 Jan 2026", src: "/assets/images/nature-city-img/masterchefnight.jpg" },
+  { id: 3, title: "Golf Championship", date: "02 Feb 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.53 AM.jpeg" },
+  { id: 4, title: "Musical Evening", date: "14 Feb 2026", src: "/assets/images/nature-city-img/musicaleven.webp" },
+  { id: 5, title: "Yoga Retreat", date: "21 Mar 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM.jpeg" },
+  { id: 6, title: "Summer Festival", date: "15 Apr 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.52 AM.jpeg" },
+  { id: 7, title: "MasterChef Weekend", date: "15 Jan 2026", src: "/assets/images/nature-city-img/masterchefnight.jpg" },
+  { id: 8, title: "Golf Championship", date: "02 Feb 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.53 AM.jpeg" },
+  { id: 9, title: "Musical Evening", date: "14 Feb 2026", src: "/assets/images/nature-city-img/musicaleven.webp" },
+  { id: 10, title: "Yoga Retreat", date: "21 Mar 2026", src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM.jpeg" },
 ];
 export default function EventSlider() {
   const [activeImg, setActiveImg] = useState(null);
@@ -41,16 +41,16 @@ export default function EventSlider() {
   };
 
   return (
-    <section className="pb-24 bg-[#fcfdfd] px-4 overflow-hidden min-h-screen ">
+    <section className="pb-15 bg-[#fcfdfd] px-4 overflow-hidden  ">
       <div className="max-w-7xl mx-auto">
         
         {/* --- Header Section --- */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div className="flex flex-col md:flex-row justify-between item-start md:items-end mb-16 gap-6">
           <div className="text-left">
             <p className="text-[10px] tracking-[0.5em] text-emerald-600 font-bold mb-4 uppercase">
               Exclusive Memories
             </p>
-            <h2 className="text-5xl md:text-7xl font-Condensed Sans-Serif text-slate-900 leading-[0.85]">
+            <h2 className="text-5xl md:text-7xl font-semibold font-Condensed Sans-Serif text-emerald-900 tracking-tighter">
               Clubhouse <br />
               <span style={{ color: brandGreen }}>Events Gallery</span>
             </h2>

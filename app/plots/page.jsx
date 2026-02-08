@@ -250,10 +250,10 @@ const PlotsPage = () => {
             transition={{ duration: 1 }}
             className="relative z-10 text-center px-4 -mt-10"
           >
-            <h1 className="text-5xl md:text-[110px] leading-[0.85] font-Condensed Sans-Serif mb-6 text-emerald-400 tracking-tight">
-              Secure Your Soil
+            <h1 className="text-5xl md:text-[110px] leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
+              Secure Your <span className="text-emerald-500">Soil</span>
             </h1>
-            <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em] mb-10 text-emerald-400 opacity-90">
+            <p className="text-[12px] md:text-[22px] font-bold tracking-[0.1em] mb-10 text-white opacity-90">
               VMRDA Approved • High Growth • Clear Titles
             </p>
           </motion.div>
@@ -368,9 +368,9 @@ const PlotsPage = () => {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-5xl md:text-8xl font-Condensed Sans-Serif leading-tight text-emerald-900"
+              className="text-5xl md:text-7xl font-semibold font-Condensed Sans-Serif leading-tight text-emerald-900"
             >
-              Build Your <br />
+              Build your <br />
               <span className="text-emerald-600">Dream Home </span>
             </motion.h2>
 
@@ -393,7 +393,7 @@ const PlotsPage = () => {
             </motion.div>
           </div>
         </section>
-        <div className="relative group overflow-hidden h-[550px] w-full">
+        <div className="relative group overflow-hidden h-[350px] md:h-[550px] w-full">
               <img
                 src="/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.00 AM (2).jpeg"
                 alt="Plot Map"
@@ -403,11 +403,14 @@ const PlotsPage = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1 }}
-                        className="relative z-10 text-center px-4 -mt-100"
+                        className="relative z-10 text-center px-4 -mt-100 md:-mt-90"
                       >
-                        <h1 className="text-3xl md:text-6xl leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
-                          Most Townships Give You a House. We Give You a Universe
+                        <h1 className="text-3xl md:text-7xl leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
+                          
+                           Most Townships Give You a House.<br />
+                <span className="text-white  ">We Give You a Universe.</span>
                         </h1>
+                       
               
                         <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]mb-10 text-white opacity-90">
                           {/* •LuxuryVillas  */}
@@ -673,7 +676,7 @@ const PlotsPage = () => {
               viewport={{ once: true }}
               className="text-center mb-20 space-y-4"
             >
-              <h2 className="text-4xl md:text-6xl font-Condensed text-[#022c22] leading-tight">
+              <h2 className="text-4xl md:text-7xl font-semibold font-Condensed text-emerald-900 leading-tight">
                 Spend a Few Minutes Getting <br /> to know Your{" "}
                 <span className="text-emerald-600 ">Neighbours.</span>
               </h2>
@@ -777,9 +780,9 @@ const PlotsPage = () => {
                     Project Blueprint
                   </span>
                 </div>
-                <h2 className="text-4xl md:text-7xl font-Condensed leading-[0.85] tracking-tighter ">
-                  Take an aerial tour <br />
-                  <span className="text-emerald-500 ">of paradise.</span>
+                <h2 className="text-4xl md:text-7xl font-semibold font-Condensed Sans-Serif leading-[0.85] tracking-tighter ">
+                  Take an Aerial Tour <br />
+                  <span className="text-emerald-500 ">of Paradise.</span>
                 </h2>
               </motion.div>
 
@@ -1253,7 +1256,7 @@ const PlotsPage = () => {
                 viewport={{ once: true }}
                 className="lg:col-span-5 space-y-10"
               >
-                <h2 className="text-5xl md:text-7xl font-Condensed Sans-Serif text-[#022c22] leading-[1.1]">
+                <h2 className="text-5xl md:text-7xl font-semibold font-Condensed Sans-Serif text-emerald-900 leading-[1.1]">
                   Gateway to <br />
                   <span className="text-emerald-600">Adventure Living.</span>
                 </h2>

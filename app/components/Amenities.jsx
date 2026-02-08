@@ -79,7 +79,7 @@ export default function AmenitiesSection() {
       <div className="relative z-5 max-w-7xl mx-auto w-full">
         <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <h2 className="text-white text-5xl md:text-7xl font-Condensed Sans-Serif tracking-tighter  ">
+            <h2 className="text-white text-5xl md:text-7xl font-semibold font-Condensed Sans-Serif tracking-tighter  ">
              Our <span className="text-emerald-600">Amenities & Facilities</span>
             </h2>
             <p className="text-white/50 tracking-[0.3em] text-[10px] mt-4 font-Condensed Sans-Serif uppercase font-bold">

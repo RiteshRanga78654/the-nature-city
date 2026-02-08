@@ -7,46 +7,68 @@ import { X, Maximize2, Sparkles, Utensils, Waves, Users } from "lucide-react";
 const clubhouseGallery = [
   { 
     id: 1, 
-    title: "The Grand Entrance", 
-    cat: "Wellness", 
-    src: "/assets/images/slider/WhatsApp Image 2026-01-28 at 6.36.15 PM (1).jpeg", 
-    icon: <Sparkles size={16} /> 
-  },
-  { 
-    id: 2, 
     title: "Infinity Poolside", 
     cat: "Sports", 
-    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.52 AM (1).jpeg", 
+    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.58 AM.jpeg", 
     icon: <Waves size={16} /> 
   },
   { 
-    id: 3, 
+    id: 2, 
     title: "Gourmet Dining", 
-    cat: "Dining", 
-    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.53 AM.jpeg", 
+    cat: "Adventures", 
+    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.04 AM.jpeg", 
     icon: <Utensils size={16} /> 
   },
   { 
-    id: 4, 
+    id: 3, 
     title: "Social Lounge", 
-    cat: "Adventures", 
-    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM (1).jpeg", 
+    cat: "Wellness", 
+    src: "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.20 PM.jpeg", 
     icon: <Users size={16} /> 
   },
   { 
+    id: 4, 
+    title: "Yoga Retreat", 
+    cat: "Wellness", 
+    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM (2).jpeg", 
+    icon: <Sparkles size={16} /> 
+  },
+ { 
     id: 5, 
-    title: "MasterChef Kitchen", 
-    cat: "Dining", 
-    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (2).jpeg", 
+    title: "Tracking", 
+    cat: "Adventures", 
+    src: "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.22 PM (1).jpeg", 
     icon: <Utensils size={16} /> 
   },
   { 
     id: 6, 
-    title: "Evening Deck", 
+    title: "Wooden Walkway", 
+    cat: "Adventures", 
+    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (2).jpeg", 
+    icon: <Utensils size={16} /> 
+  },
+  { 
+    id: 7, 
+    title: "Badminton", 
     cat: "Sports", 
-    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM.jpeg", 
+    src: "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.16 PM.jpeg", 
     icon: <Waves size={16} /> 
   },
+  { 
+    id: 8, 
+    title: "Cricket", 
+    cat: "Sports", 
+    src: "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.22 PM.jpeg", 
+    icon: <Waves size={16} /> 
+  },
+  { 
+    id: 9, 
+    title: "Cycling", 
+    cat: "Sports", 
+    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.59 AM.jpeg", 
+    icon: <Waves size={16} /> 
+  },
+     
 ];
 
 const categories = ["All", "Sports", "Adventures", "Wellness", "Dining"];
@@ -63,23 +85,17 @@ const ClubhouseGallery = () => {
   return (
     <section className="bg-[#fcfdfd] py-24 px-6 relative overflow-hidden">
       {/* Decorative background text */}
-      <div className="absolute top-10 left-[-50px] text-[150px] font-bold text-slate-50 select-none pointer-events-none z-0 rotate-[-90deg] opacity-50 uppercase font-Condensed Sans-Serif">
-        Nature City
-      </div>
-
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* --- Header Section --- */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-          <div className="max-w-xl text-left">
-            <motion.p 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+        <div className="flex flex-col md:flex-row justify-between item-start md:items-end mb-16 gap-6">
+          <div className="text-left">
+            <p 
               className="text-[10px] tracking-[0.5em] text-emerald-600 font-bold mb-4 uppercase"
             >
               The Social Hub
-            </motion.p>
-            <h2 className="text-5xl md:text-7xl font-Condensed Sans-Serif text-slate-900 leading-[0.85]">
+            </p>
+            <h2 className="text-5xl md:text-7xl font-semibold font-Condensed Sans-Serif text-emerald-900 tracking-tighter">
               Clubhouse <br />
               <span style={{ color: brandGreen }}>Immersions</span>
             </h2>
@@ -132,10 +148,10 @@ const ClubhouseGallery = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#022c22]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
                   <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end">
                     <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                      {/* <div className="flex items-center gap-2 text-emerald-400 mb-2">
+                      <div className="flex items-center gap-2 text-emerald-400 mb-2">
                         {img.icon}
                         <span className="text-[10px] font-bold tracking-widest uppercase">{img.cat}</span>
-                      </div> */}
+                      </div>
                       <h4 className="text-white text-3xl font-Condensed Sans-Serif">
                         {img.title}
                       </h4>

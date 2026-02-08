@@ -41,7 +41,7 @@ export default function EventSlider() {
   };
 
   return (
-    <section className="pb-15 bg-[#fcfdfd] px-4 overflow-hidden  ">
+    <section className="pb-15 bg-[#fcfdfd] px-6 overflow-hidden  ">
       <div className="max-w-7xl mx-auto">
         
         {/* --- Header Section --- */}

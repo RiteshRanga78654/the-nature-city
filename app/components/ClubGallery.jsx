@@ -83,7 +83,7 @@ const ClubhouseGallery = () => {
   );
 
   return (
-    <section className="bg-[#fcfdfd] py-24 px-6 relative overflow-hidden">
+    <section className="bg-[#fcfdfd] py-20 px-6 relative overflow-hidden">
       {/* Decorative background text */}
       <div className="max-w-7xl mx-auto relative z-10">
         

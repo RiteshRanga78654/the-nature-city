@@ -84,6 +84,8 @@ const Page = () => {
       floorPlans: [
         "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.16 PM.jpeg",
         "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.23 PM.jpeg",
+                "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.23 PM.jpeg",
+
       ],
       masterPlan:
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM.jpeg", // New key
@@ -97,6 +99,8 @@ const Page = () => {
       floorPlans: [
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.56 AM.jpeg",
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg",
+                "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg",
+
       ],
       masterPlan:
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.00 AM.jpeg", // New key
@@ -110,6 +114,8 @@ const Page = () => {
       floorPlans: [
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM (1).jpeg",
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.56 AM (2).jpeg",
+                "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg",
+
       ],
       masterPlan:
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg", // Original
@@ -123,6 +129,8 @@ const Page = () => {
       floorPlans: [
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.01 AM.jpeg",
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.03 AM (2).jpeg",
+                "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg",
+
       ],
       masterPlan:
         "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.05 AM (2).jpeg", // New key
@@ -319,8 +327,8 @@ const Page = () => {
         </div>
       </section>
       {/* 4. CORE VALUE SECTION */}
-      <section className="bg-stone-100 py-20 md:py-30 px-6 md:px-32 text-emerald-950">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <section className="bg-stone-100 pt-20 pb-10  md:pt-30 pb-20 px-6 md:px-32 text-emerald-950">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center">
           <motion.h2
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -670,12 +678,12 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               </motion.div>
 
               {/* NEXT STEPS LIST */}
-              <div className="bg-[#022c22] p-8 md:p-12 rounded-3xl text-white shadow-2xl relative overflow-hidden">
+              <div className="bg-[#022c22] p-8 md:p-10 rounded-3xl text-white shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
                 <h4 className="text-xl md:text-2xl font-Condensed Sans-Serif mb-8 border-b border-emerald-800 pb-4">
                   Why The Nature City Changes Everything
                 </h4>
-                <ol className="space-y-5 text-stone-300 font-light list-decimal pl-5 marker:text-emerald-500 marker:font-bold">
+                <ol className="space-y-4 text-stone-300 font-light list-decimal pl-5 marker:text-emerald-500 marker:font-bold">
                   <li className="pl-2">
                     281+ amenities (Industry average: 20-30)
                   </li>

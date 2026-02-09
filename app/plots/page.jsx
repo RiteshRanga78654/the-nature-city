@@ -362,7 +362,7 @@ const PlotsPage = () => {
           </div>
         </section>
 
-        <section className="bg-stone-100 py-20 md:py-30 px-6 md:px-32 text-emerald-950">
+        <section className="bg-stone-100 py-20 md:pt-30 pb-25  px-6 md:px-32 text-emerald-950">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <motion.h2
               initial={{ opacity: 0, x: -30 }}
@@ -382,7 +382,7 @@ const PlotsPage = () => {
               <div className="w-20 h-1 bg-emerald-600 mb-8"></div>
               <div className="space-y-6">
                 <p className="text-xl md:text-2xl font-light leading-relaxed text-emerald-800/80">
-                  The Nature City plots aren't just land parcels ,they're your ticket to India's most adventurous lifestyle township.Where your morning coffee comes with forest trails and organic farms.
+                  The Nature City plots aren't just land parcels, they're your ticket to India's most adventurous lifestyle township. Where your morning coffee comes with forest trails and organic farms.
                 </p>
 
                 <p className="text-lg md:text-xl font-light leading-relaxed text-emerald-700/70">
@@ -418,7 +418,7 @@ const PlotsPage = () => {
                       </motion.div>
             </div>
         {/* 5. ESTATE VIDEO & INTERACTIVE BROCHURE SECTION */}
-        <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
+        <section className="bg-[#022c22] py-20 md:py-25 px-6 md:px-12 lg:px-24">
           <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             {/* VIDEO SIDE - Remains the same */}
             <motion.div
@@ -744,7 +744,7 @@ const PlotsPage = () => {
                   <span className="text-emerald-600 ">Ready When You Are.</span>{" "}
                 </h4>
                 <p className="text-stone-400 text-sm tracking-widest  font-bold">
-                 Our villas aren't just built ,they're choreographed to enhance life. 
+                 Our villas aren't just built, they're choreographed to enhance life. 
                 </p>
               </div>
               {/* Subtle background graphic */}

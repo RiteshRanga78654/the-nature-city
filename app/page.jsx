@@ -338,7 +338,7 @@ const Page = () => {
           >
             <div className="w-20 h-1 bg-emerald-600 mb-8"></div>
             <p className="text-xl md:text-2xl font-light leading-relaxed text-emerald-800/80">
-             The Nature City Spread across 43 RERA-approved acres in Bondapalli, Vizianagaram .Welcome to India's most adventurous gated community with IGBC Platinum-certified living with Miyawaki Forest.
+             The Nature City Spread across 43 RERA-approved acres in Bondapalli, Vizianagaram. Welcome to India's most adventurous gated community with IGBC Platinum-certified living with Miyawaki Forest.
             </p>
           </motion.div>
         </div>
@@ -365,7 +365,7 @@ const Page = () => {
         </motion.div>
       </div>
       {/* 5. VIDEO & INTERACTIVE BROCHURE SECTION */}
-      <section className="bg-[#022c22] py-20 md:py-30 px-6 md:px-12 lg:px-24">
+      <section className="bg-[#022c22] py-20 md:py-25 px-6 md:px-12 lg:px-24">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           {/* VIDEO SIDE - Remains the same */}
           <motion.div
@@ -503,6 +503,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
             </motion.div>
           </div>
         </div>
+        
       </section>
       <Slider />
 
@@ -699,9 +700,10 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
             </div>
           </div>
         </div>
+        
       </section>
       {/* 6. INTERACTIVE MAP, OVERLAPPING FORM & LOCATION INTEL */}
-      <section className="relative bg-stone-50 pb-20 md:pb-30 px-4 md:px-6 overflow-hidden">
+      <section className="relative bg-stone-50 pb-20 md:pb-25 px-4 md:px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           {/* MAP CONTAINER WITH DEPTH EFFECTS */}
           <motion.div
@@ -1017,7 +1019,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                 ))}
               </div>
 
-              <div className="mt-8 p-8 bg-emerald-50 rounded-3xl border border-emerald-100  text-emerald-800 font-Condensed Sans-Serif">
+              <div className="mt-8 p-8 bg-emerald-50 rounded-3xl border border-emerald-100 text-center text-emerald-800 font-Condensed Sans-Serif">
                 "In the same belt as the Aerospace SEZ & the Devanahalli
                 Business Zone."
               </div>

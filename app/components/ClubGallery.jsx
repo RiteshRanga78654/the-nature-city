@@ -38,18 +38,18 @@ const clubhouseGallery = [
     title: "Tracking", 
     cat: "Adventures", 
     src: "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.22 PM (1).jpeg", 
-    icon: <Utensils size={16} /> 
+    icon: <Sparkles size={16} /> 
   },
   { 
     id: 6, 
     title: "Wooden Walkway", 
     cat: "Adventures", 
     src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (2).jpeg", 
-    icon: <Utensils size={16} /> 
+    icon: <Sparkles size={16} /> 
   },
   { 
     id: 7, 
-    title: "Badminton", 
+    title: "Volley Ball", 
     cat: "Sports", 
     src: "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.16 PM.jpeg", 
     icon: <Waves size={16} /> 

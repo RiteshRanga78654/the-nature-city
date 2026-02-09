@@ -122,14 +122,14 @@ const PlotsPage = () => {
     {
       plot: "418",
       name: "Preetam Daniel",
-      image: "/assets/images/nature-city-img/neighbour 1",
+      image: "/assets/images/slider/n1.jpg",
       quote:
         "For me, the bigger developers had a problem with valuation, the smaller ones had poor infrastructure. I own 3000sqft in Nature Valley and it was true value for money.",
     },
     {
       plot: "607",
       name: "Nirmal Raj",
-      image: "/assets/images/nature-city-img/neighbour 2",
+      image: "/assets/images/slider/n2.jpg",
       quote:
         "It's easy to acquire property but maintaining it is a big headache. I think this is a good investment because they look after it and protect it.",
     },

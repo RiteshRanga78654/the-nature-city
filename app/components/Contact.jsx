@@ -91,7 +91,7 @@ export default function ContactLocation() {
                   // 1. Open WhatsApp in a new tab
                   // Replace '1234567890' with your actual phone number including country code
                   window.open(
-                    "https://wa.me/9034565817?text=Hi, I'm interested in booking a visit to Nature City!",
+                    "https://wa.me/9540883349?text=Hi, I'm interested in booking a visit to Nature City!",
                     "_blank",
                   );
 

@@ -793,7 +793,7 @@ const PlotsPage = () => {
                 className="lg:col-span-5 pb-4"
               >
                 <p className="text-stone-400 font-light text-xl leading-relaxed">
-                  Spanning 43 acres of IGBC Platinum-certified paradise. Featuring 281+ amenities, 30-acre agricultural zone, Miyawaki Forest,adventure zones with ziplines & Go-Karting, 30-acre organic farmland, and a clubhouse that redefines luxury.
+                  Spanning 90 acres of IGBC Platinum-certified paradise. Featuring 281+ amenities, 30-acre agricultural zone, Miyawaki Forest,adventure zones with ziplines & Go-Karting, 30-acre organic farmland, and a clubhouse that redefines luxury.
                 </p>
               </motion.div>
             </div>
@@ -1048,7 +1048,7 @@ const PlotsPage = () => {
               {[
                 { label: "Amenities", val: "281" },
                 { label: "Plot Units", val: "600" },
-                { label: "Estate Scale", val: "43 Acres" },
+                { label: "Estate Scale", val: "90 Acres" },
                 { label: "Electricity", val: "24/7" },
               ].map((stat, i) => (
                 <div key={i} className="space-y-1">

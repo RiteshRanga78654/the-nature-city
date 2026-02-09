@@ -11,17 +11,13 @@ import "swiper/css/pagination";
 
 const images = [
   "/assets/images/slider/WhatsApp Image 2026-01-28 at 6.36.15 PM (1).jpeg",
-  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.52 AM (1).jpeg",
-  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.52 AM.jpeg",
+  "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.15 PM.jpeg",
+  "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.24 PM.jpeg",
   "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.53 AM (1).jpeg",
-  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.53 AM (2).jpeg",
-  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.53 AM.jpeg",
-  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM (1).jpeg",
-  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM (2).jpeg",
+  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.00 AM (1).jpeg",
   " /assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM.jpeg",
   "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (1).jpeg",
-  " /assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (2).jpeg",
-  " /assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM.jpeg",
+  "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.00 AM (2).jpeg",
 ];
 
 export default function ResortSlider() {

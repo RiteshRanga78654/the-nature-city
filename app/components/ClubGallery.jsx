@@ -14,9 +14,9 @@ const clubhouseGallery = [
   },
   { 
     id: 2, 
-    title: "Gourmet Dining", 
+    title: "Off Roading", 
     cat: "Adventures", 
-    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.04 AM.jpeg", 
+    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM (2).jpeg", 
     icon: <Utensils size={16} /> 
   },
   { 
@@ -35,9 +35,9 @@ const clubhouseGallery = [
   },
  { 
     id: 5, 
-    title: "Tracking", 
+    title: "Go Karting", 
     cat: "Adventures", 
-    src: "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.22 PM (1).jpeg", 
+    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.00 AM.jpeg", 
     icon: <Sparkles size={16} /> 
   },
   { 

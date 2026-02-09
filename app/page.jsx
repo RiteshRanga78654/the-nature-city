@@ -346,7 +346,7 @@ const Page = () => {
           >
             <div className="w-20 h-1 bg-emerald-600 mb-8"></div>
             <p className="text-xl md:text-2xl font-light leading-relaxed text-emerald-800/80">
-             The Nature City Spread across 43 RERA-approved acres in Bondapalli, Vizianagaram. Welcome to India's most adventurous gated community with IGBC Platinum-certified living with Miyawaki Forest.
+             The Nature City Spread across 90 RERA-approved acres in Bondapalli, Vizianagaram. Welcome to India's most adventurous gated community with IGBC Platinum-certified living with Miyawaki Forest.
             </p>
           </motion.div>
         </div>
@@ -541,7 +541,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               </h1>
 
               <p className="text-[12px] md:text-[22px] font-bold tracking-[0.1em] mb-10 text-white opacity-90">
-                Our 43-acre township is meticulously zoned to create distinct experiences while <br/> maintaining seamless connectivity.
+                Our 90-acre township is meticulously zoned to create distinct experiences while <br/> maintaining seamless connectivity.
               </p>
               {/* <p className="text-[12px] md:text-[22px] font-bold tracking-[0.1em] mb-10 text-white opacity-90">
                 Adventure Zone | Wellness Zone | Water Recreation Zone | Sports Zone | Kids' Kingdom
@@ -697,7 +697,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                     IGBC Platinum certified (Only 2% of Indian townships achieve
                     this)
                   </li>
-                  <li className="pl-2">43 acres RERA-approved development</li>
+                  <li className="pl-2">90 acres RERA-approved development</li>
                   {/* <li className="pl-2">600 units designed for balanced community</li>
                   <li className="pl-2">70% construction already complete</li>
                   <li className="pl-2">5 years complimentary maintenance</li>
@@ -891,9 +891,9 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               className="lg:col-span-5 space-y-10"
             >
               <h2 className="text-5xl md:text-7xl font-Condensed Sans-Serif text-[#022c22] leading-[1.1]">
-                Location Intelligence for
+                Minutes from 
                 <br />
-                <span className="text-emerald-600 ">Investment Returns</span>
+                <span className="text-emerald-600 ">Global Connectivity</span>
               </h2>
               <div className="flex flex-col sm:flex-row gap-6">
                 <a
@@ -1083,7 +1083,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                 },
                 {
                   q: "What makes your amenity count so high compared to other townships?",
-                  a: "We offer 281+ comprehensive amenities including: Adventure zones ,6 gym types , swimming pool complex, sports courts and wellness sanctuaries that others can't match  built on 43 acres optimized for experiences, not maximum plot count.",
+                  a: "We offer 281+ comprehensive amenities including: Adventure zones ,6 gym types , swimming pool complex, sports courts and wellness sanctuaries that others can't match  built on 90 acres optimized for experiences, not maximum plot count.",
                   tag: "Facilities",
                 },
                 {

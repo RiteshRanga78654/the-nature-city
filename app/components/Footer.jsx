@@ -175,7 +175,7 @@ export default function Footer() {
         {/* BOTTOM BAR */}
         <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-[10px] uppercase tracking-[0.1em] text-white-500 font-medium">
-            © 2025 Mangal Realty — Sustainable Luxury.
+            © 2025 Mangal Realty — Sustainable Luxury. 
             <span className="ml-2 text-white ">
               (Powered By{" "}
               <a

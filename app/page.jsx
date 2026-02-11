@@ -335,7 +335,7 @@ const Page = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-7xl font-semibold font-Condensed Sans-Serif leading-tight text-emerald-900"
           >
-            Beyond a Township. 
+            More than a Township. 
             <br />
             <span className="text-emerald-600 "> A Way of Life.</span>
           </motion.h2>
@@ -346,7 +346,7 @@ const Page = () => {
           >
             <div className="w-20 h-1 bg-emerald-600 mb-8"></div>
             <p className="text-xl md:text-2xl font-light leading-relaxed text-emerald-800/80">
-             The Nature City Spread across 90 RERA-approved acres in Bondapalli, Vizianagaram. Welcome to India's most adventurous gated community with IGBC Platinum-certified living with Miyawaki Forest.
+             The Nature City Spreads across 90 RERA-approved acres in Bondapalli, Vizianagaram. Welcome to India's most adventurous gated community, featuring IGBC Platinum-certified living and a Miyawaki Forest.
             </p>
           </motion.div>
         </div>
@@ -368,7 +368,7 @@ const Page = () => {
           </h1>
 
           <p className="text-[12px] md:text-[22px] font-bold tracking-[0.1em] mb-10 text-white opacity-90">
-            Your Kids Deserve Better give them 281+ amenities designed for childhood as <br/>it should be wild, wonderful, and worry-free.
+            Your Kids Deserve Better. Give them 281+ amenities designed for childhood as <br/>it should be: wild, wonderful, and worry-free.
           </p>
         </motion.div>
       </div>
@@ -652,7 +652,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                 </h3>
                 <div className="w-16 h-1 bg-emerald-600 rounded-full"></div>
                 <p className="text-stone-600 font-light leading-relaxed text-base md:text-lg">
-                  We offer 4 distinct villa types designed for different family needs. Every villa includes 281+ amenity access, 5 years free maintenance all within walking distance from your doorstep.
+                  We offer 4 distinct villa types designed for different family needs. Every villa includes 281+ amenity access and 5 years of free maintenance, all within walking distance from your doorstep.
                 </p>
               </div>
               {/* MASTERPLAN IMAGE - Now Dynamic */}
@@ -782,17 +782,17 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                 <div className="relative group/input">
                   <select className="peer w-full bg-transparent border-b border-emerald-800/50 py-3 text-white focus:outline-none focus:border-emerald-400 transition-all appearance-none cursor-pointer">
                     <option className="bg-[#022c22]" value="">
-                      Select Range
+                       Select Range
                     </option>
                     <option className="bg-[#022c22]" value="1.5">
-                      1.5Cr - 2.5Cr
+                       1.5Cr - 2.5Cr
                     </option>
                     <option className="bg-[#022c22]" value="2.5">
-                      2.5Cr - 4Cr
+                       2.5Cr - 4Cr
                     </option>
                   </select>
                   <label className="absolute left-0 -top-3.5 text-emerald-500 text-xs  tracking-widest">
-                    Select Budget
+                     Select Budget
                   </label>
                 </div>
 
@@ -996,7 +996,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                 {[
                   {
                     title: "Airport Access",
-                    desc: "30 Minutes to Airport.You're closer to the airport than most city.",
+                    desc: "30 Minutes to Airport. You're closer to the airport than most cities.",
                   },
                   {
                     title: "Route with Reach",
@@ -1008,7 +1008,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   },
                   {
                     title: "Commute Advantage",
-                    desc: "Yes, you're 2 minutes from adventure, and 5 minutes from community.",
+                    desc: "Yes, you're 2 minutes from adventure and 5 minutes from the community.",
                   },
                 ].map((item, index) => (
                   <motion.div
@@ -1028,7 +1028,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               </div>
 
               <div className="mt-8 p-8 bg-emerald-50 rounded-3xl border border-emerald-100 text-center text-emerald-800 font-Condensed Sans-Serif">
-                "In the same belt as the Aerospace SEZ & the Devanahalli
+                "In the same belt as the Aerospace SEZ and the Devanahalli
                 Business Zone."
               </div>
             </motion.div>

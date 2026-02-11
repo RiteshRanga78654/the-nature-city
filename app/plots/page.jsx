@@ -405,7 +405,7 @@ const PlotsPage = () => {
                         transition={{ duration: 1 }}
                         className="relative z-10 text-center px-4 -mt-100 md:-mt-90"
                       >
-                        <h1 className="text-3xl md:text-7xl leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
+                        <h1 className="text-3xl md:text-7xl leading-slug font-Condensed Sans-Serif mb-6 text-white tracking-tight">
                           
                            Most Townships Give You a House.<br />
                 <span className="text-white  ">We Give You a Universe.</span>

@@ -335,7 +335,7 @@ const Page = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-7xl font-semibold font-Condensed Sans-Serif leading-tight text-emerald-900"
           >
-            More Than a Township. 
+            Beyond a Township. 
             <br />
             <span className="text-emerald-600 "> A Way of Life.</span>
           </motion.h2>

@@ -203,7 +203,7 @@ const Page = () => {
       <header className="fixed top-0 w-full z-[150] flex items-center justify-between px-6 py-2 md:px-16 backdrop-blur-md border-b border-white/5" style={{ backgroundColor: "rgba(0, 102, 51, 0.2)" }}>
         <div className="flex items-center">
           <img
-            src="/assets/logo/logo-mangal-realty-white.png"
+            src="/assets/images/logo.png"
             alt="The Nature City"
             className="h-16 w-auto object-contain"
           />
@@ -246,7 +246,7 @@ const Page = () => {
           transition={{ duration: 1 }}
           className="relative z-10 text-center px-4 -mt-10"
         >
-          <h1 className="text-5xl md:text-[110px] leading-[0.85] mb-6 text-white tracking-tight gap-2">
+          <h1 style={{ fontFamily: "'Velmont', serif" }} className="text-5xl md:text-[110px] leading-[0.85] mb-6 text-white tracking-tight gap-2">
             Where Adventure Meets <br/><span style={{ color: "#3fad26" }}>Calmness</span>
           </h1>
 
@@ -348,6 +348,7 @@ const Page = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="text-4xl md:text-7xl font-semibold leading-tight text-emerald-900"
+            style={{ fontFamily: "'Velmont', serif" }}
           >
             Beyond a Township. 
             <br />
@@ -377,7 +378,7 @@ const Page = () => {
           transition={{ duration: 1 }}
           className="relative z-10 text-center px-4 -mt-120 md:-mt-90"
         >
-          <h1 className="text-3xl md:text-7xl leading-[0.85] mb-6 text-white tracking-tight">
+          <h1 style={{ fontFamily: "'Velmont', serif" }} className="text-3xl md:text-7xl leading-[0.85] mb-6 text-white tracking-tight">
             Breathe Pure. Live Green. Thrive Naturally.
           </h1>
 
@@ -404,7 +405,7 @@ const Page = () => {
               />
             </div>
             <div className="space-y-6">
-              <h3 className="text-4xl md:text-6xl text-white">
+              <h3 style={{ fontFamily: "'Velmont', serif" }} className="text-4xl md:text-6xl text-white">
                 Why The Nature City?
               </h3>
               <p className="text-stone-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
@@ -455,7 +456,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               viewport={{ once: true }}
               className="text-center lg:text-right space-y-10"
             >
-              <h4 className="text-3xl md:text-5xl leading-tight">
+              <h4 style={{ fontFamily: "'Velmont', serif" }} className="text-3xl md:text-5xl leading-tight">
                 Download our <br /> Digital Brochure
               </h4>
               <div className="pt-4">
@@ -549,7 +550,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               transition={{ duration: 1 }}
               className="relative z-10 text-center px-4 -mt-60 md:-mt-110"
             >
-              <h1 className="text-3xl md:text-7xl leading-[0.85] mb-6 text-white tracking-tight">
+              <h1 style={{ fontFamily: "'Velmont', serif" }} className="text-3xl md:text-7xl leading-[0.85] mb-6 text-white tracking-tight">
                 281+ Amenities for Extraordinary Living
               </h1>
 
@@ -621,7 +622,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   exit={{ opacity: 0, x: 20 }}
                   className="space-y-3"
                 >
-                  <h2 className="text-3xl md:text-6xl text-[#006633] leading-tight">
+                  <h2 style={{ fontFamily: "'Velmont', serif" }} className="text-3xl md:text-6xl text-[#006633] leading-tight">
                     {villaData[orientation].title}
                   </h2>
                   <div className="flex flex-wrap gap-4 items-center">
@@ -657,7 +658,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
             {/* RIGHT: BROCHURE & NEXT STEPS */}
             <div className="lg:pt-24 space-y-16 order-2">
               <div className="space-y-6">
-                <h3 className="text-2xl md:text-3xl text-[#006633]">
+                <h3 style={{ fontFamily: "'Velmont', serif" }} className="text-2xl md:text-3xl text-[#006633]">
                   What lifestyle does my Villa unlock?
                 </h3>
                 <div className="w-16 h-1 rounded-full" style={{ backgroundColor: "#3fad26" }}></div>
@@ -690,7 +691,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               {/* NEXT STEPS LIST */}
               <div className="p-8 md:p-10 rounded-3xl text-white shadow-2xl relative overflow-hidden" style={{ backgroundColor: "#006633" }}>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-                <h4 className="text-xl md:text-2xl mb-8 border-b border-emerald-800 pb-4">
+                <h4 style={{ fontFamily: "'Velmont', serif" }} className="text-xl md:text-2xl mb-8 border-b border-emerald-800 pb-4">
                   Why The Nature City Changes Everything
                 </h4>
                 <ol className="space-y-4 text-stone-300 font-light list-decimal pl-5 marker:font-bold" style={{ '--tw-marker-color': '#3fad26' }}>
@@ -881,7 +882,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               viewport={{ once: true }}
               className="lg:col-span-5 space-y-10"
             >
-              <h2 className="text-5xl md:text-7xl leading-[1.1]" style={{ color: "#006633" }}>
+              <h2 className="text-5xl md:text-7xl leading-[1.1]" style={{ fontFamily: "'Velmont', serif",  color: "#006633" }}>
                 Minutes from 
                 <br />
                 <span style={{ color: "#3fad26" }}>Global Connectivity</span>
@@ -989,7 +990,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                     className="p-8 bg-white rounded-3xl border border-stone-200 shadow-sm hover:shadow-md transition-all group"
                   >
                     <div className="h-1 w-12 mb-6 group-hover:w-full transition-all duration-500" style={{ backgroundColor: "#3fad26" }}></div>
-                    <h4 className="font-bold tracking-widest text-xs mb-3" style={{ color: "#006633" }}>
+                    <h4 className="font-bold tracking-widest text-xs mb-3" style={{ fontFamily: "'Velmont', serif",  color: "#006633" }}>
                       {item.title}
                     </h4>
                     <p className="text-stone-500 font-light leading-relaxed">
@@ -1036,7 +1037,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   Information Hub
                 </span>
               </div>
-              <h2 className="text-6xl md:text-8xl text-white leading-none drop-shadow-md">
+              <h2 style={{ fontFamily: "'Velmont', serif" }} className="text-6xl md:text-8xl text-white leading-none drop-shadow-md">
                 Queries <br />
                 <span className="text-white font-light text-4xl md:text-6xl block mt-4">
                   Answered.
@@ -1082,7 +1083,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                       </span>
                       <h3
                         className="text-2xl md:text-4xl leading-tight transition-colors"
-                        style={{ color: activeImg === i ? "#006633" : "white" }}
+                        style={{ fontFamily: "'Velmont', serif",  color: activeImg === i ? "#006633" : "white" }}
                       >
                         {faq.q}
                       </h3>
@@ -1150,7 +1151,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                 </button>
 
                 {/* Heading */}
-                <h3 className="text-3xl md:text-4xl text-white mb-4">
+                <h3 style={{ fontFamily: "'Velmont', serif" }} className="text-3xl md:text-4xl text-white mb-4">
                   Download Brochure
                 </h3>
                 <p className="text-stone-400 text-sm md:text-base mb-10">

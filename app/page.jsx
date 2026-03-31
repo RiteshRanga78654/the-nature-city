@@ -203,7 +203,7 @@ const Page = () => {
       <header className="fixed top-0 w-full z-[150] flex items-center justify-between px-6 py-2 md:px-16 backdrop-blur-md border-b border-white/5" style={{ backgroundColor: "rgba(0, 102, 51, 0.2)" }}>
         <div className="flex items-center">
           <img
-            src="/assets/images/logo.png"
+            src="/assets/logo/logo-mangal-realty-white.png"
             alt="The Nature City"
             className="h-16 w-auto object-contain"
           />

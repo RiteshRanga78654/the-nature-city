@@ -138,7 +138,7 @@ const Page = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#022c22] text-stone-100 font-sans selection:bg-emerald-500/30 overflow-x-hidden">
+    <div className="relative min-h-screen text-stone-100 selection:bg-emerald-500/30 overflow-x-hidden" style={{ backgroundColor: "#006633", fontFamily: "'Acumin Variable Concept', 'Acumin Pro', sans-serif" }}>
       {/* 1. HAMBURGER MENU DRAWER (This was missing) */}
       <AnimatePresence>
         {isMenuOpen && (
@@ -157,7 +157,8 @@ const Page = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-[#022c22] z-[210] border-l border-emerald-800/50 p-12 flex flex-col justify-center shadow-2xl"
+              className="fixed top-0 right-0 h-full w-full sm:w-[400px] z-[210] border-l border-emerald-800/50 p-12 flex flex-col justify-center shadow-2xl"
+              style={{ backgroundColor: "#006633" }}
             >
               <button
                 onClick={() => setIsMenuOpen(false)}
@@ -174,7 +175,7 @@ const Page = () => {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className="text-3xl font-Condensed Sans-Serif hover:text-emerald-400 transition-colors"
+                      className="text-3xl font-Condensed hover:text-emerald-400 transition-colors"
                     >
                       <a
                         href={
@@ -199,18 +200,19 @@ const Page = () => {
         )}
       </AnimatePresence>
       {/* 2. HEADER */}
-      <header className="fixed top-0 w-full z-[150] flex items-center justify-between px-6 py-6 md:px-16 backdrop-blur-md bg-[#022c22]/20 border-b border-white/5">
-        <div className="flex items-center gap-3  tracking-[0.3em] text-xs font-bold">
-          <div className="h-10 w-10 flex items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg">
-            NC
-          </div>
-          <span>The Nature City</span>
+      <header className="fixed top-0 w-full z-[150] flex items-center justify-between px-6 py-2 md:px-16 backdrop-blur-md border-b border-white/5" style={{ backgroundColor: "rgba(0, 102, 51, 0.2)" }}>
+        <div className="flex items-center">
+          <img
+            src="/assets/logo/logo-mangal-realty-white.png"
+            alt="The Nature City"
+            className="h-16 w-auto object-contain"
+          />
         </div>
         <button
           onClick={() => setIsMenuOpen(true)}
           className="group flex items-center gap-3 focus:outline-none cursor-pointer"
         >
-          <span className="text-[10px]  tracking-widest hidden sm:block ">
+          <span className="text-[10px] tracking-widest hidden sm:block ">
             Explore
           </span>
           <div className="flex flex-col gap-1.5">
@@ -235,7 +237,7 @@ const Page = () => {
           </video>
 
           {/* Your existing gradient overlay remains the same */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-[#022c22]/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.5), transparent, rgba(0, 102, 51, 0.6))" }}></div>
         </div>
         {/* Hero Text Content */}
         <motion.div
@@ -244,11 +246,11 @@ const Page = () => {
           transition={{ duration: 1 }}
           className="relative z-10 text-center px-4 -mt-10"
         >
-          <h1  className="text-5xl md:text-[110px] leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight gap-2">
-            Where Adventure Meets <br/><span className="text-emerald-500">Calmness</span>
+          <h1 className="text-5xl md:text-[110px] leading-[0.85] mb-6 text-white tracking-tight gap-2">
+            Where Adventure Meets <br/><span style={{ color: "#3fad26" }}>Calmness</span>
           </h1>
 
-          <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em]mb-10 text-emerald-400 opacity-90">
+          <p className="text-[9px] md:text-[15px] font-bold tracking-[0.4em] mb-10 opacity-90" style={{ color: "#3fad26" }}>
             {/* •LuxuryVillas  */}
           </p>
         </motion.div>
@@ -264,12 +266,16 @@ const Page = () => {
               className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "learn"
-            ? "flex-[1.5] bg-emerald-600 text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
-            : "flex-1 bg-[#011411] text-stone-400 z-10"
+            ? "text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "text-stone-400 z-10"
         }`}
+              style={{
+                flex: activeTab === "learn" ? "1.5" : "1",
+                backgroundColor: activeTab === "learn" ? "#3fad26" : "#011411",
+              }}
             >
               <span
-                className={`font-Condensed Sans-Serif  leading-none transition-all duration-500 ${activeTab === "learn" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                className={`leading-none transition-all duration-500 ${activeTab === "learn" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
               >
                 Buy
               </span>
@@ -287,12 +293,16 @@ const Page = () => {
               className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "community"
-            ? "flex-[1.5] bg-emerald-600 text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
-            : "flex-1 bg-[#011411] text-stone-400 z-10 border-l border-white/5"
+            ? "text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "text-stone-400 z-10 border-l border-white/5"
         }`}
+              style={{
+                flex: activeTab === "community" ? "1.5" : "1",
+                backgroundColor: activeTab === "community" ? "#3fad26" : "#011411",
+              }}
             >
               <span
-                className={`font-Condensed Sans-Serif leading-none transition-all duration-500 ${activeTab === "community" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                className={`leading-none transition-all duration-500 ${activeTab === "community" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
               >
                 Invest
               </span>
@@ -310,12 +320,16 @@ const Page = () => {
               className={`relative flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-in-out h-full
         ${
           activeTab === "Clubhouse"
-            ? "flex-[1.5] bg-emerald-600 text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
-            : "flex-1 bg-[#011411] text-stone-400 z-10 border-l border-white/5"
+            ? "text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "text-stone-400 z-10 border-l border-white/5"
         }`}
+              style={{
+                flex: activeTab === "Clubhouse" ? "1.5" : "1",
+                backgroundColor: activeTab === "Clubhouse" ? "#3fad26" : "#011411",
+              }}
             >
               <span
-                className={`font-Condensed Sans-Serif  leading-none transition-all duration-500 ${activeTab === "Clubhouse" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
+                className={`leading-none transition-all duration-500 ${activeTab === "Clubhouse" ? "text-3xl md:text-4xl mb-1" : "text-xl md:text-2xl"}`}
               >
                 Enjoy
               </span>
@@ -327,24 +341,24 @@ const Page = () => {
         </div>
       </section>
       {/* 4. CORE VALUE SECTION */}
-      <section className="bg-stone-100 pt-20 pb-10  md:pt-30 pb-20 px-6 md:px-32 text-emerald-950">
+      <section className="bg-stone-100 pt-20 pb-10 md:pt-30 pb-20 px-6 md:px-32 text-emerald-950">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center">
           <motion.h2
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-7xl font-semibold font-Condensed Sans-Serif leading-tight text-emerald-900"
+            className="text-4xl md:text-7xl font-semibold leading-tight text-emerald-900"
           >
             Beyond a Township. 
             <br />
-            <span className="text-emerald-600 "> A Way of Life.</span>
+            <span style={{ color: "#3fad26" }}> A Way of Life.</span>
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <div className="w-20 h-1 bg-emerald-600 mb-8"></div>
+            <div className="w-20 h-1 mb-8" style={{ backgroundColor: "#3fad26" }}></div>
             <p className="text-xl md:text-2xl font-light leading-relaxed text-emerald-800/80">
              The Nature City Spreads across 90 RERA-approved acres in Bondapalli, Vizianagaram. Welcome to India's most adventurous gated community, featuring IGBC Platinum-certified living and a Miyawaki Forest.
             </p>
@@ -363,7 +377,7 @@ const Page = () => {
           transition={{ duration: 1 }}
           className="relative z-10 text-center px-4 -mt-120 md:-mt-90"
         >
-          <h1 className="text-3xl md:text-7xl leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
+          <h1 className="text-3xl md:text-7xl leading-[0.85] mb-6 text-white tracking-tight">
             Breathe Pure. Live Green. Thrive Naturally.
           </h1>
 
@@ -373,7 +387,7 @@ const Page = () => {
         </motion.div>
       </div>
       {/* 5. VIDEO & INTERACTIVE BROCHURE SECTION */}
-      <section className="bg-[#022c22] py-20 md:py-25 px-6 md:px-12 lg:px-24">
+      <section className="py-20 md:py-25 px-6 md:px-12 lg:px-24" style={{ backgroundColor: "#006633" }}>
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           {/* VIDEO SIDE - Remains the same */}
           <motion.div
@@ -390,7 +404,7 @@ const Page = () => {
               />
             </div>
             <div className="space-y-6">
-              <h3 className="text-4xl md:text-6xl font-Condensed Sans-Serif text-white">
+              <h3 className="text-4xl md:text-6xl text-white">
                 Why The Nature City?
               </h3>
               <p className="text-stone-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
@@ -404,7 +418,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
           {/* AUTOMATIC BROCHURE SLIDER SIDE */}
           <div className="flex flex-col gap-16">
             <div className="relative w-full max-w-sm mx-auto lg:ml-auto group">
-              <div className="absolute -top-12 left-0 text-[10px] tracking-[0.3em] text-emerald-500 font-bold opacity-60">
+              <div className="absolute -top-12 left-0 text-[10px] tracking-[0.3em] font-bold opacity-60" style={{ color: "#3fad26" }}>
                 Digital Experience — Auto Playing
               </div>
 
@@ -428,7 +442,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   />
                 </AnimatePresence>
 
-                {/* Decorative layers - Fixed rotation so they don't jump during slide */}
+                {/* Decorative layers */}
                 <div className="absolute inset-0 bg-emerald-900/40 -z-10 translate-x-3 translate-y-3 rounded-2xl rotate-2"></div>
                 <div className="absolute inset-0 bg-emerald-800/20 -z-20 translate-x-6 translate-y-6 rounded-2xl -rotate-1"></div>
               </div>
@@ -441,7 +455,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               viewport={{ once: true }}
               className="text-center lg:text-right space-y-10"
             >
-              <h4 className="text-3xl md:text-5xl font-Condensed Sans-Serif leading-tight">
+              <h4 className="text-3xl md:text-5xl leading-tight">
                 Download our <br /> Digital Brochure
               </h4>
               <div className="pt-4">
@@ -449,13 +463,12 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   onClick={() => setIsDownloadModalOpen(true)}
                   style={{
                     padding: "14px 60px",
-                    backgroundColor: "#22C55E",
+                    backgroundColor: "#3fad26",
                     borderRadius: "8px",
                     color: "#fff",
                     fontSize: "1.1rem",
                     fontWeight: "700",
                     cursor: "pointer",
-                    // display: "flex",
                     textAlign: "center",
                     justifyContent: "center",
                     alignItems: "center",
@@ -463,17 +476,17 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                     position: "relative",
                     overflow: "hidden",
                     zIndex: 1,
-                    border: "2px solid #22C55E",
+                    border: "2px solid #3fad26",
                     margin: "0 auto",
                     letterSpacing: "1px",
                     transition: "all 0.3s ease",
+                    fontFamily: "'Acumin Variable Concept', 'Acumin Pro', sans-serif",
                   }}
-                  // Standard Hover Handlers restored from your code
                   onMouseEnter={(e) => {
                     const fill = e.currentTarget.querySelector(".hover-fill");
                     const text = e.currentTarget.querySelector(".btn-text");
                     if (fill) fill.style.width = "100%";
-                    if (text) text.style.color = "#22C55E";
+                    if (text) text.style.color = "#3fad26";
                   }}
                   onMouseLeave={(e) => {
                     const fill = e.currentTarget.querySelector(".hover-fill");
@@ -536,20 +549,17 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               transition={{ duration: 1 }}
               className="relative z-10 text-center px-4 -mt-60 md:-mt-110"
             >
-              <h1 className="text-3xl md:text-7xl leading-[0.85] font-Condensed Sans-Serif mb-6 text-white tracking-tight">
+              <h1 className="text-3xl md:text-7xl leading-[0.85] mb-6 text-white tracking-tight">
                 281+ Amenities for Extraordinary Living
               </h1>
 
               <p className="text-[12px] md:text-[22px] font-bold tracking-[0.1em] mb-10 text-white opacity-90">
                 Our 90-acre township is meticulously zoned to create distinct experiences while <br/> maintaining seamless connectivity.
               </p>
-              {/* <p className="text-[12px] md:text-[22px] font-bold tracking-[0.1em] mb-10 text-white opacity-90">
-                Adventure Zone | Wellness Zone | Water Recreation Zone | Sports Zone | Kids' Kingdom
-              </p> */}
             </motion.div>
           </AnimatePresence>
 
-          {/* OVERLAPPING TOGGLE BUTTONS - Fixed Z-Index & Responsiveness */}
+          {/* OVERLAPPING TOGGLE BUTTONS */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[95%] md:max-w-5xl px-2">
             {/* Container with overflow-visible to allow the growth to pop out */}
             <div className="flex h-[75px] md:h-[95px] w-full items-center overflow-visible">
@@ -564,13 +574,17 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
             ${index !== 0 ? "border-l border-white/10" : ""} 
             ${
               isActive
-                ? "flex-[1.8] bg-[#22cc5e] text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
-                : "flex-1 bg-[#011411] text-stone-400 z-10 hover:bg-[#021c17]"
+                ? "text-white z-20 scale-y-125 scale-x-105 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+                : "text-stone-400 z-10"
             }`}
+                    style={{
+                      flex: isActive ? "1.8" : "1",
+                      backgroundColor: isActive ? "#3fad26" : "#011411",
+                    }}
                   >
-                    {/* Main Title - Using your Serif style */}
+                    {/* Main Title */}
                     <span
-                      className={`font-Condensed Sans-Serif  leading-none transition-all duration-500 ${
+                      className={`leading-none transition-all duration-500 ${
                         isActive
                           ? "text-2xl md:text-3xl "
                           : "text-lg md:text-2xl"
@@ -579,16 +593,12 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                       {type.charAt(0)}BHK Villa
                     </span>
 
-                    {/* Subtitle - Using your bold uppercase style */}
-                    {/* <span className="text-[7px] md:text-[9px] font-bold tracking-[0.15em] uppercase">
-                      BHK Villa
-                    </span> */}
-
                     {/* Optional: Active Indicator Dot */}
                     {isActive && (
                       <motion.div
                         layoutId="activeDot"
-                        className="absolute top-2 right-2 w-1 h-1 bg-emerald-400 rounded-full"
+                        className="absolute top-2 right-2 w-1 h-1 rounded-full"
+                        style={{ backgroundColor: "#3fad26" }}
                       />
                     )}
                   </button>
@@ -611,7 +621,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   exit={{ opacity: 0, x: 20 }}
                   className="space-y-3"
                 >
-                  <h2 className="text-3xl md:text-6xl font-Condensed Sans-Serif text-[#022c22] leading-tight">
+                  <h2 className="text-3xl md:text-6xl text-[#006633] leading-tight">
                     {villaData[orientation].title}
                   </h2>
                   <div className="flex flex-wrap gap-4 items-center">
@@ -619,7 +629,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                       {villaData[orientation].size}
                     </p>
                     <span className="hidden md:block h-4 w-[1px] bg-stone-300"></span>
-                    <p className="text-xl md:text-2xl font-bold text-emerald-700">
+                    <p className="text-xl md:text-2xl font-bold" style={{ color: "#3fad26" }}>
                       Starting Price on {villaData[orientation].price}
                     </p>
                   </div>
@@ -647,10 +657,10 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
             {/* RIGHT: BROCHURE & NEXT STEPS */}
             <div className="lg:pt-24 space-y-16 order-2">
               <div className="space-y-6">
-                <h3 className="text-2xl md:text-3xl font-Condensed Sans-Serif text-[#022c22]">
+                <h3 className="text-2xl md:text-3xl text-[#006633]">
                   What lifestyle does my Villa unlock?
                 </h3>
-                <div className="w-16 h-1 bg-emerald-600 rounded-full"></div>
+                <div className="w-16 h-1 rounded-full" style={{ backgroundColor: "#3fad26" }}></div>
                 <p className="text-stone-600 font-light leading-relaxed text-base md:text-lg">
                   We offer 4 distinct villa types designed for different family needs. Every villa includes 281+ amenity access and 5 years of free maintenance, all within walking distance from your doorstep.
                 </p>
@@ -662,8 +672,8 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               >
                 <AnimatePresence mode="wait">
                   <motion.img
-                    key={`${orientation}-masterplan`} // Ensures animation triggers on change
-                    src={villaData[orientation].masterPlan} // Dynamic source
+                    key={`${orientation}-masterplan`}
+                    src={villaData[orientation].masterPlan}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -672,37 +682,34 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                     className="w-full h-auto rounded-2xl shadow-lg"
                   />
                 </AnimatePresence>
-                <p className="mt-4 text-center text-[9px] tracking-[0.3em] text-emerald-800 font-bold">
+                <p className="mt-4 text-center text-[9px] tracking-[0.3em] font-bold" style={{ color: "#006633" }}>
                   Estate Masterplan View ({orientation})
                 </p>
               </motion.div>
 
               {/* NEXT STEPS LIST */}
-              <div className="bg-[#022c22] p-8 md:p-10 rounded-3xl text-white shadow-2xl relative overflow-hidden">
+              <div className="p-8 md:p-10 rounded-3xl text-white shadow-2xl relative overflow-hidden" style={{ backgroundColor: "#006633" }}>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-                <h4 className="text-xl md:text-2xl font-Condensed Sans-Serif mb-8 border-b border-emerald-800 pb-4">
+                <h4 className="text-xl md:text-2xl mb-8 border-b border-emerald-800 pb-4">
                   Why The Nature City Changes Everything
                 </h4>
-                <ol className="space-y-4 text-stone-300 font-light list-decimal pl-5 marker:text-emerald-500 marker:font-bold">
-                  <li className="pl-2">
+                <ol className="space-y-4 text-stone-300 font-light list-decimal pl-5 marker:font-bold" style={{ '--tw-marker-color': '#3fad26' }}>
+                  <li className="pl-2" style={{ color: "#d1fae5" }}>
                     281+ amenities (Industry average: 20-30)
                   </li>
-                  <li className="pl-2">
+                  <li className="pl-2" style={{ color: "#d1fae5" }}>
                     30 acres dedicated agricultural land (Industry standard: 0)
                   </li>
-                  <li className="pl-2">
+                  <li className="pl-2" style={{ color: "#d1fae5" }}>
                     25,000 trees and plants (Most projects: Few hundred)
                   </li>
-                  <li className="pl-2">
+                  <li className="pl-2" style={{ color: "#d1fae5" }}>
                     IGBC Platinum certified (Only 2% of Indian townships achieve
                     this)
                   </li>
-                  <li className="pl-2">90 acres RERA-approved development</li>
-                  {/* <li className="pl-2">600 units designed for balanced community</li>
-                  <li className="pl-2">70% construction already complete</li>
-                  <li className="pl-2">5 years complimentary maintenance</li>
-                  <li className="pl-2">30 minutes to airport</li>
-                  <li className="pl-2">5 minutes to railway station</li> */}
+                  <li className="pl-2" style={{ color: "#d1fae5" }}>
+                    90 acres RERA-approved development
+                  </li>
                 </ol>
               </div>
             </div>
@@ -742,7 +749,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
             transition={{ delay: 0.2 }}
             className="relative z-20 -mt-16 md:-mt-24 mx-auto max-w-6xl"
           >
-            <div className="bg-[#022c22] rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.4)] p-8 md:p-12 border border-emerald-800/30 backdrop-blur-md">
+            <div className="rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.4)] p-8 md:p-12 border border-emerald-800/30 backdrop-blur-md" style={{ backgroundColor: "#006633" }}>
               <form className="grid grid-cols-1 md:grid-cols-4 gap-8 items-end">
                 {/* Input Group 1 */}
                 <div className="relative group/input">
@@ -755,7 +762,8 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   />
                   <label
                     htmlFor="name"
-                    className="absolute left-0 -top-3.5 text-emerald-500 text-xs  tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white/30 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-emerald-400 peer-focus:text-xs"
+                    className="absolute left-0 -top-3.5 text-xs tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white/30 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs"
+                    style={{ color: "#3fad26" }}
                   >
                     Your Name
                   </label>
@@ -772,7 +780,8 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   />
                   <label
                     htmlFor="phone"
-                    className="absolute left-0 -top-3.5 text-emerald-500 text-xs  tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white/30 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-emerald-400 peer-focus:text-xs"
+                    className="absolute left-0 -top-3.5 text-xs tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white/30 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs"
+                    style={{ color: "#3fad26" }}
                   >
                     Phone Number
                   </label>
@@ -781,30 +790,29 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                 {/* Input Group 3 */}
                 <div className="relative group/input">
                   <select className="peer w-full bg-transparent border-b border-emerald-800/50 py-3 text-white focus:outline-none focus:border-emerald-400 transition-all appearance-none cursor-pointer">
-                    <option className="bg-[#022c22]" value="">
+                    <option style={{ backgroundColor: "#006633" }} value="">
                        Select Range
                     </option>
-                    <option className="bg-[#022c22]" value="1.5">
+                    <option style={{ backgroundColor: "#006633" }} value="1.5">
                        1.5Cr - 2.5Cr
                     </option>
-                    <option className="bg-[#022c22]" value="2.5">
+                    <option style={{ backgroundColor: "#006633" }} value="2.5">
                        2.5Cr - 4Cr
                     </option>
                   </select>
-                  <label className="absolute left-0 -top-3.5 text-emerald-500 text-xs  tracking-widest">
+                  <label className="absolute left-0 -top-3.5 text-xs tracking-widest" style={{ color: "#3fad26" }}>
                      Select Budget
                   </label>
                 </div>
 
                 {/* Submit Button */}
                 <div className="pt-4">
-                  {/* Changed Button to Gold Theme */}
                   <button
                     style={{
                       padding: "14px 40px",
-                      backgroundColor: "#22C55E", // Default Gold Background
+                      backgroundColor: "#3fad26",
                       borderRadius: "8px",
-                      color: "#fff", // Default White Text
+                      color: "#fff",
                       fontSize: "1.1rem",
                       fontWeight: "700",
                       cursor: "pointer",
@@ -816,33 +824,25 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                       position: "relative",
                       overflow: "hidden",
                       zIndex: 1,
-                      border: "2px solid #22C55E", // Border keeps the button size stable
+                      border: "2px solid #3fad26",
                       margin: "0 auto",
                       letterSpacing: "1px",
                       transition: "all 0.3s ease",
+                      fontFamily: "'Acumin Variable Concept', 'Acumin Pro', sans-serif",
                     }}
                     onMouseEnter={(e) => {
                       const fill = e.currentTarget.querySelector(".hover-fill");
                       const text = e.currentTarget.querySelector(".btn-text");
-
-                      // Slide in the white background
                       if (fill) fill.style.width = "100%";
-
-                      // Change text color to Gold
-                      if (text) text.style.color = "#22C55E";
+                      if (text) text.style.color = "#3fad26";
                     }}
                     onMouseLeave={(e) => {
                       const fill = e.currentTarget.querySelector(".hover-fill");
                       const text = e.currentTarget.querySelector(".btn-text");
-
-                      // Slide out the white background
                       if (fill) fill.style.width = "0%";
-
-                      // Reset text color to White
                       if (text) text.style.color = "#fff";
                     }}
                   >
-                    {/* Hover Fill Layer: White */}
                     <div
                       className="hover-fill"
                       style={{
@@ -851,19 +851,17 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                         left: 0,
                         width: "0%",
                         height: "100%",
-                        background: "#ffffff", // White background on hover
+                        background: "#ffffff",
                         transition: "width 0.4s ease",
                         zIndex: -1,
                       }}
                     />
-
-                    {/* Text Span with Transition */}
                     <span
                       className="btn-text"
                       style={{
                         position: "relative",
                         zIndex: 1,
-                        color: "#fff", // Initial color
+                        color: "#fff",
                         transition: "color 0.3s ease",
                       }}
                     >
@@ -871,13 +869,6 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                     </span>
                   </button>
                 </div>
-                {/* <motion.button
-                  whileHover={{ scale: 1.02, backgroundColor: "#10b981" }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-emerald-600 text-white font-bold py-5 rounded-xl  tracking-[0.1em] text-[14px] shadow-2xl transition-all"
-                >
-                  Schedule a Visit
-                </motion.button> */}
               </form>
             </div>
           </motion.div>
@@ -890,10 +881,10 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               viewport={{ once: true }}
               className="lg:col-span-5 space-y-10"
             >
-              <h2 className="text-5xl md:text-7xl font-Condensed Sans-Serif text-[#022c22] leading-[1.1]">
+              <h2 className="text-5xl md:text-7xl leading-[1.1]" style={{ color: "#006633" }}>
                 Minutes from 
                 <br />
-                <span className="text-emerald-600 ">Global Connectivity</span>
+                <span style={{ color: "#3fad26" }}>Global Connectivity</span>
               </h2>
               <div className="flex flex-col sm:flex-row gap-6">
                 <a
@@ -901,13 +892,12 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   target="_blank"
                 >
                   <div className="pt-4">
-                    {/* Changed Button to Gold Theme */}
                     <button
                       style={{
                         padding: "14px 40px",
-                        backgroundColor: "#22C55E", // Default Gold Background
+                        backgroundColor: "#3fad26",
                         borderRadius: "8px",
-                        color: "#fff", // Default White Text
+                        color: "#fff",
                         fontSize: "1.1rem",
                         fontWeight: "700",
                         cursor: "pointer",
@@ -919,35 +909,25 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                         position: "relative",
                         overflow: "hidden",
                         zIndex: 1,
-                        border: "2px solid #22C55E", // Border keeps the button size stable
+                        border: "2px solid #3fad26",
                         margin: "0 auto",
                         letterSpacing: "1px",
                         transition: "all 0.3s ease",
+                        fontFamily: "'Acumin Variable Concept', 'Acumin Pro', sans-serif",
                       }}
                       onMouseEnter={(e) => {
-                        const fill =
-                          e.currentTarget.querySelector(".hover-fill");
+                        const fill = e.currentTarget.querySelector(".hover-fill");
                         const text = e.currentTarget.querySelector(".btn-text");
-
-                        // Slide in the white background
                         if (fill) fill.style.width = "100%";
-
-                        // Change text color to Gold
-                        if (text) text.style.color = "#22C55E";
+                        if (text) text.style.color = "#3fad26";
                       }}
                       onMouseLeave={(e) => {
-                        const fill =
-                          e.currentTarget.querySelector(".hover-fill");
+                        const fill = e.currentTarget.querySelector(".hover-fill");
                         const text = e.currentTarget.querySelector(".btn-text");
-
-                        // Slide out the white background
                         if (fill) fill.style.width = "0%";
-
-                        // Reset text color to White
                         if (text) text.style.color = "#fff";
                       }}
                     >
-                      {/* Hover Fill Layer: White */}
                       <div
                         className="hover-fill"
                         style={{
@@ -956,19 +936,17 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                           left: 0,
                           width: "0%",
                           height: "100%",
-                          background: "#ffffff", // White background on hover
+                          background: "#ffffff",
                           transition: "width 0.4s ease",
                           zIndex: -1,
                         }}
                       />
-
-                      {/* Text Span with Transition */}
                       <span
                         className="btn-text"
                         style={{
                           position: "relative",
                           zIndex: 1,
-                          color: "#fff", // Initial color
+                          color: "#fff",
                           transition: "color 0.3s ease",
                         }}
                       >
@@ -976,12 +954,6 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                       </span>
                     </button>
                   </div>
-                  {/* <button className="bg-emerald-600 cursor-pointer hover:bg-emerald-700 text-white px-8 py-5 rounded-full font-bold  tracking-widest text-[10px] shadow-xl transition-all flex items-center justify-center gap-3 group">
-                    Open in Google Maps
-                    <span className="group-hover:translate-x-1 transition-transform">
-                      ↗
-                    </span>
-                  </button> */}
                 </a>
               </div>
             </motion.div>
@@ -1016,8 +988,8 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                     whileHover={{ y: -5 }}
                     className="p-8 bg-white rounded-3xl border border-stone-200 shadow-sm hover:shadow-md transition-all group"
                   >
-                    <div className="h-1 w-12 bg-emerald-600 mb-6 group-hover:w-full transition-all duration-500"></div>
-                    <h4 className="text-emerald-900 font-bold  tracking-widest text-xs mb-3">
+                    <div className="h-1 w-12 mb-6 group-hover:w-full transition-all duration-500" style={{ backgroundColor: "#3fad26" }}></div>
+                    <h4 className="font-bold tracking-widest text-xs mb-3" style={{ color: "#006633" }}>
                       {item.title}
                     </h4>
                     <p className="text-stone-500 font-light leading-relaxed">
@@ -1027,7 +999,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                 ))}
               </div>
 
-              <div className="mt-8 p-8 bg-emerald-50 rounded-3xl border border-emerald-100 text-center text-emerald-800 font-Condensed Sans-Serif">
+              <div className="mt-8 p-8 bg-emerald-50 rounded-3xl border border-emerald-100 text-center font-semibold" style={{ color: "#006633" }}>
                 "In the same belt as the Aerospace SEZ and the Devanahalli
                 Business Zone."
               </div>
@@ -1035,11 +1007,10 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
           </div>
         </div>
       </section>
-      {/* 11. FAQ SECTION - Brightened Background */}
-      <section className="relative bg-[#051d17] py-20 md:py-25 overflow-hidden border-t border-white/10">
-        {/* Brightened Background Image Layer */}
+      {/* 11. FAQ SECTION */}
+      <section className="relative py-20 md:py-25 overflow-hidden border-t border-white/10" style={{ backgroundColor: "#051d17" }}>
+        {/* Background Image Layer */}
         <div className="absolute inset-0 opacity-60 pointer-events-none">
-          {/* Increased opacity from 0.4 to 0.6 */}
           <AnimatePresence mode="wait">
             <motion.img
               key={activeImg ?? "default"}
@@ -1054,7 +1025,6 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               className="w-full h-full object-cover brightness-[0.8] contrast-[1.1]"
             />
           </AnimatePresence>
-          {/* Added a light gradient overlay to blend the image into the white cards better */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#051d17]/50 via-transparent to-[#051d17]/80" />
         </div>
 
@@ -1062,13 +1032,13 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
           <div className="flex flex-col lg:flex-row gap-16 md:gap-24 items-start">
             <div className="lg:w-1/3 lg:sticky lg:top-32 space-y-8">
               <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-lg">
-                <span className="text-emerald-950 text-[10px] font-bold  tracking-widest">
+                <span className="text-emerald-950 text-[10px] font-bold tracking-widest">
                   Information Hub
                 </span>
               </div>
-              <h2 className="text-6xl md:text-8xl font-Condensed Sans-Serif text-white leading-none drop-shadow-md">
+              <h2 className="text-6xl md:text-8xl text-white leading-none drop-shadow-md">
                 Queries <br />
-                <span className=" text-white font-light text-4xl md:text-6xl block mt-4  decoration-white/40">
+                <span className="text-white font-light text-4xl md:text-6xl block mt-4">
                   Answered.
                 </span>
               </h2>
@@ -1091,11 +1061,6 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   a: "We employ a comprehensive 3-tier security system: 24/7 CCTV surveillance with GEO tagging of every plot and structure, plus emergency support. Your family's safety is our priority.",
                   tag: "Security",
                 },
-                // {
-                //   q: "What amenities are included in the estate?",
-                //   a: "The City features 61+ amenities including an Aqua Gym, Digital Workouts, and professional sports courts.",
-                //   tag: "Facilities",
-                // },
               ].map((faq, i) => (
                 <motion.div
                   key={i}
@@ -1110,19 +1075,26 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div className="space-y-2">
                       <span
-                        className={`font-bold text-[10px]  tracking-widest transition-colors ${activeImg === i ? "text-emerald-600" : "text-white"}`}
+                        className="font-bold text-[10px] tracking-widest transition-colors"
+                        style={{ color: activeImg === i ? "#3fad26" : "white" }}
                       >
                         {faq.tag}
                       </span>
                       <h3
-                        className={`text-2xl md:text-4xl font-Condensed Sans-Serif leading-tight transition-colors ${activeImg === i ? "text-emerald-950" : "text-white"}`}
+                        className="text-2xl md:text-4xl leading-tight transition-colors"
+                        style={{ color: activeImg === i ? "#006633" : "white" }}
                       >
                         {faq.q}
                       </h3>
                     </div>
                     <motion.div
                       animate={{ rotate: activeImg === i ? 45 : 0 }}
-                      className={`w-14 h-14 rounded-full border flex items-center justify-center shrink-0 transition-all ${activeImg === i ? "bg-emerald-600 border-emerald-600 text-white" : "border-white/60 text-white bg-white/10"}`}
+                      className="w-14 h-14 rounded-full border flex items-center justify-center shrink-0 transition-all"
+                      style={{
+                        backgroundColor: activeImg === i ? "#3fad26" : "rgba(255,255,255,0.1)",
+                        borderColor: activeImg === i ? "#3fad26" : "rgba(255,255,255,0.6)",
+                        color: "white",
+                      }}
                     >
                       <span className="text-2xl">↗</span>
                     </motion.div>
@@ -1135,7 +1107,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden"
                       >
-                        <p className="pt-4 mt-4 border-t border-emerald-100 text-slate-600 font-light  text-lg leading-relaxed">
+                        <p className="pt-4 mt-4 border-t border-emerald-100 text-slate-600 font-light text-lg leading-relaxed">
                           {faq.a}
                         </p>
                       </motion.div>
@@ -1168,7 +1140,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="fixed inset-0 z-[310] flex items-center justify-center px-4"
             >
-              <div className="w-full max-w-xl bg-[#022c22] border border-emerald-800/40 rounded-3xl shadow-[0_40px_80px_rgba(0,0,0,0.6)] p-8 md:p-12 relative">
+              <div className="w-full max-w-xl border border-emerald-800/40 rounded-3xl shadow-[0_40px_80px_rgba(0,0,0,0.6)] p-8 md:p-12 relative" style={{ backgroundColor: "#006633" }}>
                 {/* Close Button */}
                 <button
                   onClick={() => setIsDownloadModalOpen(false)}
@@ -1178,7 +1150,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                 </button>
 
                 {/* Heading */}
-                <h3 className="text-3xl md:text-4xl font-Condensed Sans-Serif text-white mb-4">
+                <h3 className="text-3xl md:text-4xl text-white mb-4">
                   Download Brochure
                 </h3>
                 <p className="text-stone-400 text-sm md:text-base mb-10">
@@ -1201,7 +1173,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                       placeholder=" "
                       className="peer w-full bg-transparent border-b border-emerald-800/60 py-3 text-white focus:outline-none focus:border-emerald-400 placeholder-transparent"
                     />
-                    <label className="absolute left-0 -top-3.5 text-xs tracking-widest text-emerald-500 peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs">
+                    <label className="absolute left-0 -top-3.5 text-xs tracking-widest peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs" style={{ color: "#3fad26" }}>
                       Full Name
                     </label>
                   </div>
@@ -1220,7 +1192,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                       placeholder=" "
                       className="peer w-full bg-transparent border-b border-emerald-800/60 py-3 text-white focus:outline-none focus:border-emerald-400 placeholder-transparent"
                     />
-                    <label className="absolute left-0 -top-3.5 text-xs tracking-widest text-emerald-500 peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs">
+                    <label className="absolute left-0 -top-3.5 text-xs tracking-widest peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs" style={{ color: "#3fad26" }}>
                       Email Address
                     </label>
                   </div>
@@ -1239,7 +1211,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                       placeholder=" "
                       className="peer w-full bg-transparent border-b border-emerald-800/60 py-3 text-white focus:outline-none focus:border-emerald-400 placeholder-transparent"
                     />
-                    <label className="absolute left-0 -top-3.5 text-xs tracking-widest text-emerald-500 peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs">
+                    <label className="absolute left-0 -top-3.5 text-xs tracking-widest peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs" style={{ color: "#3fad26" }}>
                       Phone Number
                     </label>
                   </div>
@@ -1247,7 +1219,10 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                   {/* Submit */}
                   <button
                     type="submit"
-                    className="w-full mt-6 py-4 bg-[#22C55E] text-white font-bold rounded-xl tracking-widest text-sm hover:bg-emerald-500 transition-all"
+                    className="w-full mt-6 py-4 text-white font-bold rounded-xl tracking-widest text-sm transition-all"
+                    style={{ backgroundColor: "#3fad26", fontFamily: "'Acumin Variable Concept', 'Acumin Pro', sans-serif" }}
+                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#35941f"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#3fad26"; }}
                   >
                     Download Now
                   </button>

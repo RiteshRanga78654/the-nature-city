@@ -110,7 +110,7 @@ export default function Footer() {
                   Visit us at our office in
                 </p>
                 <p className="text-sm font-light leading-relaxed">
-                  69C4+4F7 Bondapalli, Andhra Pradesh, India
+                  The Nature City, Near Billalavalasa Junction, On Highway NH-26, Vizianagaram – 535128
                 </p>
               </div>
 
@@ -140,7 +140,7 @@ export default function Footer() {
                     />
                   </div>
                   <span className="text-sm font-semibold text-white group-hover:text-[#4ADE80] transition-colors">
-                    +91 040-4400033
+                    +91  69000 48000
                   </span>
                 </a>
               </div>

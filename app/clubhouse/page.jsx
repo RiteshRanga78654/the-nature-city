@@ -17,12 +17,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Swal from 'sweetalert2';
 
-/* ─── Font style injection ───────────────────────────────────────────────────
-   Make sure your font files exist at /public/assets/fonts/
-   Velmont        → Velmont.woff2
-   Acumin Variable Concept → AcuminVariableConcept.woff2
-   (Both are commercial fonts — acquire licences before use)
-──────────────────────────────────────────────────────────────────────────── */
 const fontStyles = `
   @font-face {
     font-family: 'Velmont';
@@ -57,7 +51,7 @@ const images = [
   "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (1).jpeg",
   "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (2).jpeg",
   "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM.jpeg",
-];
+];cc
 
 const Page = () => {
   const router = useRouter();

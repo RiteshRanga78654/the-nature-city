@@ -17,12 +17,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Swal from 'sweetalert2';
 
-/* ─── Font style injection ───────────────────────────────────────────────────
-   Make sure your font files exist at /public/assets/fonts/
-   Velmont        → Velmont.woff2
-   Acumin Variable Concept → AcuminVariableConcept.woff2
-   (Both are commercial fonts — acquire licences before use)
-──────────────────────────────────────────────────────────────────────────── */
 const fontStyles = `
   @font-face {
     font-family: 'Velmont';

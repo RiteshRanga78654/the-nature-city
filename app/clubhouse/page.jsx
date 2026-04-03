@@ -51,7 +51,7 @@ const images = [
   "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (1).jpeg",
   "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM (2).jpeg",
   "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.55 AM.jpeg",
-];cc
+];
 
 const Page = () => {
   const router = useRouter();

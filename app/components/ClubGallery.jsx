@@ -33,13 +33,13 @@ const clubhouseGallery = [
     src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM (2).jpeg", 
     icon: <Sparkles size={16} /> 
   },
- { 
-    id: 5, 
-    title: "Go Karting", 
-    cat: "Adventures", 
-    src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.00 AM.jpeg", 
-    icon: <Sparkles size={16} /> 
-  },
+//  { 
+//     id: 5, 
+//     title: "Go Karting", 
+//     cat: "Adventures", 
+//     src: "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.00 AM.jpeg", 
+//     icon: <Sparkles size={16} /> 
+//   },
   { 
     id: 6, 
     title: "Wooden Walkway", 

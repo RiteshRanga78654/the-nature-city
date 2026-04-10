@@ -73,7 +73,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-sm leading-relaxed font-light tracking-wide text-[#B0C4B0]">
-              India's first residential township transforming everyday living into extraordinary experiences. Redefining premium living with 281+ amenities with RERA-approved and IGBC Platinum certification.
+              India's first residential township transforming everyday living into extraordinary experiences. Redefining premium living with 251+ amenities with RERA-approved and IGBC Platinum certification.
             </p>
           </motion.div>
 

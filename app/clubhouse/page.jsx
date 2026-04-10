@@ -324,7 +324,7 @@ const Page = () => {
                 className="text-lg leading-relaxed"
                 style={{ ...BODY_FONT, color: "#d1fae5" }}
               >
-                Our world-class clubhouse complex offers 281+ premium amenities, from adventure
+                Our world-class clubhouse complex offers 251+ premium amenities, from adventure
                 zones and paintball arenas to serene Miyawaki Forest trails and 30-acre organic
                 farmland.
               </p>

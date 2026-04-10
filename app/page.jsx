@@ -72,39 +72,39 @@ const Page = () => {
     setCurrentBrochureIndex((prev) => (prev + 1) % brochureImages.length);
   };
 
-  const [orientation, setOrientation] = useState("1BHK");
+  const [orientation, setOrientation] = useState("3BHK");
 
   const villaData = {
-    "1BHK": {
-      title: "Premium Villas",
-      price: "Request",
-      size: "4 villa configurations available",
-      heroImg:
-        "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.19 PM (1).jpeg",
-      floorPlans: [
-        "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.16 PM.jpeg",
-        "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.23 PM.jpeg",
-                "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.23 PM.jpeg",
+    // "1BHK": {
+    //   title: "Premium Villas",
+    //   price: "Request",
+    //   size: "4 villa configurations available",
+    //   heroImg:
+    //     "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.19 PM (1).jpeg",
+    //   floorPlans: [
+    //     "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.16 PM.jpeg",
+    //     "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.23 PM.jpeg",
+    //             "/assets/images/nature-city-img/WhatsApp Image 2026-01-28 at 6.36.23 PM.jpeg",
 
-      ],
-      masterPlan:
-        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM.jpeg", // New key
-    },
-    "2BHK": {
-      title: "2BHK Luxury Villa",
-      price: "₹2.5Cr",
-      size: "2100 sft built up",
-      heroImg:
-        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.56 AM (1).jpeg",
-      floorPlans: [
-        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.56 AM.jpeg",
-        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg",
-                "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg",
+    //   ],
+    //   masterPlan:
+    //     "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.54 AM.jpeg", // New key
+    // },
+    // "2BHK": {
+    //   title: "2BHK Luxury Villa",
+    //   price: "₹2.5Cr",
+    //   size: "2100 sft built up",
+    //   heroImg:
+    //     "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.56 AM (1).jpeg",
+    //   floorPlans: [
+    //     "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.56 AM.jpeg",
+    //     "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg",
+    //             "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.12.57 AM.jpeg",
 
-      ],
-      masterPlan:
-        "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.00 AM.jpeg", // New key
-    },
+    //   ],
+    //   masterPlan:
+    //     "/assets/images/slider/WhatsApp Image 2026-01-29 at 11.13.00 AM.jpeg", // New key
+    // },
     "3BHK": {
       title: "3BHK Luxury Villa",
       price: "₹3.5Cr",
@@ -383,7 +383,7 @@ const Page = () => {
           </h1>
 
           <p className="text-[12px] md:text-[22px] font-bold tracking-[0.1em] mb-10 text-white opacity-90">
-            Your Kids Deserve Better. Give them 281+ amenities designed for childhood as <br/>it should be: wild, wonderful, and worry-free.
+            Your Kids Deserve Better. Give them 251+ amenities designed for childhood as <br/>it should be: wild, wonderful, and worry-free.
           </p>
         </motion.div>
       </div>
@@ -551,7 +551,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
               className="relative z-10 text-center px-4 -mt-60 md:-mt-110"
             >
               <h1 style={{ fontFamily: "'Velmont', serif" }} className="text-3xl md:text-7xl leading-[0.85] mb-6 text-white tracking-tight">
-                281+ Amenities for Extraordinary Living
+                251+ Amenities for Extraordinary Living
               </h1>
 
               <p className="text-[12px] md:text-[22px] font-bold tracking-[0.1em] mb-10 text-white opacity-90">
@@ -564,7 +564,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[120] w-full max-w-[95%] md:max-w-5xl px-2">
             {/* Container with overflow-visible to allow the growth to pop out */}
             <div className="flex h-[75px] md:h-[95px] w-full items-center overflow-visible">
-              {["1BHK", "2BHK", "3BHK", "4BHK"].map((type, index) => {
+              {[ "3BHK", "4BHK"].map((type, index) => {
                 const isActive = orientation === type;
 
                 return (
@@ -663,7 +663,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                 </h3>
                 <div className="w-16 h-1 rounded-full" style={{ backgroundColor: "#3fad26" }}></div>
                 <p className="text-stone-600 font-light leading-relaxed text-base md:text-lg">
-                  We offer 4 distinct villa types designed for different family needs. Every villa includes 281+ amenity access and 5 years of free maintenance, all within walking distance from your doorstep.
+                  We offer 4 distinct villa types designed for different family needs. Every villa includes 251+ amenity access and 5 years of free maintenance, all within walking distance from your doorstep.
                 </p>
               </div>
               {/* MASTERPLAN IMAGE - Now Dynamic */}
@@ -696,7 +696,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                 </h4>
                 <ol className="space-y-4 text-stone-300 font-light list-decimal pl-5 marker:font-bold" style={{ '--tw-marker-color': '#3fad26' }}>
                   <li className="pl-2" style={{ color: "#d1fae5" }}>
-                    281+ amenities (Industry average: 20-30)
+                    251+ amenities (Industry average: 20-30)
                   </li>
                   <li className="pl-2" style={{ color: "#d1fae5" }}>
                     30 acres dedicated agricultural land (Industry standard: 0)
@@ -1054,7 +1054,7 @@ India's first residential township with go-karting, sky cycling, zipline, paintb
                 },
                 {
                   q: "What makes your amenity count so high compared to other townships?",
-                  a: "We offer 281+ comprehensive amenities including: Adventure zones ,6 gym types , swimming pool complex, sports courts and wellness sanctuaries that others can't match  built on 90 acres optimized for experiences, not maximum plot count.",
+                  a: "We offer 251+ comprehensive amenities including: Adventure zones ,6 gym types , swimming pool complex, sports courts and wellness sanctuaries that others can't match  built on 90 acres optimized for experiences, not maximum plot count.",
                   tag: "Facilities",
                 },
                 {

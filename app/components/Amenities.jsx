@@ -24,8 +24,6 @@ export default function AmenitiesSection() {
 
   const baseAmenities = [
   { icon: <Bike />, title: "Sky Cycling" },
-  { icon: <Zap />, title: "Ziplining" },
-  { icon: <Trophy />, title: "Go-Karting" },
   { icon: <Construction />, title: "Track ATV" },
   { icon: <Tent />, title: "Night Camping & Camp Fire Zone" },
   { icon: <Smile />, title: "Laughing Park" },
@@ -59,7 +57,7 @@ export default function AmenitiesSection() {
   { icon: <Eye />, title: "Signature Grand Entrance & Exit" },
   { icon: <Trees />, title: "Tree House with Mountain View" },
   { icon: <Wind />, title: "O3 Zone" },
-  { icon: <Theater />, title: "Amphitheatre" },
+  
   { icon: <Waves />, title: "Swimming Pool" },
   { icon: <Bike />, title: "Complimentary Bikes with Cycle Stand" },
 ];

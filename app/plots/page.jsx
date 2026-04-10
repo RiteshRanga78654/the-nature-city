@@ -364,7 +364,7 @@ const PlotsPage = () => {
                   The Nature City plots aren't just land parcels, they're your ticket to India's most adventurous lifestyle township. Where your morning coffee comes with forest trails and organic farms.
                 </p>
                 <p className="text-lg md:text-xl font-light leading-relaxed text-emerald-700/70" style={acumin}>
-                  281+ Amenities Ready for You From 6 specialized gyms to swimming pool complex, everything is ready.
+                  251+ Amenities Ready for You From 6 specialized gyms to swimming pool complex, everything is ready.
                 </p>
               </div>
             </motion.div>
@@ -571,7 +571,7 @@ const PlotsPage = () => {
               </motion.div>
               <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="lg:col-span-5 pb-4">
                 <p className="text-stone-400 font-light text-xl leading-relaxed" style={acumin}>
-                  Spanning 90 acres of IGBC Platinum-certified paradise. Featuring 281+ amenities, 30-acre agricultural zone, Miyawaki Forest, adventure zones with ziplines & Go-Karting, 30-acre organic farmland, and a clubhouse that redefines luxury.
+                  Spanning 90 acres of IGBC Platinum-certified paradise. Featuring 251+ amenities, 30-acre agricultural zone, Miyawaki Forest, adventure zones with ziplines & Go-Karting, 30-acre organic farmland, and a clubhouse that redefines luxury.
                 </p>
               </motion.div>
             </div>
@@ -630,7 +630,7 @@ const PlotsPage = () => {
             {/* STATS */}
             <div className="mt-15 mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 border-t text-center border-white/10 pt-12">
               {[
-                { label: "Amenities",    val: "281"     },
+                { label: "Amenities",    val: "251"     },
                 { label: "Plot Units",   val: "600"     },
                 { label: "Estate Scale", val: "90 Acres"},
                 { label: "Electricity",  val: "24/7"    },
@@ -727,7 +727,7 @@ const PlotsPage = () => {
                   <span style={{ color: BTN_GREEN }}>Adventure Living.</span>
                 </h2>
                 <p className="text-stone-500 font-light text-xl leading-relaxed" style={acumin}>
-                  Perfectly positioned in Bondapalli, Vizianagaram, The Nature City offers an exceptional opportunity to experience premium villa plots with 281+ amenities in Andhra Pradesh's emerging growth corridor.
+                  Perfectly positioned in Bondapalli, Vizianagaram, The Nature City offers an exceptional opportunity to experience premium villa plots with 251+ amenities in Andhra Pradesh's emerging growth corridor.
                 </p>
               </motion.div>
 
